@@ -10,8 +10,8 @@ grammar_cjkRuby: true
 
 
   
-  - **Heart:**
-  ![enter description here][2]
+ - **Heart:**
+  ![Heart][2]
 
 
   [1]: ./images/Word.png "Word.png"
