@@ -1,4 +1,3 @@
-# JackDan9LovePage
 ---
 title: JackDan9LovePage
 tags: html,css,javascript,jquery
@@ -6,6 +5,9 @@ grammar_footnote: true
 grammar_cjkEmphasis: true
 grammar_cjkRuby: true
 ---
+
+# JackDan9LovePage
+
 - **Word:**
 ![Word][1]
 
