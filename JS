@@ -1,2 +1,0 @@
-# WebPages
-HTML+CSS+JS/JQuery
