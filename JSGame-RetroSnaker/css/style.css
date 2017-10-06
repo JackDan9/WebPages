@@ -1,0 +1,53 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+html {
+    width: 1000px;
+}
+html, body {
+    padding: 0;
+    margin: 0;
+}
+body {
+    width: 100%;
+    margin: 10px auto;
+}
+#pannel {
+    width: 50%;
+}
+#pannel table {
+    margin: 10px auto;
+}
+#pannel title {
+    border-collapse: collapse;
+}
+#pannel table td {
+    border: 1px solid #808080;
+    width: 10px;
+    height: 10px;
+    font-size: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+#pannel table .snake {
+    background-color: green;
+}
+#pannel table .food {
+    background-color: blue;
+}
+.paramCon {
+    width: 50%;
+}
+#selSize {
+    width: 30%;
+}
+#selSpeed {
+    width: 68%;
+}
+#btnStart {
+    width: 100%;
+    border: none;
+    outline: none;
+}
+
