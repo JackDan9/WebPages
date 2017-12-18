@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+}
+.wrap {
+    position: relative;
+    width: 450px;
+    height: 700px;
+    margin: 2% auto;
+    border: 1px solid black;
+}
+.time {
+    position: absolute;
+    left: 10px;
+    top: 20px;
+    font-size: 1.8rem;
+}
+.scoring {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    font-size: 1.8rem;
+}
+.show {
+    position: absolute;
+    left: 30%;
+    top: 17%;
+    font-size: 10rem;
+}
+.menu {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    width: 90%;
+    font-size: 1.8rem;
+ }
+.list {
+    position: absolute;
+    width: 100%;
+    top: 60%;
+    text-align: center;
+}
+.list p {
+    display: inline-block;
+    font-size: 4.5rem;
+}

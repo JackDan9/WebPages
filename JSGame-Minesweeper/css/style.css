@@ -1,0 +1,109 @@
+/**
+*
+* Created by jacdan9 2017/12/14
+*
+*/
+
+* {
+    padding: 0;
+    margin: 0;
+}
+body {
+    background: rgba(243, 222, 0, 0.6);
+    text-align: center;
+    font-size: 12px;
+}
+.main {
+    width: 200px;
+    height: auto;
+    margin: 20px auto;
+    padding: 4px;
+    background: #CECFCE;
+}
+.solid-border-up {
+    border: 2px solid #fff;
+}
+.solid-border-down {
+    border: 2px solid #848484;
+}
+.top {
+    padding: 5px;
+}
+.top table {
+    width: 100%;
+}
+table {
+    border-spacing: 0;
+}
+.top table td {
+    text-align: left;
+}
+.count {
+    width: 26px;
+    height: 20px;
+    line-height: 20px;
+    background: #000;
+    color: red;
+    text-align: center;
+}
+#start {
+    display: inline-block;
+    width: auto;
+    height: 24px;
+    margin-top: 2px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.mine-field {
+    margin: 8px 0 0 0;
+    font-weight: bold;
+}
+.mine-field td {
+    width: 20px;
+    height: 21px;
+    border: 2px solid #fff;
+    border-right: 2px solid #848484;
+    border-bottom: 2px solid #848484;
+    cursor: default;
+    overflow: hidden;
+}
+.mine-field td.on {
+    border: 1px solid #B4B4B4;
+}
+.mine-field td.on1 {
+    color: #00CD00;
+}
+.mine-field td.on2 {
+    color: #00BFFF;
+}
+.mine-field td.on3 {
+    color: #CD0000;
+}
+.mine-field td.on4 {
+    color: #BF3EFF;
+}
+.mine-field td.on5 {
+    color: #8B0000;
+}
+#mine-field td.on6 {
+    color: #C71585;
+}
+#mine-field td.on7 {
+    color: #CDCD00;
+}
+#mine-field td.on8 {
+    color: #000000;
+}
+.mine-field td.flag {
+    background:url("../images/flag.png") no-repeat center center;
+    background-size: contain;
+}
+.mine-field td.mine, .mine-field td.boom {
+    background:url("../images/mine.jpg") no-repeat center center;
+    background-size: contain;
+}
+.mine-field td.boom {
+    background-color: red;
+}
+
+
