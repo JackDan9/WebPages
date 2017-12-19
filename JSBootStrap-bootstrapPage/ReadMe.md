@@ -92,3 +92,36 @@ $(".slider").YuxiSlider({
 </ul>
 ```
 
+------
+
+## Bootstrap的基本知识:
+### Bootstrap脚手架:
+#### 必须使用`HTML 5`文档类型:
+- Bootstrap使用的某些HTML元素和CSS属性需要文档类型为`HTML5 doctype`. 因为这一文档类型必须出现在项目的每个页面的开始部分.
+```
+<!DOCTYPE html>
+<html lang="en">
+    ...
+</html>
+```
+#### 排版与链接:
+- Bootstrap为**屏幕**、**排版**和**链接**设置了基本的全局样式. 尤其是, 我们:
+    - 移除了body的`margin`;
+    - 设置了`body`的背景颜色`background: white;`;
+    - 使用了`@baseFontFamily`、`@baseFontSize`和`@baseLineHeight`属性作为我们排版的基础;
+    - 通过`@linkColor`设置了全局链接颜色，并且, 当链接处于`:hover`状态时才会带有下划线;
+- 这些样式当然也是写在Bootstrap的源代码中的`scaffolding.scss`可以找到.
+#### 用`Normalize`重置样式:
+- 从`Bootstrap 2`开始, 老的重置方式被`Normalize.css`取代, 这是`Nicolas Gallagher`和`Jonathan Neal`共同维护的一个项目, 这一项目还被`HTML5 Boilerplate`所采用. 虽然Bootstrap在`reset.less`文件中使用了许多Normalize的代码, 但是, Bootstrap移除了一些不合适Bootstrap的元素.
+#### 默认栅格化系统:
+- Bootstrap默认的栅格化系统为`12列`, 形成一个`940px`宽的容器, 默认没有启用`响应式布局特性`. 如果加入响应式布局CSS文件, 栅格系统会自动根据可是窗口的大小从`720px`到`1170px`进行动态调整.在可视窗口低于`767px`宽的情况下, 列将不再固定并且会垂直方向堆叠.
+- 基本的流式栅格`HTML`代码片段:
+- 将`.row`替换为`.row-fluid`就能让任何一行"流动"起来.应用于每一列的类不用改变, 这样能方便的在流式与固定栅格化之间切换.
+```
+<div class="row-fluid">
+    <div class="span4">...</div>
+    <div class="span8">...</div>
+</div>
+```
+#### 响应式设计:
+
