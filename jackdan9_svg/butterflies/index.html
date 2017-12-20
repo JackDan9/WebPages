@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buttterflies_svg</title>
+
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+
+    <style class="cp-pen-styles">
+        body {
+        -webkit-perspective: 1000px;
+        perspective: 1000px;
+        -webkit-perspective-origin: center center;
+        perspective-origin: center center;
+        overflow: hidden;
+        font-size: 14px;
+        background: #000;
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, rgba(255, 255, 255, 0.025)), color-stop(30%, transparent));
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0.025) 50%, transparent 30%);
+        background-size: 2rem 100%;
+    }
+
+    .container {
+        width: 15em;
+        height: 15em;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-animation: rotate 15s infinite linear;
+        animation: rotate 15s infinite linear;
+    }
+
+    .cube {
+        position: absolute;
+        width: 15em;
+        height: 15em;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+    .cube--2 {
+        -webkit-transform: rotateX(135deg) rotateY(135deg);
+        transform: rotateX(135deg) rotateY(135deg);
+    }
+    .cube--3 {
+        -webkit-transform: rotateX(135deg) rotateZ(135deg);
+        transform: rotateX(135deg) rotateZ(135deg);
+    }
+
+    .side {
+        position: absolute;
+        width: 15em;
+        height: 15em;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+
+    .spot {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        width: 45%;
+        height: 45%;
+        -webkit-box-shadow: 0 0 35px 25px black inset;
+        box-shadow: 0 0 35px 25px black inset;
+        border-radius: 50%;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+    .spot::before, .spot::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -3em;
+        margin-left: -6em;
+        width: 12em;
+        height: 6em;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 19 16'%3E%3Cpath d='M13 11.3L15.2 9c.6.2 1.6.8 2.4 1.4-1 .6-2.3 1.5-3.5 2-1.3.6-2.7 2-3.5 3 .2-1 1-2.8 2.2-4zm-8.6.3c-1.5-2.2-3-5-3.7-7L6.5 12l-2-.4zM12.6 8c2-.6 3.2-4.4 4.8-3l.5.7-3 2.8c-1 .8-1.8 1.7-2.5 2.4-1 1-1.7 2.2-2 3.3 0-1.2.7-2.6 1.2-4l1-2.3zm-7 1c0-.6 0-1.3-.2-2.5 1 .6 3 1.7 3.4 2.4v1c0 1.8.3 3.6.6 4.7l-4-5c0-.2 0-.4.2-.7zm-.3-3c-.6-2-2-4.5-2.7-6C4 .6 6 1.8 7.6 3v2.4c-.2.7-.2 1.5-.2 2L5.4 6zm-.6 6c.8 0 1.7.3 2.2.5l2.5 3.2c-.4 0-.7 0-1-.2-1-.2-2.5-1.6-3.8-3.5zm13-2l-2-1.3L18 6.3c.4 1 .2 2.4-.2 3.7zM11 16c.8-1 2.2-2.5 3.5-3 1-.5 2-1 3-1.7-.5 1-1 2-1.4 2.5-1 1.4-3 2-5 2zm-.8-10.4c.6 1 1 1.7 1.2 2.4h.5l-.8 2.2c-.6 1.2-1 2.6-1.3 4-.4-1.3-.6-2.8-.6-4.3 0-1.7.4-3.3.8-4.4zM4.7 6C5 7.7 5 8.7 5 9L.2 3C0 1.8 0 .8.4.4.8 0 1.2 0 1.8 0c.7 1.2 2.3 4 3 6zm3 1.6c0-1.7 0-3.5.3-4.2.7.5 1.3 1 1.8 1.7-.4 1-.7 2-1 3.5l-1-1z'/%3E%3C/svg%3E");
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 19 16'%3E%3Cpath d='M13 11.3L15.2 9c.6.2 1.6.8 2.4 1.4-1 .6-2.3 1.5-3.5 2-1.3.6-2.7 2-3.5 3 .2-1 1-2.8 2.2-4zm-8.6.3c-1.5-2.2-3-5-3.7-7L6.5 12l-2-.4zM12.6 8c2-.6 3.2-4.4 4.8-3l.5.7-3 2.8c-1 .8-1.8 1.7-2.5 2.4-1 1-1.7 2.2-2 3.3 0-1.2.7-2.6 1.2-4l1-2.3zm-7 1c0-.6 0-1.3-.2-2.5 1 .6 3 1.7 3.4 2.4v1c0 1.8.3 3.6.6 4.7l-4-5c0-.2 0-.4.2-.7zm-.3-3c-.6-2-2-4.5-2.7-6C4 .6 6 1.8 7.6 3v2.4c-.2.7-.2 1.5-.2 2L5.4 6zm-.6 6c.8 0 1.7.3 2.2.5l2.5 3.2c-.4 0-.7 0-1-.2-1-.2-2.5-1.6-3.8-3.5zm13-2l-2-1.3L18 6.3c.4 1 .2 2.4-.2 3.7zM11 16c.8-1 2.2-2.5 3.5-3 1-.5 2-1 3-1.7-.5 1-1 2-1.4 2.5-1 1.4-3 2-5 2zm-.8-10.4c.6 1 1 1.7 1.2 2.4h.5l-.8 2.2c-.6 1.2-1 2.6-1.3 4-.4-1.3-.6-2.8-.6-4.3 0-1.7.4-3.3.8-4.4zM4.7 6C5 7.7 5 8.7 5 9L.2 3C0 1.8 0 .8.4.4.8 0 1.2 0 1.8 0c.7 1.2 2.3 4 3 6zm3 1.6c0-1.7 0-3.5.3-4.2.7.5 1.3 1 1.8 1.7-.4 1-.7 2-1 3.5l-1-1z'/%3E%3C/svg%3E");
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center bottom;
+        mask-position: center bottom;
+        -webkit-animation: wing 0.7s infinite;
+        animation: wing 0.7s infinite;
+    }
+    .spot::before {
+        -webkit-transform: rotateX(-50deg) translateY(-50%);
+        transform: rotateX(-50deg) translateY(-50%);
+        color: gold;
+    }
+    .spot::after {
+        -webkit-transform: rotateX(-130deg) translateY(-50%);
+        transform: rotateX(-130deg) translateY(-50%);
+        color: teal;
+    }
+    .spot--top::before, .spot--top::after {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(10%, indigo), color-stop(teal), color-stop(gold), to(red));
+        background: linear-gradient(to bottom, indigo 10%, teal, gold, red);
+        -webkit-animation-delay: -0.1166666667s;
+        animation-delay: -0.1166666667s;
+    }
+    .spot--bottom::before, .spot--bottom::after {
+        background: -webkit-gradient(linear, left bottom, left top, color-stop(10%, indigo), color-stop(teal), color-stop(gold), to(red));
+        background: linear-gradient(to top, indigo 10%, teal, gold, red);
+        -webkit-animation-delay: -0.2333333333s;
+        animation-delay: -0.2333333333s;
+    }
+    .spot--left::before, .spot--left::after {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(10%, indigo), color-stop(crimson), color-stop(gold), color-stop(lawngreen), to(teal));
+        background: linear-gradient(to bottom, indigo 10%, crimson, gold, lawngreen, teal);
+        -webkit-animation-delay: -0.35s;
+        animation-delay: -0.35s;
+    }
+    .spot--right::before, .spot--right::after {
+        background: -webkit-gradient(linear, left bottom, left top, from(indigo), color-stop(crimson), color-stop(gold), color-stop(lawngreen), color-stop(90%, teal));
+        background: linear-gradient(to top, indigo, crimson, gold, lawngreen, teal 90%);
+        -webkit-animation-delay: -0.4666666667s;
+        animation-delay: -0.4666666667s;
+    }
+    .spot--back::before, .spot--back::after {
+        background: -webkit-gradient(linear, left bottom, left top, from(teal), color-stop(darkgreen), color-stop(lawngreen), color-stop(gold), color-stop(orangered), color-stop(90%, red));
+        background: linear-gradient(to top, teal, darkgreen, lawngreen, gold, orangered, red 90%);
+        -webkit-animation-delay: -0.5833333333s;
+        animation-delay: -0.5833333333s;
+    }
+    .spot--front::before, .spot--front::after {
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(10%, teal), color-stop(darkgreen), color-stop(lawngreen), color-stop(gold), color-stop(orangered), to(red));
+        background: linear-gradient(to bottom, teal 10%, darkgreen, lawngreen, gold, orangered, red);
+        -webkit-animation-delay: -0.7s;
+        animation-delay: -0.7s;
+    }
+
+    .side--back {
+        -webkit-transform: translateZ(-7.5em) rotateY(180deg);
+        transform: translateZ(-7.5em) rotateY(180deg);
+    }
+
+    .side--left {
+        -webkit-transform: translateX(-7.5em) rotateY(-90deg);
+        transform: translateX(-7.5em) rotateY(-90deg);
+    }
+
+    .side--right {
+        -webkit-transform: translateX(7.5em) rotateY(90deg);
+        transform: translateX(7.5em) rotateY(90deg);
+    }
+
+    .side--top {
+        -webkit-transform: translateY(-7.5em) rotateX(90deg);
+        transform: translateY(-7.5em) rotateX(90deg);
+    }
+
+    .side--bottom {
+        -webkit-transform: translateY(7.5em) rotateX(-90deg);
+        transform: translateY(7.5em) rotateX(-90deg);
+    }
+
+    .side--front {
+        -webkit-transform: translateZ(7.5em);
+        transform: translateZ(7.5em);
+    }
+
+    @-webkit-keyframes rotate {
+        100% {
+            -webkit-transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg);
+            transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg);
+        }
+    }
+
+    @keyframes rotate {
+        100% {
+            -webkit-transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg);
+            transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg);
+        }
+    }
+    @-webkit-keyframes wing {
+        50% {
+            -webkit-transform: rotateX(-90deg) translateY(-50%);
+            transform: rotateX(-90deg) translateY(-50%);
+        }
+    }
+    @keyframes wing {
+        50% {
+            -webkit-transform: rotateX(-90deg) translateY(-50%);
+            transform: rotateX(-90deg) translateY(-50%);
+        }
+    }
+    @-webkit-keyframes bg-size {
+        0% {
+            background-size: 100% 100%;
+            background-position: 0 50%;
+        }
+        50% {
+            background-size: 100% 200%;
+            background-position: 0 0%;
+        }
+        100% {
+            background-size: 100% 100%;
+            background-position: 0 50%;
+        }
+    }
+    @keyframes bg-size {
+        0% {
+            background-size: 100% 100%;
+            background-position: 0 50%;
+        }
+        50% {
+            background-size: 100% 200%;
+            background-position: 0 0%;
+        }
+        100% {
+            background-size: 100% 100%;
+            background-position: 0 50%;
+        }
+    }
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+
+    .wings-src {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        opacity: 0.075;
+        font: 12px/1.4 Tahoma, sans-serif;
+        text-align: right;
+        -webkit-transition: 0.4s all;
+        transition: 0.4s all;
+        color: #fff;
+    }
+    .wings-src:hover {
+        opacity: 0.5;
+    }
+    .wings-src a {
+        color: inherit;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cube cube--1">
+            <div class="side side--back">
+                <div class="spot spot--back"></div>
+            </div>
+            <div class="side side--left">
+                <div class="spot spot--left"></div>
+            </div>
+            <div class="side side--right">
+                <div class="spot spot--right"></div>
+            </div>
+            <div class="side side--top">
+                <div class="spot spot--top"></div>
+            </div>
+            <div class="side side--bottom">
+                <div class="spot spot--bottom"></div>
+            </div>
+            <div class="side side--front">
+                <div class="spot spot--front"></div>
+            </div>
+        </div>
+        <div class="cube cube--2">
+            <div class="side side--back">
+                <div class="spot spot--back"></div>
+            </div>
+            <div class="side side--left">
+                <div class="spot spot--left"></div>
+            </div>
+            <div class="side side--right">
+                <div class="spot spot--right"></div>
+            </div>
+            <div class="side side--top">
+                <div class="spot spot--top"></div>
+            </div>
+            <div class="side side--bottom">
+                <div class="spot spot--bottom"></div>
+            </div>
+            <div class="side side--front">
+                <div class="spot spot--front"></div>
+            </div>
+        </div>
+        <div class="cube cube--3">
+            <div class="side side--back">
+                <div class="spot spot--back"></div>
+            </div>
+            <div class="side side--left">
+                <div class="spot spot--left"></div>
+            </div>
+            <div class="side side--right">
+                <div class="spot spot--right"></div>
+            </div>
+            <div class="side side--top">
+                <div class="spot spot--top"></div>
+            </div>
+            <div class="side side--bottom">
+                <div class="spot spot--bottom"></div>
+            </div>
+            <div class="side side--front">
+                <div class="spot spot--front"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
