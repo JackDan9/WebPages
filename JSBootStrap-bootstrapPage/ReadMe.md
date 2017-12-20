@@ -123,5 +123,7 @@ $(".slider").YuxiSlider({
     <div class="span8">...</div>
 </div>
 ```
+
+
 #### 响应式设计:
 
