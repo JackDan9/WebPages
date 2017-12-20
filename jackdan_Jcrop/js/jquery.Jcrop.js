@@ -1579,6 +1579,7 @@
     if (is_msie) $div.bind('selectstart', function () { return false; });
 
     $origimg.data('Jcrop', api);
+    console.log(api);
     return api;
   };
   $.fn.Jcrop = function (options, callback) //{{{

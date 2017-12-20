@@ -4,16 +4,16 @@
     <title>Animations + Transitions | Jcrop Demo</title>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
 
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/jquery.Jcrop.js"></script>
-    <script src="../js/jquery.color.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.Jcrop.js"></script>
+    <script type="text/javascript" src="js/jquery.color.js"></script>
     <script type="text/javascript">
         jQuery(function($){
 
             var jcrop_api;
 
             $('#target').Jcrop({
-                bgFade:     true,
+                bgFade: true,
                 bgOpacity: .2,
                 setSelect: [ 60, 70, 540, 330 ]
             },function(){
@@ -152,10 +152,10 @@
 
 
     </script>
-    <link rel="stylesheet" href="demo_files/main.css" type="text/css" />
-    <link rel="stylesheet" href="demo_files/demos.css" type="text/css" />
-    <link rel="stylesheet" href="../css/jquery.Jcrop.css" type="text/css" />
-    <link rel="stylesheet" href="../css/jquery.Jcrop.extras.css" type="text/css" />
+    <link rel="stylesheet" href="css/main.css" type="text/css" />
+    <link rel="stylesheet" href="css/demos.css" type="text/css" />
+    <link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
+    <!--<link rel="stylesheet" href="css/jquery.Jcrop.extras.css" type="text/css" />-->
 
 </head>
 <body>
@@ -166,18 +166,13 @@
             <div class="jc-demo-box">
 
                 <div class="page-header">
-                    <ul class="breadcrumb first">
-                        <li><a href="../index.html">Jcrop</a> <span class="divider">/</span></li>
-                        <li><a href="../index.html">Demos</a> <span class="divider">/</span></li>
-                        <li class="active">Animations + Transitions</li>
-                    </ul>
                     <h1>Animations + Transitions</h1>
                 </div>
 
 
                 <div class="row-fluid">
                     <div class="span9">
-                        <img src="demo_files/sago.jpg" id="target" alt="Jcrop Image" />
+                        <img src="images/sago.jpg" id="target" alt="Jcrop Image" />
 
                         <div class="description">
                             <p id="shadetxt" style="display:none; color:#900;">
@@ -208,12 +203,14 @@
                     </div>
                 </div>
 
+                <!--
                 <div class="tapmodo-footer">
                     <a href="http://tapmodo.com" class="tapmodo-logo segment">tapmodo.com</a>
                     <div class="segment"><b>&copy; 2008-2013 Tapmodo Interactive LLC</b><br />
                         Jcrop is free software released under <a href="../MIT-LICENSE.txt">MIT License</a>
                     </div>
                 </div>
+                -->
 
                 <div class="clearfix"></div>
 
