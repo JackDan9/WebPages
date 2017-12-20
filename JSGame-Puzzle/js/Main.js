@@ -1,8 +1,8 @@
 /**
  * Created by JackDan9 on 2017/12/14.
  */
-/** 初始化游戏 */
-LInit(60, "mygame", 390, 580, main);
+/** Init myGame */
+LInit(60, "myGame", 390, 580, main);
 
 var imgBmpd;
 /** 游戏层 */
