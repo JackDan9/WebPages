@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>jackdan_Jcrop_non_image</title>
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.Jcrop.js"></script>
+        <script type="text/javascript">
+            jQuery(function ($) {
+                // I did JSON.stringify(jcrop_api.tellSelect()) on a crop I liked.
+                var c = {"x": 13, "y": 7, "x2": 487, "y2": 107, "w": 474, "h": 100};
+
+                $('#target').Jcrop({
+                    bgFade: true,
+                    setSelect: [c.x, c.y, c.x2, c.y2]
+                });
+            });
+        </script>
+
+        <link rel="stylesheet" href="css/jquery.Jcrop.css" type="text/css" />
+        <link rel="stylesheet" href="css/demos.css" type="text/css" />
+        <link rel="stylesheet" href="css/main.css"  type="text/css" />
+        <style type="text/css">
+            #target {
+                display: block;
+                background-color: #ccc;
+                width: 500px;
+                height: 330px;
+                font-size: 24px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="span12">
+                    <div class="jc-demo-box">
+                        <div class="page-header">
+                            <h1>jackdan_Jcrop_non_image</h1>
+                        </div>
+                        <p id="target">
+                            <b style="display: block; padding: .5em 1em;">
+                                This is an example of attaching Jcrop tp a target that is not an image. You are now cropping a paragraph tag.
+                            </b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
