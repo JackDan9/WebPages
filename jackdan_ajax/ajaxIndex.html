@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>ajaxIndex</title>
+	
+	<script src="js/jquery-3.2.1.js" type="text/javascript" ></script>
+
+	<link rel="stylesheet" type="text/css" href="css/ajaxStyle.css" />
+</head>
+<body>
+	<div class="trigger">trigger</div>
+	<div class="result">result</div>
+	<div class="log">log</div>
+	<div id="msg"></div>
+	<script type="text/javascript">
+		/*
+		$(document).ajaxComplete(function(event, xhr, settings) {
+//			$(".log").text("Triggered ajaxComplete handler.");
+			if(settings.url === "ajaxTest.html") {
+			    $(".log").text("Triggered ajaxComplete handler. The result is " + xhr.responseText);
+			}
+		});
+		*/
+		$( document ).ajaxComplete(function( event, request, settings ) {
+			$( "#msg" ).append( "<li>Request complete.</li>" );
+        });
+		$(".trigger").click(function() {
+			$(".result").load("ajaxTest.html");
+		});
+	</script>
+</body>
+</html>
