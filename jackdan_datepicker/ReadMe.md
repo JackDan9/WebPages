@@ -63,6 +63,35 @@ var altField = $( ".selector" ).datapicker( "option", "altField" );
 $( ".selector" ).datepicker( "option", "altField", "#actualDate" );
 ```
 
+------
+
+- `altFormat()`:
+- Type: `String`
+    - `String`:
+    - An string in JavaScript is an immutable primitive value that contains none, one or many characters.
+    - `I'm a String in JavaScript!`
+    - `So am I!`
+    - The type of a string is "string".
+    - `**typeof** "some string" // string`
+- Default: `""`
+- The  `dataFormat` to be used for the `altField` option. This allows one date format to be shown to the user for selection purpose, while a different format is actually sent behind the scenes. For a full list of the possible format see the `formatData` function.
+- Code Examples:
+- Initialize the datepicker with the `altFormat` option specified:
+```
+$( ".selector" ).datapicker({
+    altFormat: "yy-mm-dd"
+});
+```
+- Get or set the `altFormat` option, after initialization:
+```
+// Getter
+var altFormat = $( ".selector" ).datepicker( "option", "altFormat" );
+// Setter
+$( ".selector" ).datepicker( "option", "altFormat", "yy-mm-dd" );
+```
+
+
+
   [1]: ./images/questions.png "questions.png"
   [2]: ./images/redArrow.png "redArrow.png"
   [3]: ./images/yellowArrow.png "yellowArrow.png"
