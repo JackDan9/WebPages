@@ -90,10 +90,137 @@ var altFormat = $( ".selector" ).datepicker( "option", "altFormat" );
 $( ".selector" ).datepicker( "option", "altFormat", "yy-mm-dd" );
 ```
 
+------
 
+- `appendText`:
+- Type: `String`
+- Default: `""`
+- The text to display after each date field, e.g., to show the required format.
+- Code examples:
+- Initialize the datepicker with the `appendText` option specified:
+```
+$( ".selector" ).datepicker({
+    appendText: "yyyy-mm-dd"
+});
+```
+- Get or set the `appendText` option, after initialization:
+```
+// Getter
+var appendText = $( ".selector" ).datepicker( "option", "selector"  );
+
+//Setter
+$( ".selector" ).datepicker( "option", "appendText", "yyyy-mm-ddd" );
+```
+
+------
+
+- `autoSize`:
+- Type: `Boolean`
+    - `Boolean`:
+    - A boolean in JavaScript can be either true or false:
+    - `if ( true ) console.log( "always!" );`
+    - `if ( false ) console.log( "never!" );`
+- Default: `false`
+- Set to `true` to automatically resize the input field to accommodate dates in the current `dateFormat`.
+- Code Example:
+- Initialize the datepicker with the `autoSize` option specified:
+```
+$( ".selector" ).datepicker({
+    autoSize: true
+});
+```
+- Get or set the `autoSize` option, after initialization:
+```
+// Getter
+var autoSize = $( ".selector" ).datepicker( "option", "autoSize" );
+
+// Setter
+$( ".selector" ).datepicker( "option", "autoSize", true );
+```
+
+------
+
+- `belowShow`:
+- Type: `Function`(`Element` input, `Object` inst)
+    - Function:
+        - A function in JavaScript can be either named or anonymous. Any function can be assigned to a variable or passed to a method, but passing memeber functions this way can cause them to be called in the context of another object(i.e. with a different "this" object).
+        - `function named() {}`
+        - `var handler = function() {}`
+        - You see a lot of anonymous functions in jQuery code:
+        - `$( document ).ready(function() {});`
+        - `$( "a" ).click(function() {});`
+        - `$.ajax({ url: "sourceurl.php", success: function() {} });`
+        - The type of a function is "function".
+        - `Arguments`:
+            - Inside a function a special variable "arguments" is always available. It's similar to an array in that it has a length property, but it lacks the built-in methods of an array. The elements of the pseudo-array are the argument of the function call.
+            - `function log( x ) { console.log( typeof x, arguments.length ); }`
+            - `log(); // "undefined", 0`
+            - `log( 1 ); // "number", 1`
+            - `log( "1", "2", "3" ); // "string", 3`
+            - The arguments object also has a callee property, which refers to the function you're inside of. For instance:
+            - `var awesome = function() { return arguments.callee; }`
+            - `awesome() === awesome // true`
+        - `Context, Call And Apply`:
+            - In JavaScript, the variable "this" always refers to the current context. By default, "this" refers to the window object. Within a function this context can change, depending on how the function is called.
+            - All event handlers in jQuery are called with the handing element as the context.
+            - `$( document ).ready(function() { // this refers to window.document });`
+            - `$( "a" ).click(function() { // this refers to an anchor DOM element });`
+            - You can specify the context for a function call using the function-built-in methods call and apply. The difference between them is how they pass arguments. Call passes all arguments through as arguments to the function, while apply accepts an array as the arguments.
+            - `function scope() { console.log( this, arguments.length ); }`
+            - `scope() // window, 0`
+            - `scope.call( "foobar", [ 1, 2 ] ); // "foobar", 1 `
+            - `scope.apply( "foobar", [ 1, 2 ] ); // "foobar", 2 `
+        - `Scope`:
+            - In JavaScript, all variables defined inside a function are only visible inside that function scope. Consider the following example:
+            - `// global `
+            - `var = 0; (function() { var x = 1; console.log( x ) // 1; })(); console.log(x); //0`
+            - It defines a variable `x` in the global scope, then defines an anonymous function and executes it immediately(the additional parentheses are required for immediate execution). Inside the function another varibale `x` is defined with a different value. it is only visible within that function and doesn't overwrite the global variable.
+        - `Closures`:
+            - Closures are created whenever a variable that is defined outside the current scope is accessed from within some inner scope. In the following example, the variable `counter` is visible within the create, increment, and print functions, but not outside of them.
+            - `function create() { var counter = 0; return { increment: function() { counter++; }, print: function() { console.log( counter ); } } } var c = create(); c.increment(); c.print(); // 1`
+            - The pattern allows you to create objects with methods that operate on data that isn't visible to the outside-the very basis of object-orient programming.
+        - `Proxy Pattern`:
+            - Combining the above knowledge gives you as a JavaScript developer quite a lot of power. One way to continue that is to implement a proxy pattern in JavaScript, enabling the basics of aspect-oriented programming(AOP):
+            - `(function() { // log all calls to setArray var proxied = jQuery.fn.setArray; jQuery.fn.setArray = function() { console.log( this, arguments ); return proxied.apply( this, arguments ); }; })();`
+            - The above wraps its code in a function to hide the "proxied" -variable. It saves `jQuery's` setArray-method in a closure and overwrites it. The proxy then logs calls to the method and delegates the call to the original. Using apply(this, arguments) guarantees that the caller won't be able to notice the difference between the original and the proxied method.
+    - `Object`:
+        - Everything in JavaScript is an object, though some are more objective. The easiest way to create an object is the object literal:
+        - `var x = {};`
+        - `var y = { name: "Pete", age: 15 };`
+        - The type of an object is "object":
+        - `typeof {} // "object"`
+        - `Dot Notation`:
+            - You can write and read properties of an object using the dot notation:
+            - `y.name // "Pete"`
+            - `y.age // 15`
+            - `x.name = y.name + " Pan " // "Pete Pan"`
+            - `x.age = y.age + 1 // 16`
+        - `Array Notation`:
+            - Or you write and read properties using the array notation, which allows you do dynamically choose the property:
+            - `var obj = { name: "Pete", age: 15 }; for( key in obj ) { alert( "key is " + [ key ] + ", value is " + obj[ key ] ); }`
+            - Note that for-in-loop can be spoiled by extending Object.prototype( see [Object.prototype is verboten][5] ) so take care when using other libraries.
+            - jQuery provides a generic [`each` function][6] to iterate over properties of objects, as well as elements of arrays:
+            - `jQuery.each( obj, function( key, value ) { console.log( "key", key, "value", value ); });`
+            - The drawback is that the callback is called in the context of each value and you therefore lose the context of your own object if applicable. More on this below at Functions.
+        - `Boolean default`:
+            - An object, no matter if it has properties or not, never defaults to false:
+            - `!{ } // false`
+            - `!!{ } // true`
+        - `Prototype`:
+            - All objects have a prototype property. Whenever the interpreter looks for a property, it also checks in the object's prototype if the property is not found on the object itself. jQuery uses the prototype extensively to add methods to jQuery instances. Internally, jQuery makes `jQuery.fn` an alias of alias of `jQuery.prototype` so you can use either one(though plugin developers have standardized on `fn`).
+            - `var form = $( "#myform" ); console.log( form.clearForm ); // undefined`
+            - `// jQuery.fn === jQuery.prototype`
+            - `jQuery.fn.clearForm = function() { return this.find ( ":input" ).each(function() { this.value = ""; }).end(); };`
+            - `// works for all instances of jQuery objects, because the new method was added to the prototype`
+            - `console.log( form.clearForm ); // function`
+            - `form.clearForm();`
+- Default: `null`
+- A function that takes an input field and current datepicker instance and returns an options object to update the datepicker with. It is called just before the datepicker is displayed.
 
   [1]: ./images/questions.png "questions.png"
   [2]: ./images/redArrow.png "redArrow.png"
   [3]: ./images/yellowArrow.png "yellowArrow.png"
   [4]: http://api.jquery.com/category/selectors/
+  [5]: http://erik.eae.net/archives/2005/06/06/22.13.54/
+  [6]: http://api.jquery.com/jQuery.each/
 
