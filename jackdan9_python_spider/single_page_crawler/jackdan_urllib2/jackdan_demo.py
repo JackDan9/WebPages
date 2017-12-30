@@ -147,4 +147,10 @@ import cookielib
 # Name = BD_HOME
 # Value = 0
 
-## Save the cookie to file
+## Save the cookie to file(`FileCookieJar`->`MozillaCookieJar`)
+filename = 'cookie.txt'
+cookie = cookielib.MozillaCookieJar(filename)
+handler = urllib2.HTTPCookieProcessor(cookie)
+opener = urllib2.build_opener(handler)
+response = opener.open("http://www.baidu.com")
+cookie.save(ignore_discard = True, ignore_expires = True)
