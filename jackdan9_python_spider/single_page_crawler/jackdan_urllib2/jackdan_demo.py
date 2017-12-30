@@ -122,10 +122,11 @@ import sys
 
 ## Cookie: 指某些网站为了辨别用户身份、进行session跟踪而储存在用户本地终端上的数据(通常经过加密).
 ## 比如说有些网站需要登录后才能访问某个页面, 在登录之前, 你想抓取某个页面内容是不允许的. 那么我们可以利用Urllib2库保存我们登录的Cookie, 然后再抓取其他页面就达到目的了.
-## Opernr:
+## Opener:
 ## Cookielib:
 import cookielib
 
+## Save the cookie to variable(`CookieJar`)
 # cookie = cookielib.CookieJar()
 # handler = urllib2.HTTPCookieProcessor(cookie)
 # opener = urllib2.build_opener(handler)
@@ -148,9 +149,46 @@ import cookielib
 # Value = 0
 
 ## Save the cookie to file(`FileCookieJar`->`MozillaCookieJar`)
-filename = 'cookie.txt'
-cookie = cookielib.MozillaCookieJar(filename)
-handler = urllib2.HTTPCookieProcessor(cookie)
-opener = urllib2.build_opener(handler)
-response = opener.open("http://www.baidu.com")
-cookie.save(ignore_discard = True, ignore_expires = True)
+# filename = 'cookie.txt'
+# cookie = cookielib.MozillaCookieJar(filename)
+# handler = urllib2.HTTPCookieProcessor(cookie)
+# opener = urllib2.build_opener(handler)
+# response = opener.open("http://www.baidu.com")
+# cookie.save(ignore_discard = True, ignore_expires = True)
+## Save Prototies
+## `ignore_discard`: save even cookies set to be discarded
+## `ignore_expires`: save even cookies that have expired. The file is overwritten if it already exists.
+
+## Get the cookie from the file and access it
+# cookie = cookielib.MozillaCookieJar()
+# cookie.load('cookie.txt', ignore_discard = True, ignore_expires = True)
+# request = urllib2.Request("http://www.baidu.com")
+# opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))
+# response = opener.open(request)
+# # print(unicode(response.read(), "utf-8"))
+# # UnicodeEncodeError: 'gbk' codec can't encode character u'\xbb' in position 27321: illegal multibyte sequence
+# print(response.read())
+## 设想，如果我们的 `cookie.txt` 文件中保存的是某个人登录百度的`cookie`，那么我们提取出这个`cookie`文件内容，就可以用以上方法模拟这个人的账号登录百度。
+
+## Use cookies to simulate website login
+# filename = 'cookie.txt'
+# cookie = cookielib.MozillaCookieJar(filename)
+# opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cookie))
+# postdata = urllib.urlencode({
+# 		'stuid': '',
+# 		'pwd': ''
+# 	})
+# loginUrl = ''
+# result = opener.open(loginUrl, postdata)
+# cookie.save(ignore_discard=True, ignore_expires=True)
+# gradeUrl = ''
+# result = opener.open(gradeUrl)
+# print(result.read())
+## 创建一个带有cookie的opener，在访问登录的URL时，将登录后的cookie保存下来，然后利用这个cookie来访问其他网址。
+
+## RegExp
+## 正则表达式是对字符串操作的一种逻辑公式，就是用事先定义好的一些特定字符、及这些特定字符的组合，组成一个“规则字符串”，这个“规则字符串”用来表达对字符串的一种过滤逻辑。
+## 1.依次拿出表达式和文本中的字符比较.
+## 2.如果每一个字符都能匹配，则匹配成功; 一旦有匹配不成功的字符则匹配失败.
+## 3.如果表达式中有量词或边界，这个过程会稍微有一些不同.
+## Regular expression syntax:
