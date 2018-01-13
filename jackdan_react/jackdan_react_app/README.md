@@ -1,9 +1,10 @@
 ---
 title: jackdan_react_app
 tags: react, application, study
-author:jackdan
+author: jackdan
 
 ---
+
 ## jackdan_react_app
 ### 项目构建过程:
 - 1、请确保电脑上装的最新版本的[Node.js][1];
