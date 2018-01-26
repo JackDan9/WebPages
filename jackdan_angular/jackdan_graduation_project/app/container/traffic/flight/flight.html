@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row">
+
+        <table class="bordered striped highlight centered responsive-table">
+            <thead>
+            <tr>
+                <th>Flight_Num</th>
+                <th>Flight_Date</th>
+                <th>Start_Time</th>
+                <th>End_Time</th>
+                <th>Flight_Time</th>
+                <th>Start_Place</th>
+                <th>End_Place</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+
+
+            <tbody  ng-controller="FlightCtrl" ng-repeat="f in data">
+            <tr>
+                <td>{{f.flight_num}}</td>
+                <td>{{f.flight_date}}</td>
+                <td>{{f.start_time}}</td>
+                <td>{{f.end_time}}</td>
+                <td>{{f.flight_time}}</td>
+                <td>{{f.start_place}}</td>
+                <td>{{f.end_place}}</td>
+                <td>{{f.price}}</td>
+                <td> <a class="btn-floating btn-large waves-effect waves-light red" title="add in self table" href="#!/welcomeHome"><i class="material-icons">add</i></a>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+
+
+    </div>
+</div>

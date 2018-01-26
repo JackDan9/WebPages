@@ -1,0 +1,119 @@
+/* fallback */
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v22/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+}
+html {
+    font-family: "Roboto Condensed",sans-serif;
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+.traffic {
+    height: 100%;
+    width: 100%;
+    min-height: 609px;
+    /*min-height: 809px;*/
+    margin-top: 200px;
+    /*line-height: 20px;*/
+}
+.cater {
+    min-height: 617px;
+    margin-top: 192px;
+}
+.flight-a:hover {
+    display: block;
+    background: #00C853;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.train-a:hover {
+    display: block;
+    background: #00ff00;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.Waterway-a:hover {
+    display: block;
+    background: #6a1b9a;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.bus-a:hover {
+    display: block;
+    background: #880e4f;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+.index-p {
+    color: #ffffff;
+}
+.login {
+    background: #229170;
+    background-image: url("../../images/welcome.png");
+    /*background-size: cover;*/
+    background-size: 1536px 1536px;
+    height: 100%;
+    width: 100%;
+    min-height: 809px;
+}
+.logo-login-img {
+    max-width: 230px;
+    height: 50px;
+    /*background-image: url(data:image/jpeg;base64,/9j/4AAQSkZJRgABAgAAZABkAAD/7AARRHVja3kAAQAEAAAAPAAA…gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICD//2Q==);*/
+    background-image: url("../../images/loginIcon.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: auto auto 12px;
+}
+#login-page {
+    width: 330px;
+    height: 600px;
+    display: block;
+}
+#register-page {
+    width: 330px;
+    height: 700px;
+    display: block;
+}
+.sign-up-head {
+    font-size: 14px;
+    font-weight: 400;
+}
+.htmleaf-links {
+    width: auto;
+    height: 30px;
+}
+.htmleaf-links-span {
+    font-size: 40px;
+    font-weight: 200;
+}
+#site-layout-example-right {
+    height: 330px;
+}
+
+.header {
+    text-align: center;
+}
+.img {
+    height: 713px;
+    display: block;
+}
+.c-logo-img {
+    width: 30px;
+    height: 10px;
+}
