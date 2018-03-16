@@ -4,3 +4,5 @@ tags: graduation, angular1, project
 author: jackdan
 ---
 ## jackdan_graduation_project
+### Run Method
+- First
