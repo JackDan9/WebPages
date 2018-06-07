@@ -1,4 +1,10 @@
-function count(start, end) {  
+/**
+ *
+ * @param start
+ * @param end
+ * @returns {{cancel: cancel}}
+ */
+function count(start, end) {
     console.log(start)  
     var timer = setInterval(  
         function(){  

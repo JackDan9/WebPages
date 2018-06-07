@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="style/css/ghpages-materialize.css">
+  <link rel="stylesheet" href="style/css/materialize.min.css">
+  <link rel="stylesheet" href="style/css/materialize.min.old.css">
+  <link rel="stylesheet" href="style/css/application.min.css">
+  <link rel="stylesheet" href="style/css/style.css">
+  <link rel="stylesheet" href="style/css/welcome.css">
+  <link rel="stylesheet" href="style/css/font-awesome.min.css">
+  <!--<link rel="stylesheet" href="style/css/login.min.css">-->
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="scripts/components/jquery-3.2.1.min.js"></script>
+  <script src="scripts/components/app.min.js"></script>
+  <script src="scripts/materialize.min.js"></script>
+</head>
+<body style="overflow: hidden; width: 792px;" toggle-class="classname">
+
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <div class="col s12">
+          <a href="/" class="brand-logo">
+            <img src="images/loginIcon.png" class="logo-img" alt="">
+          </a>
+          <a href="#" data-activates="mobile-demo" class="button-collapse">
+            <i class="material-icons">menu</i>
+          </a>
+
+          <!-- Navbar menu -->
+          <ul class="right hide-on-med-and-down">
+            <li class="link"><a href="#!/welcomeHome">Home</a></li>
+            <li class="link"><a href="#!/traffic">Traffic</a></li>
+            <li class="link"><a href="#!/cater">Cater</a></li>
+            <li class="link"><a href="#!/entertainment">Entertainment</a></li>
+            <li class="link"><a href="#!/culture">Culture</a></li>
+            <li class="link"><a href="#!/mtph">Mtph</a></li>
+            <li class="link"><a href="#!/fashion">Fashion</a></li>
+            <li class="link"><a href="#!/collection">Collection</a></li>
+            <li><a href="#!/login" class="waves-effect waves-light btn yellow darken-2 grey-text text-darken-4" id="start-now-navbar">Login</a>
+            </li>
+          </ul>
+
+          <!-- Navbar menu mobile -->
+
+          <ul class="side-nav" id="mobile-demo" style="transform: translateX(-100%);">
+            <li class="link"><a href="#!/welcomeHome">Home</a></li>
+            <li class="link"><a href="#!/traffic">Traffic</a></li>
+            <li class="link"><a href="#!/cater">Cater</a></li>
+            <li class="link"><a href="#!/entertainment">Entertainment</a></li>
+            <li class="link"><a href="#!/culture">Culture</a></li>
+            <li class="link"><a href="#!/mtph">Mtph</a></li>
+            <li class="link"><a href="#!/fashion">Fashion</a></li>
+            <li class="link"><a href="#!/collection">Collection</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div ng-view></div>
+
+  <footer>
+    <div id="footer-nav">
+      <div class="container">
+        <div class="row">
+          <div class="col s12 m3 hide-on-small-only">
+            <!--<p class="index-p">STAMPLAY.COM</p>-->
+            <p class="index-p">SERVICE.COM</p>
+            <ul>
+              <li><a href="#!/welcomeHome">Home</a></li>
+              <!--<li><a href="/privacy">Privacy</a></li>-->
+              <!--<li><a href="/terms">Terms of service</a></li>-->
+            </ul>
+            <!--<a href="https://mixpanel.com/f/partner" rel="nofollow"><img src="//cdn.mxpnl.com/site_media/images/partner/badge_blue.png" alt="Mobile Analytics"></a>-->
+          </div>
+          <div class="col s12 m3 hide-on-small-only">
+            <p class="index-p">COMPANY</p>
+            <ul>
+              <li><a href="#!/traffic">Traffic</a></li>
+              <li><a href="#!/cater">Cater</a></li>
+              <li><a href="#!/entertainment">Entertainment</a></li>
+              <li><a href="#!/culture">Culture</a></li>
+              <li><a href="#!/mtph">Mtph</a></li>
+              <li><a href="#!/fashion">Fashion</a></li>
+              <li><a class="modal-trigger" href="#modal1" target="_blank">Contact Us</a></li>
+            </ul>
+          </div>
+          <div class="col s12 m3">
+            <p class="index-p">PLATFORM</p>
+            <ul>
+              <li><a href="https://stackoverflow.com/users/6946640/jackdan9" target="_blank">Docs</a></li>
+              <li><a href="http://my.csdn.net/XXJ19950917">Blog</a></li>
+              <!--<li><a href="https://blog.stamplay.com/" target="_blank">Blog</a></li>-->
+              <li><a href="/pricing">Pricing</a></li>
+              <!--<li><a href="https://slackinvites.stamplayapp.com" target="_blank">Join us on Slack</a></li>-->
+            </ul>
+          </div>
+          <div class="col s12 m3">
+            <p class="index-p">
+              <a href="https://facebook.com/jackdan9" target="_blank" style="margin-right:5px;"><i class="fa fa-facebook fa-lg"></i>
+              </a><a href="https://twitter.com/jackdan9" target="_blank" style="margin-right:5px;"><i class="fa fa-twitter fa-lg"></i></a>
+              <a href="https://github.com/jackdan9" target="_blank"><i class="fa fa-github fa-lg"></i></a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--
+  <ul class="menu">
+    <li><a href="#!/view1">view1</a></li>
+    <li><a href="#!/view2">view2</a></li>
+    <li><a href="#!/view3">view3</a></li>
+  </ul>
+  -->
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+
+
+  <!--<div>Angular seed app: v<span app-version></span></div>-->
+
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="app.js"></script>
+
+  <!-- showPages -->
+  <script src="container/traffic/traffic.js"></script>
+  <script src="container/cater/cater.js"></script>
+  <script src="container/login/login.js"></script>
+  <script src="container/register/register.js"></script>
+  <script src="container/collection/collection.js"></script>
+  <script src="container/traffic/flight/flight.js"></script>
+  <script src="container/cater/chinese/chinese.js"></script>
+  <script src="container/cater/foreign/foreign.js"></script>
+  <script src="container/welcomeHome/welcomeHome.js"></script>
+
+  <!-- showAndroidVersion -->
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+</body>
+</html>

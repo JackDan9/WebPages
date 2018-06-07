@@ -1,0 +1,38 @@
+.welcome {
+    box-sizing: border-box;
+    background: #229170;
+    /*background-image: url(../img/cubes.png);*/
+    background-image: url("../../images/welcome.png");
+    /*background-size: cover;*/
+    background-size: 1536px 1536px;
+    height: 100%;
+    width: 100%;
+    min-height: 809px;
+    position: relative;
+    text-shadow: 1px 1px 1px #0A6B4D;
+}
+.message {
+    position: absolute;
+    color: #ffffff !important;
+    font-size: 1.5rem;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.welcome-h1 {
+    color: #ffffff;
+}
+.welcome-p {
+    color: #ffffff;
+}
+.welcome-p > a {
+    color: #229170;
+}
+.fadeIn {
+    animation-name: fadeIn;
+}
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+}

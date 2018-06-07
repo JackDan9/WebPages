@@ -1,0 +1,89 @@
+<!doctype html PUBLIC "-//W3c//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+        <meta name="renderer" content="ie-comp" />
+        <title>embedIndex</title>
+        <script type="text/javascript" src="./js/jquery-2.2.4.js"></script>
+        <style>
+            html, body {
+                position: relative;
+                height: 100%;
+            }
+            body {
+                background: #eee;
+                font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+                font-size: 14px;
+                color: #000;
+                margin: 0;
+                padding: 0;
+            }
+            .swiper-container {
+                width: 100%;
+                height: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .swiper-slide {
+                text-align: center;
+                font-size: 18px;
+                background: #fff;
+                /* Center slide text vertically */
+                 -webkit-box-pack: center;
+                 -ms-flex-pack: center;
+                 -webkit-justify-content: center;
+                justify-content: center;
+                 -webkit-box-align: center;
+                 -ms-flex-align: center;
+                 -webkit-align-items: center;
+                align-items: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="file-preview-frame">
+            <div class="kv-file-content">
+                <object height="160px" width="160px">
+                    <img class="kv-preview-data file-preview-images"
+                         src="./images/portrait.jpg"
+                         alt="error"
+                         title="文件存在过期签章"
+                         style="width: 160px; height: 160px;"
+                    >
+                    <embed class="kv-preview-data"
+                           src="./pdf/embed.pdf"
+                           type="application/pdf"
+                           width="160px" height="160px"
+                           wmode="transparent"
+                           style="border: 1px solid #000;"
+                    ></embed>
+                </object>
+                <div class="coverEmbed" style="position: fixed; top: 0; left: 0; width: 220px; height: 220px; border: 1px solid #000; background-image: url('images/portrait.jpg');">
+
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<!doctype html PUBLIC "-//W3c//DTD XHTML 1.1//EN"
+  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cloud</title>
+</head>
+<body>
+    <embed src="http://player.youku.com/player.php/Type/Folder/Fid/19188186/Ob/1/sid/XNTQ3NDQyMTY4/v.swf"
+        quality="high" width="480" height="400" align="middle" allowScriptAccess="always"
+        allowFullScreen="true" mode="transparent" type="application/x-shockwave-flash">
+    </embed>  
+    <embed src="./pdf/embed.pdf" quality="high"
+           width="160" height="160" align="middle"
+           mode="transparent"
+           type="application/pdf">
+    </embed>
+</body>
+</html>
