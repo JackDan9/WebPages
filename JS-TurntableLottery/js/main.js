@@ -1,9 +1,5 @@
 /**
  * Created by JackDan9 on 2018/6/15.
- */
-
-/**
- * Created by JackDan9 on 2018/6/15.
  * Responsive to screen size
  */
 
@@ -15,7 +11,7 @@
         if (!clientWidth) {
             return;
         } else if (clientWidth < 420) {
-            docEl.style.fontSize = 44 * (clientWidth / 320) + 'px';
+            docEl.style.fontSize = 65 * (clientWidth / 320) + 'px'; 
         } else {
             docEl.style.fontSize = '100px';
         }

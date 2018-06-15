@@ -2,83 +2,108 @@
  * Created by JackDan9 on 2018/6/15.
  */
 
-function Lottery(id) {
-    this.index = 0; // 当前位置转动到哪个位置，起点位置
-    this.count = 0; // 总共有多少个位置
-    this.timer = 0; // setTimeout的ID, 用clearTimeout清除
-    this.speed = 20; // 初始转动速度
-    this.times = 0; // 转动次数
-    this.cycle = 100; // 转动基本次数: 即至少需要转动多少次再进入抽奖环节
-    this.prize = -1; // 中奖位置
-    this.running = false; // 转动状态
-    this.obj = null;
-    this.units = null;
-    this.id = id;
-}
 
-Lottery.prototype = {
-    constructor: Lottery,
-    init: function () {
-        this.obj = document.getElementById(this.id);
-        this.units = this.obj.getElementsByClassName('lottery-unit');
-        this.count = this.units.length;
-    },
-    roll: function () {
-        var that = this;
-        this.times += 1;
-        this._run();
-        if (this.times > this.cycle + 10 && this.prize == this.index) {
-            clearTimeout(this.timer);
-            this.running = false;
-            this.times = 0;
-            this.prize = -1;
-        } else {
-            if (this.times < this.cycle) {
-                this.speed -= 10;
-            } else if (this.times == this.cycle) {
-                this.prize = Math.floor( Math.random() * (this.count + 1));
-            } else {
-                if (this.times > this.cycle + 10 && ((this.prize==0 && this.index==7) || this.prize==this.index+1)) {
-                    this.speed += 110;
-                } else {
-                    this.speed += 20;
-                }
-            }
-            if (this.speed < 40) {
-                this.speed = 40;
-            }
-            this.timer = setTimeout(function () {
-                that.roll();
-            }, this.speed);
-        }
-    },
-    _run: function () {
-        var index = this.index;
-        var count = this.count;
-        this.obj.getElementsByClassName('lottery-unit-' + index)[0].classList.remove('active');
-        index += 1;
-        if (index > count - 1) {
-            index = 0;
-        }
-        this.obj.getElementsByClassName('lottery-unit-' + index)[0].classList.add('active');
-        this.index = index;
-    },
-    _stop: function (index) {
-        this.prize = index;
+var rotate = document.getElementById('imgs');
+var speed = vspeed = 0;
+var x0 = y0 = t0 = x1 = y1 = t1 = null;
+
+(function () {
+    var lastTime = 0;
+
+    var vendors = ['ms', 'moz', 'webkit', 'o']
+    for (var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
+        window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || window[vendors[x] + 'CancelRequestAnimationFrame'];
+    };
+
+    if (!window.requestAnimationFrame) {
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); }, timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
     }
-};
 
-window.onload = function () {
-    var lottery = new Lottery('zd-lottery');
-    lottery.init();
-    document.getElementById('start-btn').addEventListener('click', function (e) {
-        if (lottery.running) {
-            return false;
-        } else {
-            lottery.speed = 100;
-            lottery.roll();
-            lottery.running = true;
+    if (!window.cancelAnimationFrame) {
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+    }
+})(); // Setup requestAnimationFrame when it is unavailable.
+
+document.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+}); // prevent scrolling page
+
+
+rotate.addEventListener('touchstart', function (e) {
+    if (e.touches.length == 1) {
+        x0 = e.targetTouches[0].clientX;
+        y0 = e.targetTouches[0].clientY;
+        t0 = new Date().getTime();
+    }
+});
+
+rotate.addEventListener('touched', function (e) {
+    var that = this;
+    var l = 0;
+    var angle = 0;
+    var timerID = null;
+    x1 = e.changedTouches[0].clientX;
+    y1 = e.changedTouches[0].clientY;
+    t1 = new Date().getTime();
+    l = Math.sqrt(Math.pow(x1-x0, 2) + Math.pow(y1-y0, 2));
+    speed = l/(t1-t0)*20;
+    if (speed < 10) {
+        return;
+    }
+    vspeed = 0.5;
+
+    var roll = function () {
+        angle += speed;
+        that.style.transform = 'rotate(' + angle + 'deg)'; // 'rotateZ('
+        switch (true) {
+            case speed < -0.3:
+                window.cancelAnimationFrame(timerID);
+                return;
+            case speed < 10 && vspeed > 0.1:
+                speed -= vspeed;
+                vspeed -= 0.03;
+                break;
+            default:
+                speed -= vspeed;
+                break;
         }
-        e.stopPropagation();
-    })
-}
+        timerID = window.requestAnimationFrame(roll);
+    };
+    roll();
+});
+
+document.getElementById('start-btn').addEventListener('click', function () {
+    var angle = 0;
+    var timerID = null;
+    speed = (1 + Math.random()) * 50;
+    vspeed = 0.5;
+
+    var roll = function () {
+        angle += speed;
+        rotate.style.transform = 'rotateZ(' + angle + 'deg)';
+        switch (true) {
+            case speed < -0.3:
+                window.cancelAnimationFrame(timerID);
+                return;
+            case speed < 10 && vspeed > 0.1:
+                speed -= vspeed;
+                vspeed -= 0.05;
+                break;
+            default:
+                speed -= vspeed;
+                break;
+        }
+        timerID = window.requestAnimationFrame(roll);
+    };
+    roll();
+});
+
