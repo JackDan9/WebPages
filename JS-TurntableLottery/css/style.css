@@ -1,0 +1,47 @@
+html {
+    font-size: 100px;
+}
+
+body {
+    font-size: 15px;
+    -webkit-overflow-scrolling: touch;
+}
+
+.lottery-wrapper {
+    width: 5.74rem;
+    height: 5.84rem;
+    margin: 20px auto 0;
+    background: url(../images/bg.jpg) no-repeat;
+    background-size: 100% auto;
+    padding: 0.5rem 0.55rem;
+}
+
+.lottery td {
+    width: 1.42rem;
+    height: 1.42rem;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 24px;
+    color: #333;
+    z-index: -999;
+    line-height: 0;
+}
+
+.lottery-unit img {
+    width: 1.42rem;
+    height: 1.42rem;
+}
+
+.lottery td a {
+    width: 2.84rem;
+    height: 2.84rem;
+    line-height: 1.50rem;
+    display: block;
+    text-decoration: none;
+}
+
+.lottery td.active {
+    background-color: #ea0000;
+}
+
+
