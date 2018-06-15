@@ -1,12 +1,12 @@
-# Merry-goLottery
-- A project for Merry-goLottery!
+# TurntableLottery
+- A project for TurntableLottery!
 
 ## Setup
 
 ```bash
 # download these code or copy these code to your project
 Enter your project, open the **index.html** in the browser
-``` 
+```
 
 ## Result
 
@@ -26,6 +26,6 @@ Enter your project, open the **index.html** in the browser
 - If you like it, please give me a **star**. Thanks!
 
 
-  [1]: ./images/result-pc.jpg "result-pc.jpg"
-  [2]: ./images/result-mobile.jpg "result-mobile.jpg"
-  [3]: ./images/result-ipad.jpg "result-ipad.jpg"
+  [1]: ./images/result-pc.png "result-pc.png"
+  [2]: ./images/result-mobile.png "result-mobile.png"
+  [3]: ./images/result-ipad.png "result-ipad.png"
