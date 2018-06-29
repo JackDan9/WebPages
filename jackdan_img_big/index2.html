@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>ImgEnlarge</title>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="css/style2.css" />
+    <style type="text/css">
+        
+    </style>
+    <script type="text/javascript">
+        $(function() {
+            var imgArrBefore = ['images/1.png', 'images/2.png', 'images/3.png', 'images/4.png', 'images/5.png', 'images/6.png'];
+            var lenBefore = imgArrBefore.length;
+            var typeFirst = 1;
+            // before
+            var beforeImgTag = document.getElementById('beforeImg');
+            for (var i = 0; i < lenBefore; i++) {
+                var aTag = document.createElement("a");
+                var imgTag = document.createElement("img");
+                aTag.className = "beforeImgLink";
+                aTag.id = "beforeImgLink" + i;
+                imgTag.src = imgArrBefore[i];
+                aTag.href = "index.html?type=" + typeFirst + '&id=' + i;
+                imgTag.alt = "交安图片";
+                aTag.append(imgTag);
+                beforeImgTag.append(aTag);
+            }
+            beforeImgTag.style.width = (lenBefore * 695 + (lenBefore - 1) * 10) + "px";
+            // after
+            var imgArrAfter = ['images/photo-1446770145316-10a05382c470.jpg', 'images/photo-1455717974081-0436a066bb96.jpg', 'images/photo-1477420086945-b99c643e8a3d.jpg']
+            var lenAfter = imgArrAfter.length;
+            var typeSecond = 2;
+            var afterImgTag = document.getElementById('afterImg');
+            for (var i = 0; i < lenAfter; i++) {
+                var aTag = document.createElement("a");
+                var imgTag = document.createElement("img");
+                aTag.className = "afterImgLink";
+                aTag.id = "afterImgLink" + i;
+                aTag.href = "index.html?type=" + typeSecond + '&id=' + i;
+                imgTag.src = imgArrAfter[i];
+                imgTag.alt = "交安图片";
+                aTag.append(imgTag);
+                afterImgTag.append(aTag);
+            }
+            afterImgTag.style.width = (lenAfter * 900 + (lenAfter - 1) * 10) + "px";
+        })
+    </script> 
+</head>
+<body>
+    <div class="title">
+        <span class="titleContent">图片对比</span>
+    </div>
+    <div class="beforeTitle">
+        <span class="beforeTitleCon">对比前</span>
+    </div>
+    <div class="before">
+        <div class="beforeImg" id="beforeImg">
+        </div>
+    </div>
+    <div class="afterTitle">
+        <span class="afterTitleCon">对比后</span>
+    </div>
+    <div class="after">
+        <div class="afterImg" id="afterImg">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f2f2f2;
+}
+
+.title {
+    display: block;
+    height: 50px;
+    line-height: 50px;
+}
+
+.title .titleContent {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+.before {
+    display: block;
+    width: 98%;
+    /*width: 1200px;*/
+    height: 400px;
+    overflow-y: hidden;
+    margin: 0 auto;
+}
+
+.beforeTitle {
+    display: block;
+    width: 98%;
+    margin: 0 auto;
+}
+
+.beforeImg {
+    display: block;
+    /*width: 2720px;*/
+    height: 100%;
+
+}
+
+.beforeImg a.beforeImgLink {
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+    width: 695px;
+}
+
+.beforeImg img {
+    /*width: 60%;*/
+    width: 100%;
+}
+
+.beforeImg a.beforeImgLink:last-of-type {
+    margin-right: 0;
+}
+
+.beforeImg a.beforeImgLink::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 1px;
+    height: 60px;
+    border-right: 1px solid #283647;
+}
+
+.beforeImg a.beforeImgLink::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 1px;
+    height: 60px;
+    border-right: 1px solid #283647;
+}
+
+.after {
+    display: block;
+    width: 98%;
+    /*width: 1200px;*/
+    height: 400px;
+    overflow-y: hidden;
+    margin: 0 auto;
+}
+
+.afterTitle {
+    display: block;
+    width: 98%;
+    padding-top: 20px;
+    margin: 0 auto;
+}
+
+.afterImg {
+    display: block;
+    width: 2720px;
+    height: 100%;
+}
+
+.afterImg a.afterImgLink {
+    display: inline-block;
+    float: left;
+    margin-right: 10px;
+}
+
+.afterImg a.afterImgLink:last-of-type {
+    margin-right: 0;
+}
+
+.afterImg a.afterImgLink::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 1px;
+    height: 60px;
+    border-right: 1px solid #283647;
+}
+
+.afterImg a.afterImgLink::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    width: 1px;
+    height: 60px;
+    border-right: 1px solid #283647;
+}
