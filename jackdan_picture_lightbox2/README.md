@@ -6,7 +6,18 @@
 Open the index.html file in the browser(IE, firefox, chrome, safaris)
 ```
 
+------
+
 ## Result
+- before:
+
+![before_picture][1]
+
+- after:
+
+![after_picture][2]
+
+------
 
 ## description-lightbox
 ### Get Starting
@@ -88,3 +99,7 @@ iOS Chrome
 Android Browser
 Android Chrome
 ```
+
+
+  [1]: ./images/before.png "before.png"
+  [2]: ./images/after.png "after.png"
