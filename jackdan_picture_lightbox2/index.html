@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>picture_lightbox2</title>
+    <link rel="stylesheet" type="text/css" href="css/lightbox.min.css" />
+    <script type="text/javascript" src="js/lightbox.js"></script>
+    <script type="text/javascript" src="js/lightbox-plus-jquery.js"></script>
+
+    <style type="text/css">
+        .image-row {
+            display: block;
+
+        }
+        .example-image-link {
+            display: inline-block;
+            width: 200px;
+            height: 100px;
+            overflow: hidden;
+        }
+        .example-image {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-row">
+        <a class="example-image-link" href="http://umap.jiaoan100.com/4d679e00e0dd11e7a02637a18bf6ae8c_961.png" data-lightbox="roadtrip">
+            <img class="example-image" src="http://umap.jiaoan100.com/4d679e00e0dd11e7a02637a18bf6ae8c_961.png" alt="1">
+        </a>
+        <a class="example-image-link" href="http://umap.jiaoan100.com/4d679e00e0dd11e7a02637a18bf6ae8c_962.png" data-lightbox="roadtrip">
+            <img class="example-image" src="http://umap.jiaoan100.com/4d679e00e0dd11e7a02637a18bf6ae8c_962.png" alt="2">
+        </a>
+        <a class="example-image-link" href="http://umap.jiaoan100.com/4d679e00e0dd11e7a02637a18bf6ae8c_957.png" data-lightbox="roadtrip">
+            <img class="example-image" src="http://umap.jiaoan100.com/4d679e00e0dd11e7a02637a18bf6ae8c_957.png" alt="3">
+        </a>
+    </div>
+
+    <script type="text/javascript">
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true
+        })
+    </script>
+</body>
+</html>
