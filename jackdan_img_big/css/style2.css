@@ -92,13 +92,13 @@ html, body {
 .afterTitle {
     display: block;
     width: 98%;
-    padding-top: 20px;
+    /*padding-top: 20px;*/
     margin: 0 auto;
 }
 
 .afterImg {
     display: block;
-    width: 2720px;
+    /*width: 2720px;*/
     height: 100%;
 }
 
@@ -106,6 +106,12 @@ html, body {
     display: inline-block;
     float: left;
     margin-right: 10px;
+    width: 695px;
+}
+
+.afterImg img {
+    /*width: 60%;*/
+    width: 100%;
 }
 
 .afterImg a.afterImgLink:last-of-type {
