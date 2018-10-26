@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>mobile-login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+        <style type="text/css">
+            * {
+                padding: 0;
+                margin: 0;
+            }
+
+            html, body {
+                padding: 0;
+                margin: 0;
+            }
+
+            .container {
+                display: -webkit-flex; /* Safari */
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                height: 100%;
+
+            }
+
+            .container .username {
+                display: flex;
+                width: 50%;
+                /*top: 50%;*/
+                height: 30px;
+                margin: 0 auto;
+                margin-top: 100%;
+            }
+
+            .container .username input {
+                outline: none;
+                border: none;
+                border-bottom: 1px solid #000;
+                font-size: 12px;
+                padding-left: 8px;
+                width: 100%;
+            }
+
+            .container .password {
+                display: flex;
+                width: 50%;
+                height: 30px;
+                margin: 0 auto;
+            }
+
+            .container .password input {
+                outline: none;
+                border: none;
+                border-bottom: 1px solid #000;
+                font-size: 12px;
+                padding-left: 8px;
+                width: 100%;
+            }
+
+            .container .submit {
+                display: flex;
+                width: 54%;
+                height: 40px;
+                margin: 0 auto;
+                margin-top: 20px;
+                background: blue;
+                border-radius: 4px;
+            }
+
+            .container .submit .submit-login {
+                display: inline-block;
+                width: 100%;
+                height: 40px;
+                text-align: center;
+                line-height: 40px;
+                font-size: 16px;
+                white-space: 1px;
+                color: #000;
+            }
+            .container .error-login {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 30%;
+                left: 20%;
+                width: 60%;
+                height: 150px;
+                margin: 0 auto;
+                z-index: 1024;
+                /*margin-top: -60%;*/
+                /*background: #28355f;*/
+                background: rgba(38, 51, 95, 0.8);
+                /*opacity: 80;*/
+                /*filter：alpha(opacity=80);*/
+                border: 3px solid #e9ecf1;
+                border-radius: 8px;
+            }
+            .container .error-login .error-login-content {
+                display: inline-block;
+                width: 100%;
+                height: 40px;
+                text-align: center;
+                line-height: 40px;
+                font-size: 16px;
+                white-space: 1px;
+                color: #fff;
+            }
+            .container .error-login .error-login-title {
+                display: inline-block;
+                width: 100%;
+                height: 46px;
+                line-height: 46px;
+                text-align: center;
+                font-size: 18px;
+                white-space: 1px;
+                font-family: Helvetica;
+                color: #fff;
+            }
+            .container .error-login .error-login-button {
+                display: inline-block;
+                width: 90%;
+                height: 50px;
+                text-align: center;
+                line-height: 50px;
+                font-size: 16px;
+                white-space: 1px;
+                color: #fff;
+                cursor: pointer;
+                border-radius: 4px;
+                margin: 0 auto;
+                background: #626d8d;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="username">
+                <input type="text" name="username" value="" placeholder="请输入正确的用户名">
+            </div>
+            <div class="password">
+                <input type="password" name="password" value="" placeholder="请输入正确的密码">
+            </div>
+            <div class="submit">
+                <span class="submit-login">登录</span>
+            </div>
+            <div class="error-login">
+                <span class="error-login-title">登录时出错</span>
+                <span class="error-login-content">用户名和密码不正确。</span>
+                <span class="error-login-button">好的</span>
+            </div>
+        </div>
+    </body>
+</html>
