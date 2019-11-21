@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content=" ">
+    <meta name="keywords" content="">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta charset="UTF-8">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        function Vector(x, y) {
+            this.x = x;
+            this.y = y;
+        };
+
+        Vector.prototype = {
+            rotate: function (theta) {
+                var x = this.x;
+                var y = this.y;
+                this.x = Math.cos(theta) * x - Math.sin(theta) * y;
+                this.y = Math.sin(theta) * x + Math.cos(theta) * y;
+                return this;
+            },
+            mult: function (f) {
+                this.x *= f;
+                this.y *= f;
+                return this;
+            },
+            clone: function () {
+                return new Vector(this.x, this.y);
+            },
+            length: function () {
+                return Math.sqrt(this.x * this.x + this.y * this.y);
+            },
+            subtract: function (v) {
+                this.x -= v.x;
+                this.y -= v.y;
+                return this;
+            },
+            set: function (x, y) {
+                this.x = x;
+                this.y = y;
+                return this;
+            }
+        };
+
+        function Petal(stretchA, stretchB, startAngle, angle, growFactor, bloom) {
+            this.stretchA = stretchA;
+            this.stretchB = stretchB;
+            this.startAngle = startAngle;
+            this.angle = angle;
+            this.bloom = bloom;
+            this.growFactor = growFactor;
+            this.r = 1;
+            this.isfinished = false;
+            //this.tanAngleA = Garden.random(-Garden.degrad(Garden.options.tanAngle), Garden.degrad(Garden.options.tanAngle));
+            //this.tanAngleB = Garden.random(-Garden.degrad(Garden.options.tanAngle), Garden.degrad(Garden.options.tanAngle)) ;
+        }
+        Petal.prototype = {
+            draw: function () {
+                var ctx = this.bloom.garden.ctx;
+                var v1, v2, v3, v4;
+                v1 = new Vector(0, this.r).rotate(Garden.degrad(this.startAngle));
+                v2 = v1.clone().rotate(Garden.degrad(this.angle));
+                v3 = v1.clone().mult(this.stretchA); //.rotate(this.tanAngleA);
+                v4 = v2.clone().mult(this.stretchB); //.rotate(this.tanAngleB);
+                ctx.strokeStyle = this.bloom.c;
+                ctx.beginPath();
+                ctx.moveTo(v1.x, v1.y);
+                ctx.bezierCurveTo(v3.x, v3.y, v4.x, v4.y, v2.x, v2.y);
+                ctx.stroke();
+            },
+            render: function () {
+                if (this.r <= this.bloom.r) {
+                    this.r += this.growFactor; // / 10;
+                    this.draw();
+                } else {
+                    this.isfinished = true;
+                }
+            }
+        }
+
+        function Bloom(p, r, c, pc, garden) {
+            this.p = p;
+            this.r = r;
+            this.c = c;
+            this.pc = pc;
+            this.petals = [];
+            this.garden = garden;
+            this.init();
+            this.garden.addBloom(this);
+        }
+        Bloom.prototype = {
+            draw: function () {
+                var p, isfinished = true;
+                this.garden.ctx.save();
+                this.garden.ctx.translate(this.p.x, this.p.y);
+                for (var i = 0; i < this.petals.length; i++) {
+                    p = this.petals[i];
+                    p.render();
+                    isfinished *= p.isfinished;
+                }
+                this.garden.ctx.restore();
+                if (isfinished == true) {
+                    this.garden.removeBloom(this);
+                }
+            },
+            init: function () {
+                var angle = 360 / this.pc;
+                var startAngle = Garden.randomInt(0, 90);
+                for (var i = 0; i < this.pc; i++) {
+                    this.petals.push(new Petal(Garden.random(Garden.options.petalStretch.min, Garden.options.petalStretch.max), Garden.random(Garden.options.petalStretch.min, Garden.options.petalStretch.max), startAngle + i * angle, angle, Garden.random(Garden.options.growFactor.min, Garden.options.growFactor.max), this));
+                }
+            }
+        }
+
+        function Garden(ctx, element) {
+            this.blooms = [];
+            this.element = element;
+            this.ctx = ctx;
+        }
+        Garden.prototype = {
+            render: function () {
+                for (var i = 0; i < this.blooms.length; i++) {
+                    this.blooms[i].draw();
+                }
+            },
+            addBloom: function (b) {
+                this.blooms.push(b);
+            },
+            removeBloom: function (b) {
+                var bloom;
+                for (var i = 0; i < this.blooms.length; i++) {
+                    bloom = this.blooms[i];
+                    if (bloom === b) {
+                        this.blooms.splice(i, 1);
+                        return this;
+                    }
+                }
+            },
+            createRandomBloom: function (x, y) {
+                this.createBloom(x, y, Garden.randomInt(Garden.options.bloomRadius.min, Garden.options.bloomRadius.max), Garden.randomrgba(Garden.options.color.rmin, Garden.options.color.rmax, Garden.options.color.gmin, Garden.options.color.gmax, Garden.options.color.bmin, Garden.options.color.bmax, Garden.options.color.opacity), Garden.randomInt(Garden.options.petalCount.min, Garden.options.petalCount.max));
+            },
+            createBloom: function (x, y, r, c, pc) {
+                new Bloom(new Vector(x, y), r, c, pc, this);
+            },
+            clear: function () {
+                this.blooms = [];
+                this.ctx.clearRect(0, 0, this.element.width, this.element.height);
+            }
+        }
+
+        Garden.options = {
+            petalCount: {
+                min: 8,
+                max: 15
+            },
+            petalStretch: {
+                min: 0.1,
+                max: 3
+            },
+            growFactor: {
+                min: 0.1,
+                max: 1
+            },
+            bloomRadius: {
+                min: 8,
+                max: 10
+            },
+            density: 10,
+            growSpeed: 1000 / 60,
+            color: {
+                rmin: 128,
+                rmax: 255,
+                gmin: 0,
+                gmax: 128,
+                bmin: 0,
+                bmax: 128,
+                opacity: 0.1
+            },
+            tanAngle: 60
+        };
+        Garden.random = function (min, max) {
+            return Math.random() * (max - min) + min;
+        };
+        Garden.randomInt = function (min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        };
+        Garden.circle = 2 * Math.PI;
+        Garden.degrad = function (angle) {
+            return Garden.circle / 360 * angle;
+        };
+        Garden.raddeg = function (angle) {
+            return angle / Garden.circle * 360;
+        };
+        Garden.rgba = function (r, g, b, a) {
+            return 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';
+        };
+        Garden.randomrgba = function (rmin, rmax, gmin, gmax, bmin, bmax, a) {
+            var r = Math.round(Garden.random(rmin, rmax));
+            var g = Math.round(Garden.random(gmin, gmax));
+            var b = Math.round(Garden.random(bmin, bmax));
+            var limit = 5;
+            if (Math.abs(r - g) <= limit && Math.abs(g - b) <= limit && Math.abs(b - r) <= limit) {
+                return Garden.rgba(rmin, rmax, gmin, gmax, bmin, bmax, a);
+            } else {
+                return Garden.rgba(r, g, b, a);
+            }
+        };
+    </script>
+    <script type="text/javascript">
+        var $window = $(window), gardenCtx, gardenCanvas, $garden, garden;
+        var clientWidth = $(window).width();
+        var clientHeight = $(window).height();
+
+        $(function () {
+            // setup garden
+            // $loveHeart = $("#loveHeart");
+            // var offsetX = $loveHeart.width() / 2;
+            // var offsetY = $loveHeart.height() / 2 - 55;
+            // $garden = $("#garden");
+            // gardenCanvas = $garden[0];
+            // gardenCanvas.width = $("#loveHeart").width();
+            // gardenCanvas.height = $("#loveHeart").height()
+            // gardenCtx = gardenCanvas.getContext("2d");
+            // gardenCtx.globalCompositeOperation = "lighter";
+            // garden = new Garden(gardenCtx, gardenCanvas);
+
+            // $("#content").css("width", $loveHeart.width() + $("#code").width());
+            // $("#content").css("height", Math.max($loveHeart.height(), $("#code").height()));
+            // $("#content").css("margin-top", Math.max(($window.height() - $("#content").height()) / 2, 10));
+            $("#content").css("margin-left", Math.max(($window.width() - $("#content").width()) / 2, 10));
+
+            // renderLoop
+            // setInterval(function () {
+            //     garden.render();
+            // }, Garden.options.growSpeed);
+        });
+
+        $(window).resize(function () {
+            var newWidth = $(window).width();
+            var newHeight = $(window).height();
+            if (newWidth != clientWidth && newHeight != clientHeight) {
+                location.replace(location);
+            }
+        });
+
+        function getHeartPoint(angle) {
+            var t = angle / Math.PI;
+            var x = 19.5 * (16 * Math.pow(Math.sin(t), 3));
+            var y = - 20 * (13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t));
+            return new Array(offsetX + x, offsetY + y);
+        }
+
+        function startHeartAnimation() {
+            var interval = 50;
+            var angle = 10;
+            var heart = new Array();
+            var animationTimer = setInterval(function () {
+                var bloom = getHeartPoint(angle);
+                var draw = true;
+                for (var i = 0; i < heart.length; i++) {
+                    var p = heart[i];
+                    var distance = Math.sqrt(Math.pow(p[0] - bloom[0], 2) + Math.pow(p[1] - bloom[1], 2));
+                    if (distance < Garden.options.bloomRadius.max * 1.3) {
+                        draw = false;
+                        break;
+                    }
+                }
+                if (draw) {
+                    heart.push(bloom);
+                    // garden.createRandomBloom(bloom[0], bloom[1]);
+                }
+                if (angle >= 30) {
+                    clearInterval(animationTimer);
+                    showMessages();
+                } else {
+                    angle += 0.2;
+                }
+            }, interval);
+        }
+
+        (function ($) {
+            $.fn.typewriter = function () {
+                this.each(function () {
+                    var $ele = $(this), str = $ele.html(), progress = 0;
+                    $ele.html('');
+                    var timer = setInterval(function () {
+                        var current = str.substr(progress, 1);
+                        if (current == '<') {
+                            progress = str.indexOf('>', progress) + 1;
+                        } else {
+                            progress++;
+                        }
+                        $ele.html(str.substring(0, progress) + (progress & 1 ? '_' : ''));
+                        if (progress >= str.length) {
+                            clearInterval(timer);
+                        }
+                    }, 75);
+                });
+                return this;
+            };
+        })(jQuery);
+
+        function timeElapse(date) {
+            var current = Date();
+            var seconds = (Date.parse(current) - Date.parse(date)) / 1000;
+            var days = Math.floor(seconds / (3600 * 24));
+            seconds = seconds % (3600 * 24);
+            var hours = Math.floor(seconds / 3600);
+            if (hours < 10) {
+                hours = "0" + hours;
+            }
+            seconds = seconds % 3600;
+            var minutes = Math.floor(seconds / 60);
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            seconds = seconds % 60;
+            if (seconds < 10) {
+                seconds = "0" + seconds;
+            }
+            var result = "<span class=\"digit\">" + days + "</span> days <span class=\"digit\">" + hours + "</span> hours <span class=\"digit\">" + minutes + "</span> minutes <span class=\"digit\">" + seconds + "</span> seconds";
+            $("#elapseClock").html(result);
+        }
+
+        function showMessages() {
+            adjustWordsPosition();
+            $('#messages').fadeIn(5000, function () {
+                showLoveU();
+            });
+        }
+
+        function adjustWordsPosition() {
+            // $('#words').css("position", "absolute");
+            // $('#words').css("top", $("#garden").position().top + 195);
+            // $('#words').css("left", $("#garden").position().left + 70);
+        }
+
+        function adjustCodePosition() {
+            // $('#code').css("margin-top", ($("#garden").height() - $("#code").height()) / 2);
+        }
+
+        function showLoveU() {
+            $('#loveu').fadeIn(3000);
+        }
+    </script>
+    <title>生日快乐</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    canvas {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+
+    img {
+        position: absolute;
+        display: block;
+        height: 30%;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
+        transition: all .5s;
+    }
+
+    #canva1 {
+        z-index: 1;
+    }
+
+    #canva2 {
+        z-index: 2;
+    }
+
+    #canva3 {
+        z-index: 4;
+    }
+
+    #role {
+        z-index: 3;
+    }
+
+    #mainDiv {
+        width: 100%;
+        height: 100%;
+    }
+
+    #loveHeart {
+        float: left;
+        width: 670px;
+        height: 625px;
+    }
+
+    #garden {
+        width: 100%;
+        height: 100%;
+    }
+
+    #elapseClock {
+        text-align: right;
+        font-size: 18px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    #words {
+        font-family: "sans-serif";
+        width: 500px;
+        font-size: 24px;
+        color: #666;
+    }
+
+    #messages {
+        display: none;
+    }
+
+    #elapseClock .digit {
+        font-family: "digit";
+        font-size: 36px;
+    }
+
+    #loveu {
+        padding: 5px;
+        font-size: 22px;
+        margin-top: 80px;
+        margin-right: 120px;
+        text-align: right;
+        display: none;
+    }
+
+    #loveu .signature {
+        margin-top: 10px;
+        font-size: 20px;
+        font-style: italic;
+    }
+
+    #clickSound {
+        display: none;
+    }
+
+    #code {
+        float: left;
+        width: 440px;
+        height: 400px;
+        color: #333;
+        font-family: "Consolas", "Monaco", "Bitstream Vera Sans Mono", "Courier New", "sans-serif";
+        font-size: 12px;
+    }
+
+    #code .string {
+        color: #2a36ff;
+    }
+
+    #code .keyword {
+        color: #7f0055;
+        font-weight: bold;
+    }
+
+    #code .placeholder {
+        margin-left: 15px;
+    }
+
+    #code .space {
+        margin-left: 7px;
+    }
+
+    #code .comments {
+        color: #3f7f5f;
+    }
+</style>
+
+<body>
+    <audio id="music" loop="loop" autoplay="autoplay">
+        <source
+            src="https://webfs.yun.kugou.com/201911210045/017ca9f4b7515d083ee0a2d3f1a0fce6/G008/M07/19/11/SA0DAFTXRSSIdrK1AA6Mk7G0LX0AAAEJQKechoADoyr769.mp3"
+            type="audio/mpeg" 　 />
+    </audio>
+    <div id="mainDiv">
+        <div id="content">
+            <div id="code">
+                <span class="comments">/**</span><br />
+                <span class="space" /><span class="comments">*2019-11-21,</span><br />
+                <span class="space" /><span class="comments">*2019-11-21.</span><br />
+                <span class="space" /><span class="comments">*/</span><br />
+                Boy name = <span class="F">Mr</span> 单单<br />
+                Girl name = <span class="keyword">Mrs</span> 妹妹<br />
+                <span class="comments">// 首先单单祝福妹妹生日快乐！ </span><br />
+                今天也是单单和妹妹相识的第617天！<br />
+                <span class="comments">// 在相识相知的过程有过些许嬉戏、吵闹，</span><br />
+                但更多的是妹妹带给单单感动与幸福;<br />
+                <span class="comments">// 在这里十分地感谢妹妹为单单所付出的一切.</span><br />
+                非常感激上天安排了今天这个神圣的日子;<br />
+                <span class="comments">// 因为有了今天才有了单单后面幸福快乐的617天，</span><br />
+                <span class="comments">// 未来更会有无数个充满有你意义的明天.</span><br />
+                单单要非常感谢妹妹的爸爸妈妈，因为他们带来了今天.<br />
+                <span class="comments">// 妹妹请注意了, 不要走开哦 </span><br />
+                <span class="comments">// 单单要为你写诗哦！</span><br />
+                <span class="keyword">如果单单是糖，</span><span class="keyword">妹妹就是水，</span><span>甜甜蜜蜜在一起</span>;<br />
+                <span class="keyword">如果妹妹是脚，</span> 单单就是鞋(得多大得鞋哦)， <span class="keyword">深情相拥不分离</span>;<br />
+                <span class="keyword">如果单单是唇，</span> 妹妹就是齿，<span class="keyword">生生世世永相依</span>;<br />
+                <span class="keyword">妹妹生日到了，</span> 给你加点糖，<span class="keyword">擦擦鞋，</span><span class="keyword">祝你永远快乐</span>！<br />
+                <span class="placeholder" /><span class="comments">// 单单诗歌写得不错吧！</span><br />
+                <span class="placeholder" /><span class="comments">// 本来还有好多话想和你说，想写在这里的.</span><br />
+                <span class="placeholder" />奈何屏幕篇幅有限;<br />
+                <span class="comments">//（日子很长，还有得是机会）单单的小想法哦.</span><br />
+                <br>
+                <br>
+                单单想再一次对妹妹说的是:<br />
+                妹妹，生日快乐！有你真好！;<br />
+            </div>
+        </div>
+    </div>
+    <canvas width="800" height="600" id="canva1"></canvas>
+    <canvas width="800" height="600" id="canva2"></canvas>
+    <canvas width="800" height="600" id="canva3"></canvas>
+    <script>
+        (function () {
+            var VW = window.innerWidth
+            var VH = window.innerHeight
+            var canva1 = document.getElementById('canva1')
+            var canva2 = document.getElementById('canva2')
+            var canva3 = document.getElementById('canva3')
+            var role = document.getElementById('role')
+                ;[canva1, canva2, canva3].forEach(canva => {
+                    canva.width = VW
+                    canva.height = VH
+                })
+            var context1 = canva1.getContext('2d')
+            var context2 = canva2.getContext('2d')
+            var context3 = canva3.getContext('2d')
+            var PI = Math.PI
+            var sin = Math.sin
+            var cos = Math.cos
+            var random = Math.random
+            var FULL_ANG = 360
+            var HALF_ANG = 180
+            var colorList1 = [
+                '#f0f0f0', '#c9c9c9', '#d9d9d9',
+                '#dfdfdf', '#bfbfbf', '#b5b5b5'
+            ]
+            // 浅 -> 深
+            var colorList2 = [
+                '#f0f0f0', '#ccc', '#c9c9c9',
+                '#d9d9d9', '#dddddd', '#d0d0d0',
+                '#bfbfbf', '#b5b5b5',
+                '#bbb', '#8f8f8f', '#767676'
+            ]
+            var colorList3 = [
+                '#f2e1c7', '#f9e7c3', '#fdd6af',
+                '#fadcb6', '#e9b8ae', '#f7bcda',
+                '#eb7bcf', '#d82066'
+            ]
+            var colorList4 = [
+                '#fadcb6', '#fc766d', '#f7bdd6',
+                '#f694e7', '#eb7bcf', '#cf60c7',
+                '#eb5998', '#d82066', '#e1337a'
+            ]
+            // 半径、与偏移角度计算相对坐标即相对于原点的偏移量
+            // 因为在后面的 ctx.translate(this.x, this.y) 会将坐标原点设置为圆心所在位置
+            function createPoint(ang, radius, offset = 0) {
+                const rad = PI * (ang + offset) / HALF_ANG
+                return {
+                    x: radius * sin(rad),
+                    y: radius * cos(rad)
+                }
+            }
+            function getRandomColor(colorList) {
+                return colorList[random() * colorList.length | 0]
+            }
+            // 画板的宽度高度、 坐标、半径、花瓣的数量
+            function Flower(cw, ch, radius, colors, alpha, vy, vr) {
+                var count = 5
+                var halfRadius = radius / 2
+                var cacheCanvas = document.createElement('canvas')
+                cacheCanvas.width = radius * 2
+                cacheCanvas.height = radius * 2
+                this.halfRadius = halfRadius
+                this.x = random() * cw + halfRadius
+                this.y = random() * ch + halfRadius
+                this.vy = vy
+                this.vx = random() * 1 - 0.5
+                this.vr = vr
+                this.cw = cw
+                this.ch = ch
+                this.alpha = alpha
+                this.scale = 1
+                this.radius = radius
+                this.color = '#fff'
+                this.colors = colors
+                this.count = count
+                this.rotate = 0
+                this.points = []
+                this.canva = cacheCanvas
+                this.ctx = cacheCanvas.getContext('2d')
+                this.vertical = 1 // 换飘落的方向 1 向下 0 静止 -1 向上
+                this.setColor()
+                this.createPath()
+                this.cache()
+            }
+            Flower.prototype.setColor = function setColor() {
+                if (this.vertical === 1) {
+                    this.color = this.colors[0]
+                } else {
+                    this.color = this.colors[1]
+                }
+            }
+            Flower.prototype.zoom = function zoom() {
+                this.vertical = 0
+                this.setColor()
+                this.cache()
+            }
+            Flower.prototype.reverse = function reverse() {
+                this.vertical = -1
+            }
+            // 用于生成花瓣的路径
+            Flower.prototype.createPath = function createPath() {
+                var radius = this.radius
+                var count = this.count
+                // 单个花瓣的所占的角度
+                var singleAng = 360 / count
+                var halfAng = singleAng / 2
+                var r3 = radius
+                var r2 = radius * 0.9
+                var r1 = radius * 0.3
+                var r2Offset = r2 * 0.2
+                var ponits = []
+                for (var i = 0; i < this.count; i++) {
+                    ponits.push(createPoint(singleAng * i, r1))
+                    ponits.push(createPoint(singleAng * i, r2 + (random() * r2Offset - r2Offset / 2)))
+                    ponits.push(createPoint(singleAng * i, r3, halfAng))
+                    ponits.push(createPoint(singleAng * (i + 1), r2 + (random() * r2Offset - r2Offset / 2)))
+                }
+                // 首尾路径闭合
+                ponits.push(ponits[0])
+                this.ponits = ponits
+            }
+            // 先在自身的离屏 canvas 缓存绘制出花瓣图案
+            Flower.prototype.cache = function cache() {
+                var ctx = this.ctx
+                var ponits = this.ponits
+                var radius = this.radius
+                ctx.clearRect(0, 0, radius * 2, radius * 2)
+                ctx.save()
+                ctx.translate(radius, radius)
+                ctx.beginPath()
+                ctx.globalAlpha = this.alpha
+                ctx.strokeStyle = this.color
+                ctx.fillStyle = this.color
+                ctx.moveTo(ponits[0].x, ponits[0].y)
+                for (var i = 2; i < ponits.length; i += 2) {
+                    var target = ponits[i]
+                    var cp = ponits[i - 1]
+                    ctx.quadraticCurveTo(cp.x, cp.y, target.x, target.y)
+                }
+                ctx.closePath()
+                ctx.stroke()
+                ctx.fill()
+                ctx.restore()
+            }
+            // 绘制花瓣
+            Flower.prototype.drow = function drow(context) {
+                context.save()
+                context.translate(this.x, this.y)
+                context.rotate(this.rotate)
+                context.scale(this.scale, this.scale)
+                context.drawImage(this.canva, -this.radius, -this.radius)
+                context.restore()
+            }
+            // 更新路径判断边界
+            Flower.prototype.update = function update() {
+                if (!this.vertical && this.scale >= 0.9) {
+                    this.scale *= 0.99
+                    return
+                }
+                var halfRadius = this.halfRadius + 10
+                this.rotate += this.vr * this.vertical
+                this.x += this.vx * this.vertical
+                this.y += this.vy * this.vertical
+                if (this.x < -halfRadius || this.x > this.cw + halfRadius) {
+                    this.x = this.x > 0 ? -halfRadius : this.cw + halfRadius
+                }
+                if (this.y < -halfRadius || this.y > this.ch + halfRadius) {
+                    this.y = this.y > 0 ? -halfRadius : this.ch + halfRadius
+                    this.x = random() * this.cw + this.halfRadius
+                }
+            }
+            function Layer(options) {
+                var context = options.ctx
+                var count = options.count
+                var size = options.size
+                var alpha = options.alpha
+                var vy = options.vy
+                var vr = options.vr
+                var colors1 = options.colors1
+                var colors2 = options.colors2
+                var flowers = []
+                for (var i = 0; i < count; i++) {
+                    var rsize = (random() * (size.max - size.min) + size.min) | 1
+                    var ralpha = random() * (alpha.max - alpha.min) + alpha.min
+                    var rvy = random() * (vy.max - vy.min) + vy.min
+                    var rvr = random() * (vr.max - vr.min) + vr.min
+                    var colors = [getRandomColor(colors1), getRandomColor(colors2)]
+                    flowers.push(new Flower(VW, VH, rsize, colors, ralpha, rvy, rvr))
+                }
+                // var scale = 2
+                this.zoomTransform = false
+                this.context = context
+                this.flowers = flowers
+                // this.scale = scale
+                // this.context.scale(scale, scale)
+            }
+            Layer.prototype.zoom = function boom() {
+                // this.zoomTransform = true
+                this.flowers.forEach(flower => {
+                    flower.zoom()
+                })
+            }
+            Layer.prototype.reverse = function reverse() {
+                // this.zoomTransform = false
+                this.flowers.forEach(flower => {
+                    flower.reverse()
+                })
+            }
+            Layer.prototype.tick = function tick() {
+                this.flowers.forEach(flower => {
+                    flower.update()
+                    flower.drow(this.context)
+                })
+            }
+            Layer.prototype.clear = function clear() {
+                // if (this.zoomTransform) return
+                this.context.clearRect(0, 0, VW, VH)
+            }
+            var layers = [
+                {
+                    ctx: context1,
+                    count: 1000, // 2000 个在其他浏览器上比较卡，推荐 chrome 
+                    size: { max: 20, min: 4 },
+                    alpha: { max: 0.6, min: 0.2 },
+                    vy: { max: 4, min: 2 },
+                    vr: { max: 0.04, min: 0.01 },
+                    colors1: colorList1,
+                    colors2: colorList3
+                },
+                {
+                    ctx: context2,
+                    count: 200,
+                    size: { max: 30, min: 10 },
+                    alpha: { max: 0.9, min: 0.2 },
+                    vy: { max: 2, min: 1 },
+                    vr: { max: 0.03, min: 0.01 },
+                    colors1: colorList2,
+                    colors2: colorList3
+                },
+                {
+                    ctx: context3,
+                    count: 10,
+                    size: { max: 100, min: 40 },
+                    alpha: { max: 1, min: 0.8 },
+                    vy: { max: 1, min: 0.5 },
+                    vr: { max: 0.03, min: 0.02 },
+                    colors1: colorList2,
+                    colors2: colorList4
+                }
+            ].map(opt => (new Layer(opt)))
+            function drawFrame() {
+                window.requestAnimationFrame(drawFrame)
+                layers.forEach(layer => {
+                    layer.clear()
+                    layer.tick()
+                })
+            }
+            drawFrame()
+            // 6 秒后静止画面，缩放花瓣
+            setTimeout(() => {
+                layers.forEach(layer => { layer.zoom() })
+            }, 1000)
+            // 往后 1 秒花瓣方向运动
+            setTimeout(() => {
+                layers.forEach(layer => { layer.reverse() })
+            }, 1000)
+        })()
+    </script>
+    <script>
+        var offsetX = $("#loveHeart").width() / 2;
+        var offsetY = $("#loveHeart").height() / 2 - 55;
+        var together = new Date();
+        together.setFullYear(2016, 8, 14);
+        together.setHours(20);
+        together.setMinutes(0);
+        together.setSeconds(0);
+        together.setMilliseconds(0);
+
+        if (!document.createElement('canvas').getContext) {
+            var msg = document.createElement("div");
+            msg.id = "errorMsg";
+            msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+";
+            document.body.appendChild(msg);
+            $("#code").css("display", "none")
+            $("#copyright").css("position", "absolute");
+            $("#copyright").css("bottom", "10px");
+            document.execCommand("stop");
+        } else {
+            setTimeout(function () {
+                startHeartAnimation();
+            }, 5000);
+
+            timeElapse(together);
+            setInterval(function () {
+                timeElapse(together);
+            }, 500);
+
+            adjustCodePosition();
+            $("#code").typewriter();
+        }
+    </script>
+</body>
+
+</html>
