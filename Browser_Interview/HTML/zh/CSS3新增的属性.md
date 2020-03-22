@@ -453,5 +453,75 @@
 ### Example
 
 ``` html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="referrer" content="origin" />
+        <meta perproty="og:description" content="CSS属性之CSS3动画" />
+        <meta http-equiv="Cache-Control" content="no-transform" />
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>CSS3 动画/title>
+        <style>
+            .test-animation {
+                width: 300px;
+                height: 300px;
+                background: red;
+                animation: mygirl 5s;
+                -moz-animation:myfirst 5s; /* Firefox */
+                -webkit-animation:myfirst 5s; /* Safari and Chrome */
+                -o-animation:myfirst 5s; /* Opera */
+            }
+            @keyframes myfirst
+            {
+                from {
+                    background:red;
+                }
+                to {
+                    background:yellow;
+                }
+            }
 
+            @-moz-keyframes myfirst /* Firefox */
+            {
+                from {
+                    background:red;
+                }
+                to {
+                    background:yellow;
+                }
+            }
+
+            @-webkit-keyframes myfirst /* Safari and Chrome */
+            {
+                from {
+                    background:red;
+                }
+                to {
+                    background:yellow;
+                }
+            }
+
+            @-o-keyframes myfirst /* Opera */
+            {
+                from {
+                    background:red;
+                }
+                to {
+                    background:yellow;
+                }
+            }
+            /* IE浏览器不支持 */
+        </style>
+    </head>
+    <body>
+        <div class="test-animation">
+        </div>
+    </body>
+</html>
 ```
+
+------
+
