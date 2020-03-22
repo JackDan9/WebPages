@@ -473,6 +473,15 @@
                 -moz-animation:myfirst 5s; /* Firefox */
                 -webkit-animation:myfirst 5s; /* Safari and Chrome */
                 -o-animation:myfirst 5s; /* Opera */
+                /* 
+                animation: name duration timing-function delay iteration-count direction;
+                animation-name: 规定需要绑定到选择器的keyframe名称。
+                animation-duration: 规定完成动画所花费的时间，以秒或者毫秒计算。
+                animation-timing-function: 规定动画的速度曲线。
+                animation-delay: 规定动画开始之前的延迟。
+                animation-iteration-count: 规定动画应该播放的次数。
+                animation-direction: 规定是否应该轮流反向播放动画。
+                */
             }
             @keyframes myfirst
             {
@@ -525,3 +534,211 @@
 
 ------
 
+## CSS3多列
+
+### `column-count`
+- 属性规定元素应该被分隔的列数。
+
+### `column-fill`
+- 属性指定如何填充列
+
+### `column-gap`
+- 属性规定列之间的间隔
+
+### `column-rule`
+- 属性设置列之间的宽度、样式和颜色规则。
+
+### `column-rule-color`
+- 属性指定两列间边框的颜色
+
+### `column-rule-style`
+- 属性指定两列间边框的样式
+
+### `column-rule-width`
+- 属性指定两列间边框的厚度
+
+### `column-span`
+- 属性指定元素要跨越多少列
+
+### `column-width`
+- 属性追定列的宽度
+
+### `columns`
+- 属性设置column-width和column-count的简写
+
+### Example
+
+``` html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="referrer" content="origin" />
+        <meta property="og:description" content="CSS3属性之CSS3多列" />
+        <meta http-equiv="Cache-Control" content="no-transform" />
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>CSS3属性之CSS3多列</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            html, body {
+                padding: 0;
+                margin: 0;
+            }
+            .test-column {
+                -moz-column-count: 5; /* Firefox */
+                -webkit-column-count: 5; /* Safari and Chrome */
+                column-count: 5;
+                
+                -moz-column-gap: 40px; /* Firefox */
+                -webkit-column-gap: 40px; /* Chrome, Safari, Opera */
+                column-gap: 40px;
+
+                -moz-column-rule-style: solid; /* Firefox */
+                -webkit-column-rule-style: solid; /* Chrome, Safari, Opera */
+                column-rule-style: solid;
+
+                -moz-column-rule-width: 1px; /* Firefox */
+                -webkit-column-rule-width: 1px; /* Chrome, Safari, Opera */
+                column-rule-width: 1px;
+
+                -moz-column-rule-color: lightblue; /* Firefox */
+                -webkit-column-rule-color: lightblue; /* Chrome, Safari, Opera */
+                column-rule-color: lightblue;
+
+                -moz-column-rule: 1px solid lightblue; /* Firefox */
+                -webkit-column-rule: 1px solid lightblue; /* Chrome, Safari, Opera */
+                column-rule: 1px solid lightblue;
+
+                column-width: 100px;
+                -moz-column-width: 100px; /* Firefox */
+                -webkit-column-width: 100px; /* Safari and Chrome */
+            }
+            .test-column-span {
+                column-count: 3;
+                -moz-column-count: 3; /* Firefox */
+                -webkit-column-count: 3; /* Safari and Chrome */
+            }
+            .test-column-span h2 {
+                column-span: all;
+                -webkit-column-span: all; /* Safari and Chrome */
+            }
+        </style>
+    </head>
+    <body>
+        <p><b>注意:</b> Internet Explorer 9及更早 IE 版本浏览器不支持 column-count 属性。</p>
+
+        <div class="test-column">
+        “当我年轻的时候，我梦想改变这个世界；当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家；当我进入暮年以后，我发现我不能够改变我们的国家，我的最后愿望仅仅是改变一下我的家庭，但是，这也不可能。当我现在躺在床上，行将就木时，我突然意识到：如果一开始我仅仅去改变我自己，然后，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情；然后，谁知道呢?我甚至可能改变这个世界。”
+        </div>
+
+        <div class="test-column-span">
+        <h2>英国维斯米斯特教堂碑文</h2>
+        当我年轻的时候，我梦想改变这个世界；当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家；当我进入暮年以后，我发现我不能够改变我们的国家，我的最后愿望仅仅是改变一下我的家庭，但是，这也不可能。当我现在躺在床上，行将就木时，我突然意识到：如果一开始我仅仅去改变我自己，然后，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情；然后，谁知道呢?我甚至可能改变这个世界。
+        </div>
+    </body>
+</html>
+```
+
+------
+
+## CSS3用户界面
+
+### `resize`
+- 属性规定是否可由用户调整元素尺寸。
+
+### `box-sizing`
+- 属性允许您以确切的方式定义适应某个区域的具体内容。
+
+### `outline-offset`
+- 属性对轮廓进行偏移，并在超出边框边缘的位置绘制轮廓。
+
+### Example
+
+``` html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="referrer" content="origin" />
+        <meta property="og:description" content="CSS3属性之CSS3用户界面" />
+        <meta http-equiv="Cache-Control" content="no-transform" />
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>CSS3用户界面</title>
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            html, body {
+                padding: 0;
+                margin: 0;
+            }
+            .test-user-interface {
+                border: 2px solid;
+                padding: 10px 40px;
+                width: 400px;
+                resize: both;
+                overflow: auto;
+            }
+            div.test-user-interface-container {
+                width: 40em;
+                border: 1em soild;
+            }
+            div.box {
+                box-sizing: border-box;
+                -moz-box-sizing: border-box; /* Firefox */
+                width: 50%;
+                border: 1em soild red;
+                float: left;
+            }
+            div.test-user-interface-1 {
+                margin: 20px;
+                width: 200px;
+                padding: 10px;
+                height: 100px;
+                border: 2px solid black;
+                outline: 2px solid red;
+                outline-offset: 15px;
+            }
+            /*
+                appearance: 允许您使一个元素的外观像一个标准的用户界面元素
+                icon: 为创作者提供了将元素设置为图标等价物的能力。
+                nav-down: 指定在何处使用箭头向下导航键时进行导航
+                nav-index: 指定一个元素的Tab的顺序
+                nav-left: 指定在何处使用左侧的箭头导航键进行导航
+                nav-right: 指定在何处使用右侧的箭头导航键进行导航
+                nav-up: 指定在何处使用箭头向上导航键时进行导航
+            */
+        </style>
+    </head>
+    <body>
+        <p><b>注意:</b> Firefox, Safari,和 Chrome 兼容 resize 属性.</p>
+        <div class="test-user-interface">
+            调整属性指定一个元素是否由用户可调整大小的。
+        </div>
+
+        <hr/>
+
+        <div class="test-user-interface-container">
+            <div class="box">这个div占据了左边的一半。</div>
+            <div class="box">这个div占据了右边的一半。</div>
+        </div>
+
+        <hr />
+
+        <p><b>注意:</b> Internet Explorer 不兼容 outline-offset属性.</p>
+        <div class="test-user-interface-1"></div>
+    <body>
+</html>
+```
+
+------
+
+> Thinking in JackDan9
