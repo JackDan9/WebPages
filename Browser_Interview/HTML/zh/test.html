@@ -4,28 +4,35 @@
         <meta chartset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="referrer" content="origin" />
-        <meta property="og:description" content="CSS3属性之CSS3 2D转换-transform" />
+        <meta property="og:description" content="渐进增强与优雅降级" />
         <meta http-equiv="Cache-Control" content="no-transform" />
         <meta http-equiv="Cache-Control" content="no-siteapp" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>CSS3 2D转换</title>
-        <style>
+        <title>渐进增强与优雅降级</title><meta charset="utf-8" />
+        <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=0,maximum-scale=1.0" />
+        <title>无标题文档</title>
+        <style type="text/css">
             * {
-                padding: 0;
                 margin: 0;
+                padding: 0;
             }
             html, body {
                 padding: 0;
                 margin: 0;
             }
-            .test-transform {
-                transform:rotate(7deg);
-                -ms-transform:rotate(7deg);
-                -webkit-transform:rotate(7deg);
+            html {
+                width: 100%;
+                height: 100%;
+                font-size: 64%;
+                border: 1px solid red;
+            } 
+            p {
+                font-size: 0.5rem;
             }
         </style>
     </head>
     <body>
-        <div class="test-tranform"></div>
+        <p class="test">测试自适应</p>
+        
     </body>
 </html>
