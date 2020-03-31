@@ -170,5 +170,118 @@ function withdraw(account, amount) {
 
 ## 函数组件与类组件的区别
 
-- 上面相应实现了函数组件与类组件，直观感受我们觉察到了函数组件与类组件的写法是不一致的，但是就效果而言它们是一致，那么除了写法不一致以外还存在不同的地方吗？接下来我们进行发现。
+- 上面相应实现了函数组件与类组件，直观感受我们觉察到了函数组件与类组件的写法是不一致的，但是就效果而言它们是一致，那么除了写法不一致以外还存在不同的地方吗？接下来我们进行发现和梳理。
+- 在梳理之前，我们需要明白React中另外一个很重要的概念——**State & 生命周期**
+
+## State & 生命周期
+
+## Example(时钟的实例)
+
+``` html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:description" content="React之时钟" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>React之时钟</title>
+        <!-- 核心库 -->
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <!-- DOM相关 -->
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <!-- 支持JSX -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel">
+           function tick() {
+               const element = (
+                   <div>
+                        <h1>Hello, world!</h1>
+                        <h2>It is {new Date().toLocaleTimeString()}.</h2>
+                   </div>
+               );
+               ReactDOM.render(
+                   element,
+                   document.getElementById('root')
+               );
+           }
+
+           setInterval(tick, 1000);
+        </script>
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
+</html>
+```
+
+- 我们要封装真正可复用的`Clock`组件。它将设置自己的计时器并每秒更新一次。
+
+``` html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:description" content="React之时钟" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>React之时钟</title>
+        <!-- 核心库 -->
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <!-- DOM相关 -->
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <!-- 支持JSX -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel">
+            function Clock(props) {
+                return (
+                    <div>
+                        <h1>Hello, world!</h1>
+                        <h2>It is {props.date.toLocaleTimeString()}.</h2>
+                    </div>
+                );
+            }
+            
+            function tick() {
+            //    const element = (
+            //        <div>
+            //             <h1>Hello, world!</h1>
+            //             <h2>It is {new Date().toLocaleTimeString()}.</h2>
+            //        </div>
+            //    );
+               ReactDOM.render(
+                //    element,
+                    <Clock date={new Date()} />,
+                   document.getElementById('root')
+               );
+            }
+
+           setInterval(tick, 1000);
+        </script>
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
+</html>
+```
+
+- 上面的代码封装了一个可以复用的`Clock`组件，然而, 它忽略了一个关键的技术问题: `Clock`组件需要设置一个计时器，并且需要每秒更新UI。
+
+- 理想情况下, 我们希望只编写一次代码，便可以让 Clock 组件自我更新：
+
+``` javascript
+ReactDOM.render(
+    //    element,
+    // <Clock date={new Date()} />,
+    <Clock />,
+    document.getElementById('root')
+);
+```
+
+- 我们需要在 Clock 组件中添加 “state” 来实现这个功能。
+
+- `State` 与 `props` 类似，但是 `state` 是私有的，并且**完全受控于当前组件**。
+
+
+
 
