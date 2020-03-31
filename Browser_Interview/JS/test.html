@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:description" content="React之函数组件" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>React之函数组件</title>
+        <!-- 核心库 -->
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <!-- DOM相关 -->
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <!-- 支持JSX -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel">
+            class Welcome extends React.Component {
+                render() {
+                    return <h1>Hello, {this.props.name}</h1>
+                }
+            }
+
+            class DefineClassComponent extends React.Component {
+                render() {
+                    return <code>{this.props.code}</code>
+                }
+            }
+
+            function App() {
+                return (
+                    <div>
+                        <Welcome name="asmallpet" />
+                        <span>定义类组件的代码形式如下:</span>
+                        <DefineClassComponent code="
+                        class Welcome extends React.Component {
+                            render() {
+                                return <h1>Hello, {this.props.name}</h1>
+                            }
+                        }" />
+                    </div>
+                );
+            }
+
+            /**
+             * React.Component与Component的区别:
+             * 
+            */
+
+            ReactDOM.render(<App />, document.getElementById('root'));
+        </script>
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
+</html>
