@@ -1,0 +1,51 @@
+# JS获取url `?` 号后面的参数
+- 类似这样的Url: `https://www.d-bigdata.com/index.html#/?_k=9kj6s0`
+
+## 正则表达式
+
+``` javascript
+function getQueryString(name) {
+    let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    let r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]);
+    return null;
+}
+
+console.log('https://www.d-bigdata.com/index.html#/?_k=9kj6s0')
+```
+
+
+## Example --- 正则表达式
+
+``` html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:description" content="URL获取参数" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>URL获取参数</title>
+        <!-- 核心库 -->
+        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <!-- DOM相关 -->
+        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <!-- 支持JSX -->
+        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+        <script type="text/babel">
+            function getQueryString(name) {
+                debugger;
+                let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                let r = window.location.search.substr(1).match(reg);
+                if (r != null) return unescape(r[2]);
+                return null;
+            }
+
+            console.log('https://www.d-bigdata.com/index.html#/?_k=9kj6s0')
+        </script>
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
+</html>
+```
