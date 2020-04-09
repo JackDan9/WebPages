@@ -6,21 +6,39 @@
         <meta property="og:description" content="URL获取参数" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <title>URL获取参数</title>
-        <!-- 核心库 -->
-        <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-        <!-- DOM相关 -->
-        <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-        <!-- 支持JSX -->
-        <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-        <script type="text/babel">
-            function getQueryString(name) {
+        <script type="text/javascript">
+            function GetQueryString(name) {
+                /**
+                 * 不做new 操作的话
+                 * this指向于window 
+                 * 
+                 * window
+                 *  Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …}
+                 * this
+                 *  Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …}
+                */
+                debugger;
                 let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
                 let r = window.location.search.substr(1).match(reg);
                 if (r != null) return unescape(r[2]);
                 return null;
             }
 
-            console.log(getQueryString())
+            /**
+             * 
+             * 做new 操作的话
+             * 
+             * this 指向 GetQueryString
+             * 
+             * this
+             *   GetQueryString {}
+             *       __proto__: Objectconstructor: ƒ GetQueryString(name)arguments: Arguments [callee: ƒ, Symbol(Symbol.iterator): ƒ]caller: nulllength: 1name: "GetQueryString"prototype: {constructor: ƒ}__proto__: ƒ ()[[FunctionLocation]]: test.html:10[[Scopes]]: Scopes[1]__proto__: Object
+             * window
+             *   Window {postMessage: ƒ, blur: ƒ, focus: ƒ, close: ƒ, parent: Window, …}
+            */
+            // let getQueryString = new GetQueryString();
+            
+            console.log(GetQueryString('aaa'))
         </script>
     </head>
     <body>
