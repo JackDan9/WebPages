@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta  />
+        <!-- 引入echarts -->
+        <script src="./js/echarts.min.js" type="text/javascript"></script>
+        <style type="text/css">
+            * {
+                padding: 0;
+                margin: 0;
+
+            }
+            html, body {
+                padding: 0;
+                margin: 0;
+                background-color: #333;
+            }
+            .container {
+                width: 1684px;
+                margin: 40px auto;
+            }
+            .spikeRateContainer {
+                /* padding: 30px 30px; */
+                width: 100%;
+                height: 700px;
+                background-color: #ffffff;
+                box-shadow: 2px 2px 2px 2px #888888;
+            }
+            .spikeRateChart {
+                width: 269px;
+                height: 120px;
+                float: left;
+            }
+            .spikeRateChart:nth-of-type(1) {
+                padding-left: 20px;
+            }
+            /* .kpiContainer {
+                width: 100%;
+                height: 500px;
+            } */
+            .kpiLineChart {
+                width: 100%;
+                height: 520px;
+            }
+            .scroll_left,.scroll_right {
+                width:23px;
+                height:120px;
+                background-color:inherit;
+                color:rgb(184,184,184);
+                float:left;
+                line-height:120px;
+                text-align:center;
+                font-size: 12px;
+                border-color: #888888;
+            }
+        </style>
+
+        
+    </head>
+    <body>
+        <div class="container">
+            <div class="spikeRateContainer">
+                <div class="" style="width: 100%; height: 120px; margin-bottom: 30px;">
+                    <div class="scroll_left" id="LeftArr" style="border-right: 1px solid rgb(184,184,184); cursor: pointer;"> &lt;</div>
+                    <div id="scrollPic" class="">
+                        <div id="spikeRateChart" class="spikeRateChart"></div>
+                        <div id="spikeRateChart1" class="spikeRateChart"></div>
+                        <div id="spikeRateChart2" class="spikeRateChart"></div>
+                        <div id="spikeRateChart3" class="spikeRateChart"></div>
+                        <div id="spikeRateChart4" class="spikeRateChart"></div>
+                        <div id="spikeRateChart5" class="spikeRateChart"></div>
+                    </div>
+                    
+                    <div class="scroll_right" id="RightArr" style="border-left: 1px solid rgb(184,184,184); float: right; cursor: pointer;"> &gt;</div>
+                </div>
+
+                <div id="kpiLineChart" class="kpiLineChart"></div>
+                <div class="total">
+                    <div style="float: left; margin-left: 50px; width: 78%; height: 30px; margin-bottom: 10px;">
+                        <h3 style="display: inline-block;">本月总计:</h3>
+                        <span style="margin-left: 20px;">分享: </span>
+                        <span style="margin-left: 10px;">192019</span>
+                        <span style="margin-left: 20px;">引流: </span>
+                        <span style="margin-left: 10px;">18909</span>
+                        <span style="margin-left: 20px;">秒杀: </span>
+                        <span style="margin-left: 10px;">29101</span>
+                        <span style="margin-left: 20px;">秒杀转换率: </span>
+                        <span style="margin-left: 10px;">60%</span>
+                    </div>
+                    <div>
+                        <span>交易总额: </span>
+                        <span>￥190290189</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="" style="width: 100%; height: 120px;  margin-top: 40px; background-color: #ffffff;">
+                <div class="scroll_left" id="LeftArr" style="border-right: 1px solid rgb(184,184,184); cursor: pointer;"> &lt;</div>
+                <div id="scrollPic" class="">
+                    <div id="spikeRateChart6" class="spikeRateChart"></div>
+                    <div id="spikeRateChart7" class="spikeRateChart"></div>
+                    <div id="spikeRateChart8" class="spikeRateChart"></div>
+                    <div id="spikeRateChart9" class="spikeRateChart"></div>
+                    <div id="spikeRateChart10" class="spikeRateChart"></div>
+                    <div id="spikeRateChart11" class="spikeRateChart"></div>
+                </div>
+                <div class="scroll_right" id="RightArr" style="border-left: 1px solid rgb(184,184,184); float: right; cursor: pointer;"> &gt;</div>
+            </div>
+            
+        </div>
+        <!-- <script type="text/javascript" src="./js/scroll.js"></script> -->
+        <script type="text/javascript">
+            // window.onload = function() {
+            //     scrollHeader();
+            // }
+
+            // function scrollHeader() {
+            //     var scrollPic = new ScrollPic();
+            //     scrollPic.scrollContId = "scrollPic"; //内容容器ID
+            //     scrollPic.arrLeftId = "LeftArr"; //左箭头ID
+            //     scrollPic.arrRightId = "RightArr"; //右箭头ID
+
+            //     scrollPic.frameWidth = 312; //显示框宽度
+            //     scrollPic.pageWidth = 104; //翻页宽度
+
+            //     scrollPic.speed = 10; //移动速度(单位毫秒，越小越快)
+            //     scrollPic.space = 10; //每次移动像素(单位px，越大越快)
+            //     scrollPic.autoPlay = true; //自动播放
+            //     scrollPic.autoPlayTime = 3; //自动播放间隔时间(秒)
+
+            //     scrollPic.initialize(); //初始化
+            // }
+        </script>
+        
+        <script type="text/javascript">
+            var kpiLineChart = echarts.init(document.getElementById('kpiLineChart'));
+            var xAxisData = ['3/01', '3/02', '3/03', '3/04', '3/05', '3/06', '3/07', '3/08', '3/09', '3/10','3/11','3/12'];
+            var legendData= ['分享','引流','秒杀'];
+            var title = "秒杀KPI活动";
+            var serieData = [];
+            var metaDate = [
+                [120, 140, 100, 120, 300, 230, 130, 170,140, 120, 300, 230],
+                [200, 120, 300, 200, 170, 300, 200, 180,200, 190, 300, 200],
+                [100,200, 140, 300, 200, 180, 100, 300, 230, 130, 100 ,300,]
+            ]
+            for(var v=0; v < legendData.length ; v++){
+                var serie = {
+                    name:legendData[v],
+                    type: 'line',
+                    symbol:"circle",
+                    symbolSize:10,
+                    data: metaDate[v]
+                };
+                serieData.push(serie)
+            }
+            var colors = ["#036BC8","#4A95FF","#5EBEFC","#2EF7F3","#FFFFFF"];
+            var optionLine = {
+                backgroundColor: '#ffffff',
+                title : {text: title, left: 20, textAlign:'left',textStyle:{color:"#000",fontSize:"16",fontWeight:"normal"}},
+                legend: {
+                    show:true,left:"right",data:legendData,y:"5%",
+                    itemWidth:18,itemHeight:12,textStyle:{color:"#000",fontSize:12},
+                },
+                color:colors,
+                grid: {left: '2%',top:"12%",bottom: "5%",right:"5%",containLabel: true},
+                tooltip : { trigger: 'axis',axisPointer : { type : 'shadow'}},
+                xAxis: [
+                    {   
+                        type: 'category',
+                        axisLine: { show: true,lineStyle:{ color:'#6173A3' }},
+                        axisLabel:{interval:0,textStyle:{color:'#9ea7c4',fontSize:12} },
+                        axisTick : {show: false},
+                        data:xAxisData,
+                    },
+                ],
+                yAxis: [
+                    {   
+                        axisTick : {show: true},
+                        splitLine: {show: true},
+                        axisLabel:{textStyle:{color:'#9ea7c4',fontSize:12} },
+                        axisLine: { show: false,lineStyle:{ color:'#6173A3'}},
+                    },
+                ],
+                series:serieData
+            };
+            kpiLineChart.setOption(optionLine);
+        </script>
+        <script type="text/javascript">
+            
+            let spikeRateChart = echarts.init(document.getElementById('spikeRateChart'));
+            let spikeRateChart1 = echarts.init(document.getElementById('spikeRateChart1'));
+            let spikeRateChart2 = echarts.init(document.getElementById('spikeRateChart2'));
+            let spikeRateChart3 = echarts.init(document.getElementById('spikeRateChart3'));
+            let spikeRateChart4 = echarts.init(document.getElementById('spikeRateChart4'));
+            let spikeRateChart5 = echarts.init(document.getElementById('spikeRateChart5'));
+            let spikeRateChart6 = echarts.init(document.getElementById('spikeRateChart6'));
+            let spikeRateChart7 = echarts.init(document.getElementById('spikeRateChart7'));
+            let spikeRateChart8 = echarts.init(document.getElementById('spikeRateChart8'));
+            let spikeRateChart9 = echarts.init(document.getElementById('spikeRateChart9'));
+            let spikeRateChart10 = echarts.init(document.getElementById('spikeRateChart10'));
+            let spikeRateChart11 = echarts.init(document.getElementById('spikeRateChart11'));
+            let option = {
+                title: [{
+                    text: '门店一',
+                    x: 'left',
+                    y: 'top',
+                    textStyle:{
+                        color: '#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                },{
+                    text: "秒杀转化率",
+                    x: 'left',
+                    y: 'middle',
+                    // bottom: 50,
+                    textStyle:{
+                        color:'#ccc',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　    fontSize:12
+                    }
+                },
+                {
+                    text: "80%",
+                    x: 'left',
+                    // y: 'bottom',
+                    bottom: 10,
+                    textStyle:{
+                        color:'#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                }],
+                color: ['rgba(176, 212, 251, 1)'], 
+                legend: {
+                    show: false,
+                    itemGap: 12,
+                    data: ['01', '02']
+                },
+            
+                series: [{
+                    name: 'Line 1',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: ['50%', '80%'],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        }
+                    },
+                    hoverAnimation: false, 
+                    data: [{
+                        value: 80,
+                        name: '01',
+                        itemStyle: {
+                            normal: {
+                                color: { // 完成的圆环的颜色
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00cefc' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#367bec' // 100% 处的颜色
+                                    }]
+                                },
+                                label: {
+                                    show: false
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            } 
+                        }
+                    }, {
+                        name: '02',
+                        value: 20
+                    }]
+                }]
+            };
+
+            let option1 = {
+                title: [{
+                    text: '门店二',
+                    x: 'left',
+                    y: 'top',
+                    textStyle:{
+                        color: '#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                },{
+                    text: "秒杀转化率",
+                    x: 'left',
+                    y: 'middle',
+                    
+                    textStyle:{
+                        color:'#ccc',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　    fontSize:12
+                    }
+                },
+                {
+                    text: "45%",
+                    x: 'left',
+                    // y: 'bottom',
+                    bottom: 10,
+                    textStyle:{
+                        color:'#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                }],
+                color: ['rgba(176, 212, 251, 1)'], 
+                legend: {
+                    show: false,
+                    itemGap: 12,
+                    data: ['01', '02']
+                },
+            
+                series: [{
+                    name: 'Line 1',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: ['50%', '80%'],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        }
+                    },
+                    hoverAnimation: false, 
+                    data: [{
+                        value: 45,
+                        name: '01',
+                        itemStyle: {
+                            normal: {
+                                color: { // 完成的圆环的颜色
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00cefc' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#367bec' // 100% 处的颜色
+                                    }]
+                                },
+                                label: {
+                                    show: false
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            } 
+                        }
+                    }, {
+                        name: '02',
+                        value: 55
+                    }]
+                }]
+            };
+
+            let option2 = {
+                title: [{
+                    text: '门店三',
+                    x: 'left',
+                    y: 'top',
+                    textStyle:{
+                        color: '#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                },{
+                    text: "秒杀转化率",
+                    x: 'left',
+                    y: 'middle',
+                    // bottom: 50,
+                    textStyle:{
+                        color:'#ccc',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　    fontSize:12
+                    }
+                },
+                {
+                    text: "55%",
+                    x: 'left',
+                    // y: 'bottom',
+                    bottom: 10,
+                    textStyle:{
+                        color:'#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                }],
+                color: ['rgba(176, 212, 251, 1)'], 
+                legend: {
+                    show: false,
+                    itemGap: 12,
+                    data: ['01', '02']
+                },
+            
+                series: [{
+                    name: 'Line 1',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: ['50%', '80%'],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        }
+                    },
+                    hoverAnimation: false, 
+                    data: [{
+                        value: 55,
+                        name: '01',
+                        itemStyle: {
+                            normal: {
+                                color: { // 完成的圆环的颜色
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00cefc' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#367bec' // 100% 处的颜色
+                                    }]
+                                },
+                                label: {
+                                    show: false
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            } 
+                        }
+                    }, {
+                        name: '02',
+                        value: 45
+                    }]
+                }]
+            };
+
+            let option3 = {
+                title: [{
+                    text: '门店四',
+                    x: 'left',
+                    y: 'top',
+                    textStyle:{
+                        color: '#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                },{
+                    text: "秒杀转换率",
+                    x: 'left',
+                    y: 'middle',
+                    // bottom: 50,
+                    textStyle:{
+                        color:'#ccc',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　    fontSize:12
+                    }
+                },
+                {
+                    text: "62%",
+                    x: 'left',
+                    // y: 'bottom',
+                    bottom: 10,
+                    textStyle:{
+                        color:'#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                }],
+                color: ['rgba(176, 212, 251, 1)'], 
+                legend: {
+                    show: false,
+                    itemGap: 12,
+                    data: ['01', '02']
+                },
+            
+                series: [{
+                    name: 'Line 1',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: ['50%', '80%'],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        }
+                    },
+                    hoverAnimation: false, 
+                    data: [{
+                        value: 62,
+                        name: '01',
+                        itemStyle: {
+                            normal: {
+                                color: { // 完成的圆环的颜色
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00cefc' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#367bec' // 100% 处的颜色
+                                    }]
+                                },
+                                label: {
+                                    show: false
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            } 
+                        }
+                    }, {
+                        name: '02',
+                        value: 38
+                    }]
+                }]
+            };
+
+            let option4 = {
+                title: [{
+                    text: '门店五',
+                    x: 'left',
+                    y: 'top',
+                    textStyle:{
+                        color: '#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                },{
+                    text: "秒杀转换率",
+                    x: 'left',
+                    y: 'middle',
+                    // bottom: 50,
+                    textStyle:{
+                        color:'#ccc',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　    fontSize:12
+                    }
+                },
+                {
+                    text: "75%",
+                    x: 'left',
+                    // y: 'bottom',
+                    bottom: 10,
+                    textStyle:{
+                        color:'#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                }],
+                color: ['rgba(176, 212, 251, 1)'], 
+                legend: {
+                    show: false,
+                    itemGap: 12,
+                    data: ['01', '02']
+                },
+            
+                series: [{
+                    name: 'Line 1',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: ['50%', '80%'],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        }
+                    },
+                    hoverAnimation: false, 
+                    data: [{
+                        value: 75,
+                        name: '01',
+                        itemStyle: {
+                            normal: {
+                                color: { // 完成的圆环的颜色
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00cefc' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#367bec' // 100% 处的颜色
+                                    }]
+                                },
+                                label: {
+                                    show: false
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            } 
+                        }
+                    }, {
+                        name: '02',
+                        value: 25
+                    }]
+                }]
+            };
+
+            let option5 = {
+                title: [{
+                    text: '门店六',
+                    x: 'left',
+                    y: 'top',
+                    textStyle:{
+                        color: '#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                },{
+                    text: "秒杀转换率",
+                    x: 'left',
+                    y: 'middle',
+                    // bottom: 50,
+                    textStyle:{
+                        color:'#ccc',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　    fontSize:12
+                    }
+                },
+                {
+                    text: "88%",
+                    x: 'left',
+                    // y: 'bottom',
+                    bottom: 10,
+                    textStyle:{
+                        color:'#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                }],
+                color: ['rgba(176, 212, 251, 1)'], 
+                legend: {
+                    show: false,
+                    itemGap: 12,
+                    data: ['01', '02']
+                },
+            
+                series: [{
+                    name: 'Line 1',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: ['50%', '80%'],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        }
+                    },
+                    hoverAnimation: false, 
+                    data: [{
+                        value: 88,
+                        name: '01',
+                        itemStyle: {
+                            normal: {
+                                color: { // 完成的圆环的颜色
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00cefc' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#367bec' // 100% 处的颜色
+                                    }]
+                                },
+                                label: {
+                                    show: false
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            } 
+                        }
+                    }, {
+                        name: '02',
+                        value: 12
+                    }]
+                }]
+            };
+
+            let option6 = {
+                title: [{
+                    text: '门店一',
+                    x: 'left',
+                    y: 'top',
+                    textStyle:{
+                        color: '#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                },{
+                    text: "购买转换率",
+                    x: 'left',
+                    y: 'middle',
+                    // bottom: 50,
+                    textStyle:{
+                        color:'#ccc',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　    fontSize:12
+                    }
+                },
+                {
+                    text: "76%",
+                    x: 'left',
+                    // y: 'bottom',
+                    bottom: 10,
+                    textStyle:{
+                        color:'#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                }],
+                color: ['rgba(176, 212, 251, 1)'], 
+                legend: {
+                    show: false,
+                    itemGap: 12,
+                    data: ['01', '02']
+                },
+            
+                series: [{
+                    name: 'Line 1',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: ['50%', '80%'],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        }
+                    },
+                    hoverAnimation: false, 
+                    data: [{
+                        value: 76,
+                        name: '01',
+                        itemStyle: {
+                            normal: {
+                                color: { // 完成的圆环的颜色
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00cefc' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#367bec' // 100% 处的颜色
+                                    }]
+                                },
+                                label: {
+                                    show: false
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            } 
+                        }
+                    }, {
+                        name: '02',
+                        value: 24
+                    }]
+                }]
+            };
+
+            let option7 = {
+                title: [{
+                    text: '门店二',
+                    x: 'left',
+                    y: 'top',
+                    textStyle:{
+                        color: '#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                },{
+                    text: "购买转换率",
+                    x: 'left',
+                    y: 'middle',
+                    // bottom: 50,
+                    textStyle:{
+                        color:'#ccc',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　    fontSize:12
+                    }
+                },
+                {
+                    text: "90%",
+                    x: 'left',
+                    // y: 'bottom',
+                    bottom: 10,
+                    textStyle:{
+                        color:'#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                }],
+                color: ['rgba(176, 212, 251, 1)'], 
+                legend: {
+                    show: false,
+                    itemGap: 12,
+                    data: ['01', '02']
+                },
+            
+                series: [{
+                    name: 'Line 1',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: ['50%', '80%'],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        }
+                    },
+                    hoverAnimation: false, 
+                    data: [{
+                        value: 90,
+                        name: '01',
+                        itemStyle: {
+                            normal: {
+                                color: { // 完成的圆环的颜色
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00cefc' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#367bec' // 100% 处的颜色
+                                    }]
+                                },
+                                label: {
+                                    show: false
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            } 
+                        }
+                    }, {
+                        name: '02',
+                        value: 10
+                    }]
+                }]
+            };
+
+            let option8 = {
+                title: [{
+                    text: '门店三',
+                    x: 'left',
+                    y: 'top',
+                    textStyle:{
+                        color: '#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                },{
+                    text: "购买转换率",
+                    x: 'left',
+                    y: 'middle',
+                    // bottom: 50,
+                    textStyle:{
+                        color:'#ccc',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　    fontSize:12
+                    }
+                },
+                {
+                    text: "56%",
+                    x: 'left',
+                    // y: 'bottom',
+                    bottom: 10,
+                    textStyle:{
+                        color:'#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                }],
+                color: ['rgba(176, 212, 251, 1)'], 
+                legend: {
+                    show: false,
+                    itemGap: 12,
+                    data: ['01', '02']
+                },
+            
+                series: [{
+                    name: 'Line 1',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: ['50%', '80%'],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        }
+                    },
+                    hoverAnimation: false, 
+                    data: [{
+                        value: 56,
+                        name: '01',
+                        itemStyle: {
+                            normal: {
+                                color: { // 完成的圆环的颜色
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00cefc' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#367bec' // 100% 处的颜色
+                                    }]
+                                },
+                                label: {
+                                    show: false
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            } 
+                        }
+                    }, {
+                        name: '02',
+                        value: 44
+                    }]
+                }]
+            };
+
+            let option9 = {
+                title: [{
+                    text: '门店四',
+                    x: 'left',
+                    y: 'top',
+                    textStyle:{
+                        color: '#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                },{
+                    text: "购买转换率",
+                    x: 'left',
+                    y: 'middle',
+                    // bottom: 50,
+                    textStyle:{
+                        color:'#ccc',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　    fontSize:12
+                    }
+                },
+                {
+                    text: "58%",
+                    x: 'left',
+                    // y: 'bottom',
+                    bottom: 10,
+                    textStyle:{
+                        color:'#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                }],
+                color: ['rgba(176, 212, 251, 1)'], 
+                legend: {
+                    show: false,
+                    itemGap: 12,
+                    data: ['01', '02']
+                },
+            
+                series: [{
+                    name: 'Line 1',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: ['50%', '80%'],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        }
+                    },
+                    hoverAnimation: false, 
+                    data: [{
+                        value: 58,
+                        name: '01',
+                        itemStyle: {
+                            normal: {
+                                color: { // 完成的圆环的颜色
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00cefc' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#367bec' // 100% 处的颜色
+                                    }]
+                                },
+                                label: {
+                                    show: false
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            } 
+                        }
+                    }, {
+                        name: '02',
+                        value: 42
+                    }]
+                }]
+            };
+
+            let option10 = {
+                title: [{
+                    text: '门店五',
+                    x: 'left',
+                    y: 'top',
+                    textStyle:{
+                        color: '#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                },{
+                    text: "购买转换率",
+                    x: 'left',
+                    y: 'middle',
+                    // bottom: 50,
+                    textStyle:{
+                        color:'#ccc',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　    fontSize:12
+                    }
+                },
+                {
+                    text: "60%",
+                    x: 'left',
+                    // y: 'bottom',
+                    bottom: 10,
+                    textStyle:{
+                        color:'#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                }],
+                color: ['rgba(176, 212, 251, 1)'], 
+                legend: {
+                    show: false,
+                    itemGap: 12,
+                    data: ['01', '02']
+                },
+            
+                series: [{
+                    name: 'Line 1',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: ['50%', '80%'],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        }
+                    },
+                    hoverAnimation: false, 
+                    data: [{
+                        value: 60,
+                        name: '01',
+                        itemStyle: {
+                            normal: {
+                                color: { // 完成的圆环的颜色
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00cefc' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#367bec' // 100% 处的颜色
+                                    }]
+                                },
+                                label: {
+                                    show: false
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            } 
+                        }
+                    }, {
+                        name: '02',
+                        value: 40
+                    }]
+                }]
+            };
+
+            let option11 = {
+                title: [{
+                    text: '门店六',
+                    x: 'left',
+                    y: 'top',
+                    textStyle:{
+                        color: '#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                },{
+                    text: "购买转换率",
+                    x: 'left',
+                    y: 'middle',
+                    // bottom: 50,
+                    textStyle:{
+                        color:'#ccc',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　    fontSize:12
+                    }
+                },
+                {
+                    text: "72%",
+                    x: 'left',
+                    // y: 'bottom',
+                    bottom: 10,
+                    textStyle:{
+                        color:'#333333',
+                        fontStyle:'normal',
+                        fontWeight:'400',
+                        fontFamily:'sans-serif',
+                　　　　 fontSize:22
+                    }
+                }],
+                color: ['rgba(176, 212, 251, 1)'], 
+                legend: {
+                    show: false,
+                    itemGap: 12,
+                    data: ['01', '02']
+                },
+            
+                series: [{
+                    name: 'Line 1',
+                    type: 'pie',
+                    clockWise: true,
+                    radius: ['50%', '80%'],
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false
+                            },
+                            labelLine: {
+                                show: false
+                            }
+                        }
+                    },
+                    hoverAnimation: false, 
+                    data: [{
+                        value: 72,
+                        name: '01',
+                        itemStyle: {
+                            normal: {
+                                color: { // 完成的圆环的颜色
+                                    colorStops: [{
+                                        offset: 0,
+                                        color: '#00cefc' // 0% 处的颜色
+                                    }, {
+                                        offset: 1,
+                                        color: '#367bec' // 100% 处的颜色
+                                    }]
+                                },
+                                label: {
+                                    show: false
+                                },
+                                labelLine: {
+                                    show: false
+                                }
+                            } 
+                        }
+                    }, {
+                        name: '02',
+                        value: 28
+                    }]
+                }]
+            };
+
+
+
+            spikeRateChart.setOption(option);
+            spikeRateChart1.setOption(option1);
+            spikeRateChart2.setOption(option2);
+            spikeRateChart3.setOption(option3);
+            spikeRateChart4.setOption(option4);
+            spikeRateChart5.setOption(option5);
+            spikeRateChart6.setOption(option6);
+            spikeRateChart7.setOption(option7);
+            spikeRateChart8.setOption(option8);
+            spikeRateChart9.setOption(option9);
+            spikeRateChart10.setOption(option10);
+            spikeRateChart11.setOption(option11);
+        </script>
+    </body>
+</html>
