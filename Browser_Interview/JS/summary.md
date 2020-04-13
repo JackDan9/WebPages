@@ -269,6 +269,36 @@ HTTP2支持在未经客户端许可的情况下，主动向客户端推送内容
 
 ## 防抖节流  
 
-## 多并发与高并发 
+### [防抖](https://github.com/JackDan9/WebPages/blob/master/Browser_Interview/JS/throttle%26debounce/debounce.md)
 
-## 原型链 闭包 递归 type of与Instances区别 深浅拷贝 async  settimeout 3s一定会执行吗 事件队列 宏观任务与微观 浏览器缓存有几种 em and rem 构造函数 继承多态
+### [节流](https://github.com/JackDan9/WebPages/blob/master/Browser_Interview/JS/throttle%26debounce/throttle.md)
+
+## 多线程与高并发 
+
+
+
+## 原型链 
+
+## 闭包 
+
+## 递归 
+
+## type of与Instances区别 
+
+## 深浅拷贝 
+
+## async/await  
+
+## settimeout 3s一定会执行吗 
+
+## 事件队列 
+
+## 宏观任务与微观任务 
+
+## 浏览器缓存有几种 
+
+## em and rem 
+
+## 构造函数 
+
+## 继承多态
