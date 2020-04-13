@@ -123,7 +123,7 @@ callback({message: "success"});
 
 ## jQuery对JSONP的实现
 
-- jQuery框架也当然支持JSONP，可以使用`$.getJSON(url,[data],[callback])`方法(详细可以参考JQ实现jsonp)。
+- jQuery框架也当然支持JSONP，可以使用`$.getJSON(url,[data],[callback])`方法(详细可以参考[JQ实现jsonp](https://api.jquery.com/jQuery.getJSON/))。
 
 - 那我们就来修改下`http://localhost:8080`的代码，**改用jQuery的getJSON方法来实现**(下面的例子没用用到向服务传参，所以只写了`getJSON(url,[callback])`)：
 
