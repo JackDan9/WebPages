@@ -21,7 +21,7 @@ function addNumber(div) {
         var p = document.createElement("p");
         p.disabled = false;
         p.onclick = function () {
-            if(!this.disabled) {
+            if (!this.disabled) {
                 if (selectedBag) {
                     selectedBag.innerHTML = this.innerHTML;
                     selectedBag.style.border = "0";
@@ -94,8 +94,8 @@ function checkHorizontal(focused) {
 function checkAround(focused) {
     var x = focused.cellIndex;
     var y = focused.parentNode.rowIndex;
-    for (var i = parseInt(y/3) * 3; i < (parseInt(y/3) + 1) *3; i++) {
-        for (var j = parseInt(x/3) * 3; j < (parseInt(x/3) + 1) * 3; j++) {
+    for (var i = parseInt(y / 3) * 3; i < (parseInt(y / 3) + 1) * 3; i++) {
+        for (var j = parseInt(x / 3) * 3; j < (parseInt(x / 3) + 1) * 3; j++) {
             fkNumber(j, i);
         }
     }
