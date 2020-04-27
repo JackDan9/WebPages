@@ -50,7 +50,7 @@
     </head>
     <body>
         <div class="container">
-            <div id-"showTop" class="showTop" onclick="showTop()"></div>
+            <div id="showTop" class="showTop" onclick="showTop()"></div>
         </div>
     </body>
 </html>

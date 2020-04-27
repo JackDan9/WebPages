@@ -327,11 +327,19 @@ HTTP2支持在未经客户端许可的情况下，主动向客户端推送内容
 - a instanceof b：判断a是否为b的实例，可以用于继承关系中
 
 - b是c的父对象，a是c的实例，a instanceof b 与 a instanceof c 结果均为true
-
+0
 
 ## 深浅拷贝 
 
 ## async/await  
+
+### 字面理解
+- 任意一个名称都是有意义的，先从字面意思来理解。async 是“异步”的简写，而 await 可以认为是 async wait 的简写。所以应该很好理解 async 用于申明一个 function 是异步的，而 await 用于等待一个异步方法执行完成。
+
+### 语法规定
+- await 只能出现在 async 函数中
+
+
 
 ## settimeout 3s一定会执行吗 
 
