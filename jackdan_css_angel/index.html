@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS画对话框小三角</title>
+    <style>
+        div.triangle{
+            /* visibility:hidden; */
+            border: 2px solid red;
+            width: 300px;
+            margin-top:5px;
+            background-color:#fff;
+            border-radius: 5px;
+            box-shadow: 1px 1px 1px blue;
+        }
+        div.triangle::before{
+            content: "";
+            border: inherit;
+            position: absolute;
+            margin-top: -8px;
+            left: 20px;
+            padding: 5px;
+            border-bottom: 0;
+            border-right: 0;
+            transform: rotate(45deg);
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="triangle">回家还得上课的贺卡的贺卡收到哈看老师</div>    
+    </body>
+</html>
