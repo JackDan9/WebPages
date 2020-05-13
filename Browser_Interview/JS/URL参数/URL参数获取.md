@@ -7,6 +7,7 @@
 function getQueryString(name) {
     let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
     let r = window.location.search.substr(1).match(reg);
+    // 如果是# <===> window.location.hash
     if (r != null) return unescape(r[2]);
     return null;
 }
