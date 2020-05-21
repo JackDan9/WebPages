@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:description" content="React之函数组件转换为类组件" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>compare_version_number</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function compareVersionNumber(str1, str2) {
+                let arrStr1 = str1.split('.');
+                let arrStr2 = str2.split('.');
+                let arrStr1Len = arrStr1.length;
+                let arrStr2Len = arrStr2.length;
+                
+                if (arrStr1Len < 1 && arrStr2Len < 1) {
+                    return '';
+                } 
+                if (arrStr1Len < 1) {
+                    return str2;
+                }
+                if (arrStr2Len < 1) {
+                    return str1;
+                }
+
+                let i = 0;
+                if (arrStr1Len < arrStr2Len) {
+                    for(i = 0; i < arrStr1Len; i++) {
+                        if (arrStr1[i] > arrStr2[i]) {
+                            return str1;
+                            break;
+                        } else {
+                            return str2;
+                            break;
+                        }
+                    }
+                } else {
+                    for(i = 0; i < arrStr2Len; i++) {
+                        if (arrStr1[i] < arrStr2[i]) {
+                            return str2;
+                            break;
+                        } else {
+                            return str1;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            window.onload = function () {
+                let str1 = '1';
+                let str2 = '';
+                console.log(compareVersionNumber(str1, str2));
+            }
+        </script>
+    </body>
+</html>
