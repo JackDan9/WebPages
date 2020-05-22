@@ -10,42 +10,47 @@
     <body>
         <script type="text/javascript">
             function compareVersionNumber(str1, str2) {
-                let arrStr1 = str1.split('.');
-                let arrStr2 = str2.split('.');
-                let arrStr1Len = arrStr1.length;
-                let arrStr2Len = arrStr2.length;
+                // let arrStr1 = str1.split('.');
+                // let arrStr2 = str2.split('.');
+                // let arrStr1Len = arrStr1.length;
+                // let arrStr2Len = arrStr2.length;
                 
-                if (arrStr1Len < 1 && arrStr2Len < 1) {
-                    return '';
-                } 
-                if (arrStr1Len < 1) {
-                    return str2;
-                }
-                if (arrStr2Len < 1) {
-                    return str1;
-                }
+                // if (arrStr1Len < 1 && arrStr2Len < 1) {
+                //     return '';
+                // } 
+                // if (arrStr1Len < 1) {
+                //     return str2;
+                // }
+                // if (arrStr2Len < 1) {
+                //     return str1;
+                // }
 
-                let i = 0;
-                if (arrStr1Len < arrStr2Len) {
-                    for(i = 0; i < arrStr1Len; i++) {
-                        if (arrStr1[i] > arrStr2[i]) {
-                            return str1;
-                            break;
-                        } else {
-                            return str2;
-                            break;
-                        }
-                    }
+                // let i = 0;
+                // if (arrStr1Len < arrStr2Len) {
+                //     for(i = 0; i < arrStr1Len; i++) {
+                //         if (arrStr1[i] > arrStr2[i]) {
+                //             return str1;
+                //             break;
+                //         } else {
+                //             return str2;
+                //             break;
+                //         }
+                //     }
+                // } else {
+                //     for(i = 0; i < arrStr2Len; i++) {
+                //         if (arrStr1[i] < arrStr2[i]) {
+                //             return str2;
+                //             break;
+                //         } else {
+                //             return str1;
+                //             break;
+                //         }
+                //     }
+                // }
+                if (str1 > str2) {
+                    return str1;
                 } else {
-                    for(i = 0; i < arrStr2Len; i++) {
-                        if (arrStr1[i] < arrStr2[i]) {
-                            return str2;
-                            break;
-                        } else {
-                            return str1;
-                            break;
-                        }
-                    }
+                    return str2;
                 }
             }
 

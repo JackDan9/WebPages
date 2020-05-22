@@ -1,0 +1,17 @@
+{
+  "name": "helloword",
+  "version": "1.0.0",
+  "description": "A project for webpack test!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \" Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production"
+  },
+  "author": "jackdan",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
