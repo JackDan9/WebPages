@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="Promise" />
+        <title>Promise</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            const p1 = new Promise((resolve, reject) => {
+                resolve('hello');
+            })
+            .then(result => result)
+            .catch(e => e);
+
+            const p2 = new Promise((resolve, reject) => {
+                throw new Error('报错了');
+            })
+            .then(result => result)
+            .catch(e => e);
+
+            Promise.all([p1, p2])
+            .then(result => console.log(result))
+            .catch(e => console.log(e));
+
+            // function f1() {
+            //     console.log(4);
+            // }
+
+            // function f2() {
+            //     console.log(3);
+            // }
+
+            // let promise1 = new Promise((resolve, reject) => {
+            //     console.log(400);
+            //     a = "fengfeng";
+            //     b = "shanshan";
+            //     resolve(a);
+            //     // resolve(c);
+            //     // resolve(d);
+            //     // reject(b);
+            // });
+
+            // let promise2 = new Promise((resolve, reject) => {
+            //     console.log(200);
+            //     resolve();
+            // });
+
+            // Promise.all([promise1, promise2]).then(function() {
+            //     console.log(100);
+            // })
+
+            // promise1.then(f1, f2);
+            /**
+             * 
+             * then方法的第一个参数是resolved状态的回调函数，第二个参数（可选）是rejected状态的回调函数。
+             * 
+            */
+
+            // promise1
+            // .then(function(a) {
+            //     // console.log(a)
+            //     return a;
+            // })
+            // .then(function(b) {
+            //     console.log(b);
+            // }, function(b) {
+            //     console.log(b);
+            // });
+
+            // console.log(2);
+
+            // var promise1 = new Promise((resolve, reject) => {
+            //     var image = new Image();
+
+            //     image.onload = function () {
+            //         resolve(image);
+            //     }
+
+            //     image.onerror = function () {
+            //         reject(new Error("The url is not a image url!"));
+            //     }
+
+            //     image.src = url;
+            // })
+
+            // let url = "https://www.baidu.com";
+
+            // function loadImageUrl(url) {
+            //     return new Promise((resolve, reject) => {
+            //         var image = new Image();
+
+            //         image.onload = function () {
+            //             resolve(image);
+            //         };
+
+            //         image.onerror = function () {
+            //             reject(new Error("The url is not a image url!"));
+            //         };
+
+            //         image.src = url;
+            //     });
+            // };
+
+            // loadImageUrl(url);
+
+        </script>
+    </body>
+</html>

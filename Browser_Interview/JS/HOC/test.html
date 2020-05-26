@@ -7,20 +7,52 @@
     <title>HOC</title>
 
     <!-- 核心库 -->
-    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <!-- <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script> -->
     <!-- DOM相关 -->
-    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!-- <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script> -->
     <!-- 支持JSX -->
-    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <!-- <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> -->
+    <script src="./js/react/react.development.js"></script>
+    <script src="./js/react/react-dom.development.js"></script>
+    <script src="./js/babel/babel.min.js"></script>
     <script type="text/babel">
         class BlogComments extends React.Component {
             constructor(props) {
                 super(props);
-                debugger;
+                // debugger;
                 this.handleChange = this.handleChange.bind(this);
                 this.state = ({
-                    commonts: DataSource.getCommonts()
+                    // commonts: DataSource.getCommonts()
+                    A: 1
                 });
+            }
+
+            componentWillMount() {
+                // debugger
+            }
+
+            componentWillReceiveProps(nextProps) {
+                /**
+                 * 为了解决props是异步获取的时候使自组件正确获得最新props的方法。
+                */
+            }
+
+            static getDrivedStateFromProps(nextProps, prevState) {
+                /**
+                 * 
+                */
+                debugger;
+            }
+
+            componentDidMount() {
+                /**
+                 * render () { 
+                 *     return ( 
+                 *     )  
+                 * } 
+                 * 执行之后在执行这个内容
+                */
+                // debugger;
             }
 
             handleChange = () => {

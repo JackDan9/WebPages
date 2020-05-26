@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Async Function</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            async function print(value) {
+                // debugger;
+                // await new Promise((resolve) =>   {
+                //     console.log(value);
+                //     // resolve();
+                // }),
+                debugger;
+                await value
+                // await 3
+            }
+
+            print(1);
+            // async function timeout(timer) {
+            //     await new Promise((resolve) => {
+            //         setTimeout(resolve, timer);
+            //     }).then(function() {
+            //         // console.log(timer);
+            //     });
+            // };
+
+            // async function asyncPrint(value, timer) {
+            //     await timeout(timer);
+            //     console.log(value);
+            // }
+
+            // async function timeout(ms) {
+            //     await new Promise((resolve) => {
+            //         setTimeout(resolve, ms);
+            //     });
+            // }
+
+            // async function asyncPrint(value, ms) {
+            //     await timeout(ms);
+            //     console.log(value);
+            // }
+
+            // asyncPrint(3, 30000);
+            // asyncPrint(2, 20000);
+            // asyncPrint(1, 10000);
+        </script>
+    </body>
+</html>

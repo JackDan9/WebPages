@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="description" content="Vue Life Cycle" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta property="og:type" content="article" />
+        <meta property="og:description" content="Vue Life Cycle Test" />
+        <meta property="og:image" content="" />
+        <title>Vue Life Cycle</title>
+        <script src="./js/vue.min.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <!-- <div v-for="(item, index) in items">
+                <h3>{{item}}</h3>
+            </div>
+            <button v-on:click="btn()">修改</button>
+            <button @click="btn1()">更新</button>
+            -->
+            <span v-on:click="updateMessage()">{{message}}</span>
+        </div>
+        <script type="text/javascript">
+            new Vue({
+                el: "#app",
+                data: {
+                    a: 2,
+                    items: [1, 2, 3],
+                    message: '未更新'
+                },
+                
+                beforeCreate: function () {
+                },
+
+                created: function () {
+                    // console.log('a is' + this.a)
+                },
+
+                beforeMount: function () {
+
+                },
+
+                mounted: function () {
+
+                },
+
+                /**
+                 * 
+                 * ["beforeCreate",
+                 *  "created",
+                 *  "beforeMount",
+                 *  "mounted",
+                 *  "beforeUpdate",
+                 *  "updated",
+                 *  "beforeDestroy",
+                 *  "destroyed",
+                 *  "activated",
+                 *  "deactivated",
+                 *  "errorCaptured",
+                 *  "serverPrefetch"]
+                 * 
+                */
+
+                /**
+                 * Vue在更新DOM时是异步执行的。只要侦听到数据变化, Vue将开启一个队列, 并缓冲在同一事件循环中发生的所有数据变更。
+                 * 如果同一个watcher被多次触发, 只会被推入到队列中一次。
+                 * 这种在缓冲时去除重复数据对于避免不必要的计算和DOM操作是非常重要的。
+                 * 然后, 再下一个的事件循环"tick"中, Vue刷新队列并执行实际(已去重的)工作。
+                 * Vue在内部对异步队列尝试使用原生的`Promise.thn`, `MutationObserver`和`setImmediate`, 如果执行环境不支持, 则会采用`setTimeout(fn, 0)`代替。
+                 * 
+                 * Vue.nextTick()
+                 * 在下次 DOM 更新循环结束之后执行延迟回调。在修改数据之后立即使用这个方法，获取更新后的 DOM。
+                 * 为了在数据变化之后等待 Vue 完成更新 DOM, 可以在数据变化之后立即使用 Vue.nextTick(callback)。这样回调函数将在 DOM 更新完成后被调用。
+                 * 
+                */
+
+                methods: {
+                    btn: function() {
+                        // console.log(this.items);
+                        // debugger;
+                        Vue.set(this.items, 0, 4);
+                        // console.log(this.items);
+                    },
+                    btn1: function() {
+                        this.items[1] = 5;
+                        // console.log(this.items);
+                    },
+                    updateMessage: async function () {
+                        this.message = '已更新'
+                        
+                        console.log(this.$el.textContent);
+                        
+                        await this.$nextTick();
+
+                        console.log(this.$el.textContent);
+                        // Vue.$nextTick(function () {
+                        //     console.log(this.$el.textContent);
+                        // })
+                        // debugger
+                        // this.$nextTick(function () {
+                        //     console.log(this.$el.textContent);
+                        // });
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf" />
+        <title>箭头函数</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var test2 = (num1, num2) => {
+                // debugger;
+                console.log(1);
+            };
+
+            test2(1, 2);
+
+            // function test1() {
+            //     // debugger;
+            //     console.log(2);
+            // }
+            // test1();
+            
+            // window.onload = function () {
+            //     test2(1, 2);
+            // }   
+            // var sum = (num1, num2) => {
+            //     // debugger;
+            //     // this.a = 1;
+            //     console.log(this);
+            //     return num1 + num2;
+            // }
+
+            // sum(1, 2);
+            // 等同于
+            /**
+             * 
+             * 
+             *（1）函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。
+             *（2）不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。
+             *（3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
+             *（4）不可以使用yield命令，因此箭头函数不能用作 Generator 函数。
+             *  
+             * 
+            */
+            // (1)
+            // function foo() {
+            //     setTimeout(() => {
+            //         console.log('id:', this.id);
+            //     }, 100);
+            // }
+
+            // var id = 21;
+
+            // foo.call({ id: 42 }); 
+
+            // function Timer() {
+            //     this.s1 = 0;
+            //     this.s2 = 0;
+            //     // 箭头函数
+            //     setInterval(() => { 
+            //         debugger;
+            //         this.s1++ 
+            //     }, 1000);
+            //     // 普通函数
+            //     setInterval(function () {
+            //         debugger;
+            //         this.s2++;
+            //     }, 1000);
+            // }
+
+            // var timer = new Timer();
+
+            // setTimeout(() => console.log('s1: ', timer.s1), 3100);
+            // setTimeout(() => console.log('s2: ', timer.s2), 3100);
+
+            // var sum = function(num1, num2) {
+            //     // this.a = 1;
+            //     console.log(this);
+            //     return num1 + num2;
+            // };
+            
+            // sum(1, 2);
+
+
+            // var sum1 = sum(1, 2);
+            // debugger;
+            // console.log(sum1);
+
+            // document.onload = function () {
+            //     test();
+            // }
+
+
+            // function foo() {
+            //     setTimeout(() => {
+            //         console.log('args:', arguments);
+            //     }, 100);
+            // }
+
+            // foo(2, 4, 6, 8)
+
+            // (function() {
+            //     return [
+            //         (() => this.x).bind({ x: 'inner' })()
+            //     ];
+            // }).call({ x: 'outer' });
+        </script>
+    </body>
+</html>
