@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="referrer" content="origin" />
+        <meta property="og:description" content="JS之节流问题(throttle)" />
+        <meta http-equiv="Cache-Control" content="no-transform" />
+        <meta http-equiv="Cache-Control" content="no-siteapp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <style type="text/css"> 
+            * {
+                padding: 0;
+                margin: 0;
+            }
+            html, body {
+                padding: 0;
+                margin: 0;
+            }
+            .container {
+                width: 100%;
+                height: 5000px;
+            }
+            .showTop {
+                display: block;
+                position: fixed;
+                width: 50px;
+                height: 50px;
+                border: 1px solid;
+                right: 24px;
+                bottom: 24px;
+            }
+        </style>
+        <!-- <script type="text/javascript" defer>
+            // function debounce(fn, delay) {
+            //     let timer = null; // 借助闭包
+            //     return function () {
+            //         if(timer) {
+            //             clearTimeout()
+            //         }
+            //         timer = setTimeout(fn, delay) // 简化写法
+            //     } 
+            // }
+            function showTop () {
+                var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+                console.log("滚动条位置:" + scrollTop);
+            }
+            // window.onscroll = debounce(showTop, 1000);
+            window.onscroll = showTop();
+            // window.onload = function () {
+            //     window.onscroll = showTop();
+            // }
+        </script>  -->
+    </head>
+    <body>
+        <div class="container">
+            <div id="showTop" class="showTop" onclick="showTop()"></div>
+        </div>
+        <script type="text/javascript">
+            // function debounce(fn, delay) {
+            //     let timer = null; // 借助闭包
+            //     return function () {
+            //         if(timer) {
+            //             clearTimeout()
+            //         }
+            //         timer = setTimeout(fn, delay) // 简化写法
+            //     } 
+            // }
+            // function showTop () {
+            //     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            //     console.log("滚动条位置:" + scrollTop);
+            // }
+            
+            /**
+             * 
+            */
+            window.onscroll = showTop1;
+
+            function showTop1() {
+                // alert(1);
+                console.log(1);
+            }
+            // window.onscroll = debounce(showTop, 1000);
+            // window.onscroll = showTop1();
+            // window.onload = function () {
+            //     window.onscroll = showTop();
+            // }
+        </script> 
+    </body>
+</html>
