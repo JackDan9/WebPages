@@ -74,12 +74,111 @@
             /**
              * 
             */
-            window.onscroll = showTop1;
+            // window.onscroll = showTop1;
 
-            function showTop1() {
-                // alert(1);
-                console.log(1);
+            // function showTop1() {
+            //     // alert(1);
+            //     console.log(1);
+            // }
+
+            // function debounce(fn, timer) {
+            //     let flagTimer = null;
+            //     return function () {
+            //         if(flagTimer) {
+            //             clearTimeout();
+            //         }
+            //         flagTimer = setTimeout(fn, timer);
+            //     }
+            // }
+
+            // function print() {
+            //     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            //     console.log("滚动条位置:" + scrollTop);
+            // }
+
+            // window.onscroll = debounce(print, 10000);
+            
+            function A(nums) {
+                var numsLen = nums.length;
+                if (numsLen < 1) {
+                    return [];
+                }
+
+                var resultList = [];
+                var used = new Array(numsLen).fill(false);
+
+                var path = new Set();
+
+                depth_first_search(nums, numsLen, 0, path, used, resultList);
+                return resultList;
             }
+
+            function depth_first_search(nums, len, depth, path, used, resultList) {
+                if (depth===len) {
+                    var result = []
+                    // console.log(path);
+                    result.push(...path);
+                    resultList.push(result);
+                    return;
+                }
+
+                for (var i = 0; i < len; i++) {
+                    if(used[i]) {
+                        continue;
+                    }
+
+                    path.add(nums[i]);
+                    used[i] = true;
+
+                    depth_first_search(nums, len, depth + 1, path, used, resultList);
+                    console.log(path);
+                    path.clear();
+                    used[i] = false;
+                }
+            }
+
+            var nums = [1, 2, 3];
+            var result = A(nums);
+            console.log(result);
+
+            // function debounce(fn, delay) {
+            //     let timer = null; // 借助闭包
+            //     return function () {
+            //         if(timer) {
+            //             clearTimeout(timer);
+            //         }
+            //         timer = setTimeout(fn, delay) // 简化写法
+            //     } 
+            // }
+            // function showTop () {
+            //     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            //     console.log("滚动条位置:" + scrollTop);
+            // }
+            // window.onscroll = debounce(showTop, 10000);
+
+            // function print() {
+            //     console.log(1);
+            // }
+
+            // window.onscroll = throttle(print, 3000);
+
+            // function throttle(fn, timer) {
+            //     let flag = true;
+            //     return function () {
+            //         if (!flag) {
+            //             return false;
+            //         }
+
+            //         flag = false;
+            //         setTimeout(() => {
+            //             fn();
+            //             flag=true;
+            //         }, timer);
+            //     };
+            // };
+            
+            
+
             // window.onscroll = debounce(showTop, 1000);
             // window.onscroll = showTop1();
             // window.onload = function () {
