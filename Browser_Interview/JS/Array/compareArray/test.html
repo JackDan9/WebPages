@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+        <title>CompareArray</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            let a = [
+                {
+                    id: "7954",
+                    name: "测试",
+                },
+                {
+                    id: "7953",
+                    name: "支部委员2",
+                    description: null,
+                },
+                {
+                    id: "10000",
+                    name: "党支部书记",
+                    description: null,
+                }
+            ];
+
+            let b = ["aaa", "bbb", "支部委员2"];
+
+            function compareArray(arr1, arr2) {
+                let newArr = new Array();
+                arr1.map((item1) => {
+                    arr2.map((item2) => {
+                        if(item1.name === item2) {
+                            newArr.push(item1);
+                        }
+                    })
+                })
+                return newArr;
+            }
+
+            let newArr = compareArray(a, b);
+
+            console.log(newArr);
+        </script>
+    </body>
+</html>
