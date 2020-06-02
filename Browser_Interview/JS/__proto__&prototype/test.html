@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>__proto__&prototype</title> 
+    </head>
+    <body>
+        <script type="text/javascript">
+            var A = {
+                a: 1,
+                b: 2
+            }
+
+            var B = Object.create(A);
+            B.c = 3;
+            var C = Object.create(B);
+            C.d = 4;
+
+            function D() {
+                console.log(5);
+                function E() {
+                    console.log(6);
+                }
+            }
+
+            var f = new D();
+            // f.__proto__ <===> D.prototype
+            // f.__proto__.__proto__ <===> D.prototype.__proto__
+            // f.__proto__.__proto__.__proto__ --> null <===> D.prototype.__proto__.__proto__ --> null
+
+            class Test {
+                constructor () {
+
+                }
+
+                get() {
+                    console.log(this);
+                    return this.value;
+                }
+
+                set(value) {
+                    this.value = value;
+                }
+            }
+
+            var test = new Test();
+
+
+            console.log(C);
+
+
+            var scope = "global scope";
+            function printScope() {
+                var scope = "local scope";
+
+                function fn() {
+                    return scope;
+                }
+
+                return fn();
+            }
+            // debugger;
+
+            console.log(printScope());
+
+            var scope1 = "global scope";
+            function printScope1() {
+                var scope1 = "local scope";
+
+                function fn() {
+                    return scope;
+                }
+
+                return fn;
+            }
+            debugger;
+
+            console.log(printScope1()());
+
+        </script>
+    </body>
+</html>
