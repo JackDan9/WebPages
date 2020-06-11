@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>promise any</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var resolved = Promise.resolve(42);
+      var rejected = Promise.reject(-1);
+      var alsoRejected = Promise.reject(Infinity);
+
+      Promise.any([resolved, rejected, alsoRejected]).then(function (result) {
+        console.log(result); // 42
+      });
+
+      Promise.any([rejected, alsoRejected]).catch(function (results) {
+        console.log(results); // [-1, Infinity]
+      });
+
+    </script>
+  </body>
+</html>

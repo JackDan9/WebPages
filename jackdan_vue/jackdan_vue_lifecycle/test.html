@@ -18,7 +18,11 @@
             <button v-on:click="btn()">修改</button>
             <button @click="btn1()">更新</button>
             -->
-            <span v-on:click="updateMessage()">{{message}}</span>
+
+            <!-- <span v-on:click="updateMessage()">{{message}}</span> -->
+
+            <input v-model="message" placeholder="edit me" />
+            <p>Message is: {{ message }}</p>
         </div>
         <script type="text/javascript">
             new Vue({
@@ -26,7 +30,8 @@
                 data: {
                     a: 2,
                     items: [1, 2, 3],
-                    message: '未更新'
+                    // message: '未更新'
+                    message: ''
                 },
                 
                 beforeCreate: function () {

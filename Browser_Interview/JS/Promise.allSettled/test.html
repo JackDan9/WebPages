@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>promise allsettled</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      
+      const p1 = new Promise((resolve, reject) => {
+        resolve('Hello');
+      })
+      .then(result => result)
+      .catch(e => e);
+
+      // const p2 = new Promise((resolve, reject) => {
+      //   throw new Error("报错了");
+      // })
+      // .then(result => result)
+      // .catch(e => e);
+
+      const p3 = new Promise((resolve, reject) => {
+        resolve(' World!');
+      })
+      .then(result => result)
+      .catch(e => e);
+
+
+      // try {
+      //   Promise.allSettled([p1, p2, p3]);
+      //   console.log("所有请求都成功。");
+      // } catch {
+      //   console.log("至少一个请求失败, 其他请求可能还没结束。");
+      // }
+      // await Promise.allSettled([p1, p2, p3])
+      // .then(result => console.log(result))
+      // .catch(e => console.log(e));
+    </script>
+  </body>
+</html>
+
