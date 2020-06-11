@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>promise all</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      const p1 = new Promise((resolve, reject) => {
+        resolve('hello');
+      })
+      .then(result => result)
+      .catch(e => e);
+
+      const p2 = new Promise((resolve, reject) => {
+        throw new Error("报错了!");
+      })
+      .then(result => result)
+      .catch(e => e);
+
+      const p3 = new Promise((resolve, reject) => {
+        resolve('world!');
+      })
+      .then(result => result)
+      .catch(e => e)
+
+      Promise.all([p1, p2, p3])
+      .then(result => console.log(result))
+      .catch(e => console.log(e))
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>promise race</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      const p1 = new Promise((resolve, reject) => {
+        resolve("Hello");
+      })
+      .then(result => result)
+      .catch(e => e)
+
+      const p2 = new Promise((resolve, reject) => {
+        throw new Error('报错了');
+      })
+      .then(result => result)
+      .catch(e => e)
+
+      const p3 = new Promise((resolve, reject) => {
+        resolve(" World!");
+      })
+      .then(result => result)
+      .catch(e => e)
+
+      const p4 = new Promise((resolve, reject) => {
+        resolve("JackDan");
+      })
+      .then(result => result)
+      .catch(e => e)
+
+      Promise.race([p1, p2, p3, p4])
+      .then(result => console.log(result))
+      .catch(e => console.log(e))
+    </script>
+  </body>
+</html>

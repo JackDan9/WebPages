@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MacroTask VS MicroTask</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            // function foo() {
+            //     console.log("first");
+            //     setTimeout(function () {
+            //         console.log("second");
+            //     }, 5);
+            // }
+
+            // for (var i = 0; i < 1000; i++) {
+            //     foo();
+            // }
+            console.log(1);
+            setTimeout(function(){
+                console.log(2);
+            }, 0);
+            Promise.resolve().then(function(){
+                console.log(3);
+            }).then(function(){
+                console.log(4);
+            });
+            Promise.resolve().then(function(){
+                console.log(5);
+            }).then(function(){
+                console.log(6);
+            });
+        </script>
+    </body>
+</html>
