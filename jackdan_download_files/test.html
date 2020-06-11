@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>download files</title>
+    <script type="text/javascript" src="./js/FileSaver.js"></script>
+  </head>
+  <body>
+    <button onclick="downloadFile">下载html文件</button>
+
+    <button onclick="downloadImageFile">下载图片文件</button>
+
+    <button onclick="downloadPdfFile">下载pdf文件</button>
+    <script type="text/javascript">
+      function downloadFile () {
+        var file = new File(["test"], "./test.html", {type: "text/plain; charset=utf-8"})
+        saveAs(file);
+      }
+
+      function downloadImageFile () {
+        var file = new File(["test_png"], "./test.png", "image.png");
+        saveAs(file);
+      }
+
+      function downloadPdfFile () {
+        var file = new File(["test_pdf"], "./test.pdf", {type: "text/plain; charset=utf-8"})
+        saveAs(file);
+      }
+    </script>
+  </body>
+</html>
