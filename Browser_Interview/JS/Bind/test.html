@@ -12,9 +12,46 @@
             // }
             // console.log(this);
 
-            if (!Function.prototype.bind) (function () {
+            // if (!Function.prototype.bind) (function () {
 
-            })();
+            // })();
+            // Function.prototype.mybind = function () {
+                // if(!Function.prototype.mybind) (function () {
+                    var slice = Array.prototype.slice;
+                    Function.prototype.mybind = function () {
+                        var thatFunc = this;
+                        var thatArg = arguments[0];
+                        debugger;
+                        var args = slice.call(arguments, 1);
+                        if (typeof thatFunc !== 'function') {
+                            throw new TypeError("Function.prototype.mybind - " + "what is trying to be bound is not callable");
+                        }
+
+                        return function () {
+                            var funcArgs = args.concat(slice.call(arguments));
+                            return thatFunc.apply(thatArg, funcArgs);
+                        }
+                    }
+                // })();
+            // }
+
+            const obj = {
+                value: 42,
+                get: function () {
+                    return this.value;
+                },
+                set: function (value) {
+                    this.value = value;
+                }
+            }
+
+            const testGet = obj.get;
+            // The function gets invoked at the global scope
+            // expected output: undefined
+            // console.log(testGet());
+
+            const test = testGet.mybind(obj);
+            console.log(test());
         </script>
     </body>
 </html>

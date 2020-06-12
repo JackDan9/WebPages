@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+        <title>MyCall</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            // Function.prototype.mybind = function() {
+
+            // }
+            // console.log(this);
+
+            // if (!Function.prototype.bind) (function () {
+
+            // })();
+            Function.prototype.myCall = function (obj) {
+                var args = [];
+                for(var i = 0, len = arguments.length; i < len; i++) {
+                    args.push('arguments[' + i + ']');
+                }
+                obj = obj || window;
+                obj.fn = this;
+                var result = eval('obj.fn('+args+')');
+                delete obj.fn;
+                return result;
+            }
+
+
+            function func() {
+                console.log(this.value);
+            }
+
+            var obj = {
+                value: '111'
+            }
+
+            func.myCall(obj, 1, 2, 3);
+        </script>
+    </body>
+</html>
