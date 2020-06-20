@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+        <title>MyApply</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            // Function.prototype.mybind = function() {
+
+            // }
+            // console.log(this);
+
+            // if (!Function.prototype.bind) (function () {
+
+            // })();
+            Function.prototype.myApply = function (obj, arr) {
+                obj = obj || window;
+                obj.func = this;
+                var result;
+                if (!arr) {
+                    result = obj.func;
+                } else {
+                    var args = [];
+                    for (var i = 0, len = arr.length; i < len; i++) {
+                        args.push('arr[' + i + ']');
+                    }
+                    result = eval('obj.func(' + args + ')');
+                }
+
+                delete obj.func;
+                return result;
+            }
+
+            function func () {
+                console.log(this.value);
+            }
+
+            var obj = {
+                value: '335'
+            }
+
+            func.myApply(obj, [1, 2, 3]);
+        </script>
+    </body>
+</html>
