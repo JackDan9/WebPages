@@ -1,0 +1,426 @@
+# 表单
+## 表单属性
+- `Readonly`和`Disabled`是用在表单中的两个属性, 它们都能够做到使用户不能够更改表单域中的内容。但是它们之间有着微小的差别，总结如下:
+
+### `Readonly`
+- `Readonly`只针对于`input(text/password)`和`textarea`有效, 
+
+### `Disabled`
+- `Disabled`对于所有得到表单元素都有效, 包括`select`, `radio`, `checkbox`, `button`等。
+
+- 但是表单元素在使用了disabled后，当我们将表单以POST或GET的方式提交的话，这个元素的值不会被传递出去，而readonly会将该值传递出去（这种情况出现在我们将某个表单中的textarea元素设置为disabled或readonly，但是submit button却是可以使用的）。
+
+## Example
+
+- 从下面的属性可以看出, button类型的input属性都是具有readOnly和disabled属性的，但是readonly对于buttton并不生效。反之, text类型的input属性都具有readOnly和disabled属性的, disabled属性对于text并不生效。
+- 同时，也可以发现button类型的input属性与text类型的input属性名称和内容都是一致的。
+
+## type: "button"
+``` javascript
+buttonAttr: input#button1
+  accept: ""
+  accessKey: ""
+  align: ""
+  alt: ""
+  assignedSlot: null
+  attributeStyleMap: StylePropertyMap {size: 0}
+  attributes: NamedNodeMap {0: id, 1: type, id: id, type: type, length: 2}
+  autocapitalize: ""
+  autocomplete: ""
+  autofocus: false
+  baseURI: "file:///C:/Users/ES-PC/WebPages/Browser_Interview/JS/%E8%A1%A8%E5%8D%95/test.html"
+  checked: false
+  childElementCount: 0
+  childNodes: NodeList []
+  children: HTMLCollection []
+  classList: DOMTokenList [value: ""]
+  className: ""
+  clientHeight: 17
+  clientLeft: 2
+  clientTop: 2
+  clientWidth: 12
+  contentEditable: "inherit"
+  dataset: DOMStringMap {}
+  defaultChecked: false
+  defaultValue: ""
+  dir: ""
+  dirName: ""
+  disabled: false
+  draggable: false
+  files: null
+  firstChild: null
+  firstElementChild: null
+  form: null
+  formAction: "file:///C:/Users/ES-PC/WebPages/Browser_Interview/JS/%E8%A1%A8%E5%8D%95/test.html"
+  formEnctype: ""
+  formMethod: ""
+  formNoValidate: false
+  formTarget: ""
+  height: 0
+  hidden: false
+  id: "button1"
+  incremental: false
+  indeterminate: false
+  innerHTML: ""
+  innerText: ""
+  inputMode: ""
+  isConnected: true
+  isContentEditable: false
+  labels: NodeList []
+  lang: ""
+  lastChild: null
+  lastElementChild: null
+  list: null
+  localName: "input"
+  max: ""
+  maxLength: -1
+  min: ""
+  minLength: -1
+  multiple: false
+  name: ""
+  namespaceURI: "http://www.w3.org/1999/xhtml"
+  nextElementSibling: input#button2
+  nextSibling: text
+  nodeName: "INPUT"
+  nodeType: 1
+  nodeValue: null
+  nonce: ""
+  offsetHeight: 21
+  offsetLeft: 8
+  offsetParent: body
+  offsetTop: 8
+  offsetWidth: 16
+  onabort: null
+  onauxclick: null
+  onbeforecopy: null
+  onbeforecut: null
+  onbeforepaste: null
+  onblur: null
+  oncancel: null
+  oncanplay: null
+  oncanplaythrough: null
+  onchange: null
+  onclick: null
+  onclose: null
+  oncontextmenu: null
+  oncopy: null
+  oncuechange: null
+  oncut: null
+  ondblclick: null
+  ondrag: null
+  ondragend: null
+  ondragenter: null
+  ondragleave: null
+  ondragover: null
+  ondragstart: null
+  ondrop: null
+  ondurationchange: null
+  onemptied: null
+  onended: null
+  onerror: null
+  onfocus: null
+  onfullscreenchange: null
+  onfullscreenerror: null
+  ongotpointercapture: null
+  oninput: null
+  oninvalid: null
+  onkeydown: null
+  onkeypress: null
+  onkeyup: null
+  onload: null
+  onloadeddata: null
+  onloadedmetadata: null
+  onloadstart: null
+  onlostpointercapture: null
+  onmousedown: null
+  onmouseenter: null
+  onmouseleave: null
+  onmousemove: null
+  onmouseout: null
+  onmouseover: null
+  onmouseup: null
+  onmousewheel: null
+  onpaste: null
+  onpause: null
+  onplay: null
+  onplaying: null
+  onpointercancel: null
+  onpointerdown: null
+  onpointerenter: null
+  onpointerleave: null
+  onpointermove: null
+  onpointerout: null
+  onpointerover: null
+  onpointerup: null
+  onprogress: null
+  onratechange: null
+  onreset: null
+  onresize: null
+  onscroll: null
+  onsearch: null
+  onseeked: null
+  onseeking: null
+  onselect: null
+  onselectionchange: null
+  onselectstart: null
+  onstalled: null
+  onsubmit: null
+  onsuspend: null
+  ontimeupdate: null
+  ontoggle: null
+  onvolumechange: null
+  onwaiting: null
+  onwebkitfullscreenchange: null
+  onwebkitfullscreenerror: null
+  onwheel: null
+  outerHTML: "<input id="button1" type="button">"
+  outerText: ""
+  ownerDocument: document
+  parentElement: body
+  parentNode: body
+  pattern: ""
+  placeholder: ""
+  prefix: null
+  previousElementSibling: null
+  previousSibling: text
+  readOnly: false
+  required: false
+  scrollHeight: 17
+  scrollLeft: 0
+  scrollTop: 0
+  scrollWidth: 12
+  selectionDirection: null
+  selectionEnd: null
+  selectionStart: null
+  shadowRoot: null
+  size: 20
+  slot: ""
+  spellcheck: true
+  src: ""
+  step: ""
+  style: CSSStyleDeclaration {alignContent: "", alignItems: "", alignSelf: "", alignmentBaseline: "", all: "", …}
+  tabIndex: 0
+  tagName: "INPUT"
+  textContent: ""
+  title: ""
+  translate: true
+  type: "button"
+  useMap: ""
+  validationMessage: ""
+  validity: ValidityState {valueMissing: false, typeMismatch: false, patternMismatch: false, tooLong: false, tooShort: false, …}
+  value: ""
+  valueAsDate: null
+  valueAsNumber: NaN
+  webkitEntries: []
+  webkitdirectory: false
+  width: 0
+  willValidate: false
+  __proto__: HTMLInputElement
+```
+
+## type: "text"
+
+``` javascript
+textAttr: input#button2
+  accept: ""
+  accessKey: ""
+  align: ""
+  alt: ""
+  assignedSlot: null
+  attributeStyleMap: StylePropertyMap {size: 0}
+  attributes: NamedNodeMap {0: id, 1: type, id: id, type: type, length: 2}
+  autocapitalize: ""
+  autocomplete: ""
+  autofocus: false
+  baseURI: "file:///C:/Users/ES-PC/WebPages/Browser_Interview/JS/%E8%A1%A8%E5%8D%95/test.html"
+  checked: false
+  childElementCount: 0
+  childNodes: NodeList []
+  children: HTMLCollection []
+  classList: DOMTokenList [value: ""]
+  className: ""
+  clientHeight: 17
+  clientLeft: 2
+  clientTop: 2
+  clientWidth: 169
+  contentEditable: "inherit"
+  dataset: DOMStringMap {}
+  defaultChecked: false
+  defaultValue: ""
+  dir: ""
+  dirName: ""
+  disabled: false
+  draggable: false
+  files: null
+  firstChild: null
+  firstElementChild: null
+  form: null
+  formAction: "file:///C:/Users/ES-PC/WebPages/Browser_Interview/JS/%E8%A1%A8%E5%8D%95/test.html"
+  formEnctype: ""
+  formMethod: ""
+  formNoValidate: false
+  formTarget: ""
+  height: 0
+  hidden: false
+  id: "button2"
+  incremental: false
+  indeterminate: false
+  innerHTML: ""
+  innerText: ""
+  inputMode: ""
+  isConnected: true
+  isContentEditable: false
+  labels: NodeList []
+  lang: ""
+  lastChild: null
+  lastElementChild: null
+  list: null
+  localName: "input"
+  max: ""
+  maxLength: -1
+  min: ""
+  minLength: -1
+  multiple: false
+  name: ""
+  namespaceURI: "http://www.w3.org/1999/xhtml"
+  nextElementSibling: script
+  nextSibling: text
+  nodeName: "INPUT"
+  nodeType: 1
+  nodeValue: null
+  nonce: ""
+  offsetHeight: 21
+  offsetLeft: 28
+  offsetParent: body
+  offsetTop: 11
+  offsetWidth: 173
+  onabort: null
+  onauxclick: null
+  onbeforecopy: null
+  onbeforecut: null
+  onbeforepaste: null
+  onblur: null
+  oncancel: null
+  oncanplay: null
+  oncanplaythrough: null
+  onchange: null
+  onclick: null
+  onclose: null
+  oncontextmenu: null
+  oncopy: null
+  oncuechange: null
+  oncut: null
+  ondblclick: null
+  ondrag: null
+  ondragend: null
+  ondragenter: null
+  ondragleave: null
+  ondragover: null
+  ondragstart: null
+  ondrop: null
+  ondurationchange: null
+  onemptied: null
+  onended: null
+  onerror: null
+  onfocus: null
+  onfullscreenchange: null
+  onfullscreenerror: null
+  ongotpointercapture: null
+  oninput: null
+  oninvalid: null
+  onkeydown: null
+  onkeypress: null
+  onkeyup: null
+  onload: null
+  onloadeddata: null
+  onloadedmetadata: null
+  onloadstart: null
+  onlostpointercapture: null
+  onmousedown: null
+  onmouseenter: null
+  onmouseleave: null
+  onmousemove: null
+  onmouseout: null
+  onmouseover: null
+  onmouseup: null
+  onmousewheel: null
+  onpaste: null
+  onpause: null
+  onplay: null
+  onplaying: null
+  onpointercancel: null
+  onpointerdown: null
+  onpointerenter: null
+  onpointerleave: null
+  onpointermove: null
+  onpointerout: null
+  onpointerover: null
+  onpointerup: null
+  onprogress: null
+  onratechange: null
+  onreset: null
+  onresize: null
+  onscroll: null
+  onsearch: null
+  onseeked: null
+  onseeking: null
+  onselect: null
+  onselectionchange: null
+  onselectstart: null
+  onstalled: null
+  onsubmit: null
+  onsuspend: null
+  ontimeupdate: null
+  ontoggle: null
+  onvolumechange: null
+  onwaiting: null
+  onwebkitfullscreenchange: null
+  onwebkitfullscreenerror: null
+  onwheel: null
+  outerHTML: "<input id="button2" type="text">"
+  outerText: ""
+  ownerDocument: document
+  parentElement: body
+  parentNode: body
+  pattern: ""
+  placeholder: ""
+  prefix: null
+  previousElementSibling: input#button1
+  previousSibling: text
+  readOnly: false
+  required: false
+  scrollHeight: 17
+  scrollLeft: 0
+  scrollTop: 0
+  scrollWidth: 169
+  selectionDirection: "forward"
+  selectionEnd: 0
+  selectionStart: 0
+  shadowRoot: null
+  size: 20
+  slot: ""
+  spellcheck: true
+  src: ""
+  step: ""
+  style: CSSStyleDeclaration {alignContent: "", alignItems: "", alignSelf: "", alignmentBaseline: "", all: "", …}
+  tabIndex: 0
+  tagName: "INPUT"
+  textContent: ""
+  title: ""
+  translate: true
+  type: "text"
+  useMap: ""
+  validationMessage: ""
+  validity: ValidityState {valueMissing: false, typeMismatch: false, patternMismatch: false, tooLong: false, tooShort: false, …}
+  value: ""
+  valueAsDate: null
+  valueAsNumber: NaN
+  webkitEntries: []
+  webkitdirectory: false
+  width: 0
+  willValidate: true
+  __proto__: HTMLInputElement
+```
+
+
+
