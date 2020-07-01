@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RegExp</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      // var regExp = new RegExp("/#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})/g");
+      // var regExp = /#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})/g;
+      // var regExp = new RegExp("#([0-9a-fA-F]{6}|[0-9a-fA-F]{3}", "g");
+      // var regExp = new RegExp("xiannv", "g");
+      // var regExp = new RegExp(/xiannv/g);
+      var regExp = /xiannv/g;
+      console.log(regExp.test("xiannv"));
+      console.log(regExp.exec("xiannv"));
+      console.log("xiannvdadaxiannv".match(regExp)); // output: (2) ["xiannv", "xiannv"]
+      // regExp.compile("xiannvdada", "g"); // 方法已经被废弃了
+      // console.log(regExp.test("xiannv")); // false
+      // console.log(regExp.test("xiannvdada")); // true
+      // console.log(regExp.exec("xiannvdada")); // 
+      // console.log(regExp.test("#FFF"));
+      // console.log(regExp.test('#Fc01DF'));
+      // console.log(regExp.test('#000'));
+
+      // console.log(regExp.test('#FF00FFFFF'));
+
+      // console.log(regExp.exec('#FFFFFF'));
+      /**
+      A.Object.keys()
+      该方***返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for...in 循环遍历该对象时返回的顺序一致 。如果对象的键-值都不可枚举，那么将返回由键组成的数组。
+
+      B.String.prototype.split()
+      split() 方法使用指定的分隔符字符串将一个String对象分割成字符串数组，以将字符串分隔为子字符串，以确定每个拆分的位置。
+
+      AB选项都是返回数组。
+
+      C.Array.prototype.join()
+      join() 方法将一个数组（或一个类数组对象）的所有元素连接成一个字符串并返回这个字符串。如果数组只有一个项目，那么将返回该项目而不使用分隔符。
+      C选项返回字符串。
+
+      D.Promise.all()
+      Promise.all(iterable) 方法返回一个 Promise 实例，此实例在 iterable 参数内所有的 promise 都“完成（resolved）”或参数中不包含 promise 时回调完成（resolve）；
+      如果参数中 promise 有一个失败（rejected），此实例回调失败（reject），失败原因的是第一个失败 promise 的结果。
+      D选项返回的是promise对象。
+      */
+    </script>
+  </body>
+</html>
