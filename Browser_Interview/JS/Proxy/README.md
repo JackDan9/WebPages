@@ -18,4 +18,20 @@ var obj = new Proxy({}, {
 ```
 
 
+- 上面的代码对一个空对象进行了一层拦截, 重定义了属性的读取(get)和设置(set)行为。
+
+- Proxy实际上重载(overload)了点运算符, 即用自己的定义覆盖了语言的原始定义。
+
+``` javascript
+var proxy = new Proxy(target, handle);
+```
+
+- `target`:
+  - 要使用`Proxy`包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个代理）。
+- `handler`:
+  - 一个通常以函数作为属性的对象，各属性中的函数分别定义了在执行各种操作时代理`p`的行为。 
+
+
+
+
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
