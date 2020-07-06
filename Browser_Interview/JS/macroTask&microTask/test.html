@@ -33,20 +33,30 @@
             // });
 
             console.log(1);
-            let a = setTimeout(() => {console.log(2)}, 0);
-            console.log(3);
-            Promise.resolve(4).then(b => {
+            Promise.resolve().then(function() {
+                console.log(5);
+            }).then(function () {
+               return 6;
+            }).then(function (b) {
                 console.log(b);
-                clearTimeout(a);
-            });
-            console.log(5);
+                console.log(7);
+            })
+
+            // console.log(1);
+            // let a = setTimeout(() => {console.log(2)}, 0);
+            // console.log(3);
+            // Promise.resolve(4).then(b => {
+            //     console.log(b);
+            //     clearTimeout(a);
+            // });
+            // console.log(5);
             // 执行顺序是先执行同步的任务 -- 输出1,3,5
             // 在执行异步任务: 其中异步任务分为宏任务和微任务, 微任务优先级高于宏任务。Promise.the执行的微任务, 输出4, 然后clearTimeout(a)清除了定时器, 于是不再打印2。
 
-            console.log(2.toString())
-            console.log(2..toString())
-            console.log(2 .toString())
-            console.log((2).toString())
+            // console.log(2.toString())
+            // console.log(2..toString())
+            // console.log(2 .toString())
+            // console.log((2).toString())
         </script>
     </body>
 </html>
