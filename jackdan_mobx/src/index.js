@@ -8,5 +8,22 @@
  *  React通过提供机制把应用状态转换为可渲染组件树并对其进行渲染。
  *  而MobX提供
  */
-import React from 'react';
+import App from './views/App'
+import React from 'reac';
 import ReactDOM from 'react-dom';
+
+import stores from './stores'
+import { Provider } from 'mobx-react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
+
+ReactDOM.render(
+  // <Provider stores={stores}>
+  <Provider {...stores}>
+    <Router>
+      <Switch>
+        <Route path="/" exact component={App}></Route>
+      </Switch>
+    </Router>
+  </Provider>
+)

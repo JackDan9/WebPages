@@ -1,0 +1,15 @@
+{
+  "name": "jackdan_vuex",
+  "version": "1.0.0",
+  "description": "A project for testing vuex",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "vuex",
+    "test"
+  ],
+  "author": "jackdan",
+  "license": "MIT"
+}
