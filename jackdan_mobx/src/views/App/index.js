@@ -17,7 +17,7 @@ class App extends React.Component {
 
 
   render() {
-    const { tode } = this.props;
+    const { todo } = this.props;
 
     return (
       <div>

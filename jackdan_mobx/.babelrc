@@ -7,11 +7,17 @@
         "corejs": false,
         "helpers": true,
         "regenerator": true,
-        "useESModules": true
+        "useESModules": false
       }
     ],
     [
-      "transform-decorators-legacy"
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
+    [
+      "@babel/plugin-proposal-class-properties"
     ]
   ]
 }

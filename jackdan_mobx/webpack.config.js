@@ -11,7 +11,7 @@ module.exports = {
     },
     mode: 'development',
     devServer: {
-        host: '0.0.0.0',
+        host: 'localhost',
         hot: true, // 热替换
         contentBase: path.join(__dirname, 'dist'),
         compress: true, // gzip压缩
