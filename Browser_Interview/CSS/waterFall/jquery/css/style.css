@@ -1,0 +1,43 @@
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #ddd;
+}
+
+.container {
+  width: auto;
+  height: auto;
+  position: absolute;
+  margin: 0 auto;
+}
+
+.item {
+  float: left;
+  width: 280px;
+  height: auto;
+  margin: 1px;
+  padding: 1px;
+  box-sizing: border-box;
+}
+
+.item img {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.item img:hover {
+  background-color: gray;
+  opacity: 0.5;
+}
+
