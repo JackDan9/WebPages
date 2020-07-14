@@ -16,11 +16,27 @@
     <script src="./js/react/react-dom.development.js"></script>
     <script src="./js/babel/babel.min.js"></script>
     <script type="text/babel">
+
+        class Blog extends React.Component {
+            constructor() {
+
+            }
+        }
+
         class BlogComments extends React.Component {
             constructor(props) {
+                /**
+                 * 
+                 * 并不是每个组件都需要定义自己的构造函数. 
+                 * 无状态的React组件往往就不需要定义构造函数，需要有下面作用的React组件才需要constructor函数.
+                 * 
+                 * 作用:
+                 * 1. 初始化state, 因为组件生命周期中任何函数都可能要访问state, 那么整个生命周期中第一个被调用的构造函数自然是初始化state最理想的地方;
+                 * 2. 绑定成员函数的this环境.
+                */
                 super(props);
-                // debugger;
                 this.handleChange = this.handleChange.bind(this);
+                // this.handleChange = ::this.handleChange; 这种方式目前是否已经不支持了, 有待考证
                 this.state = ({
                     // commonts: DataSource.getCommonts()
                     A: 1
@@ -28,12 +44,18 @@
             }
 
             componentWillMount() {
-                // debugger
+                /**
+                 * 会在调用render函数之前被调用
+                 * 
+                 * 这个阶段没有任何渲染出来的结果, 即使调用this.setState修改状态也不会引发重新绘制, 
+                */
+               console.log("enter componentWillMount " + this.props  )
             }
 
             componentWillReceiveProps(nextProps) {
                 /**
                  * 为了解决props是异步获取的时候使自组件正确获得最新props的方法。
+                 * 
                 */
             }
 
@@ -46,13 +68,17 @@
 
             componentDidMount() {
                 /**
+                 * 会在调用render()之后被调用
+                */
+                /**
                  * render () { 
-                 *     return ( 
-                 *     )  
+                 *     return (
+                 *      0
+                 *     )
                  * } 
                  * 执行之后在执行这个内容
                 */
-                // debugger;
+                
             }
 
             handleChange = () => {
