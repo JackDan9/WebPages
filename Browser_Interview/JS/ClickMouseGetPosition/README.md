@@ -16,3 +16,5 @@ offsetParent很有用, 因为offsetTop和offsetLeft都是相当于其内边距�
 HTMLElement.offsetWidth是一个只读属性, 返回一个元素的布局宽度。
 一个典型的(各个浏览器的offsetWidth可能有所不同)offsetWidth是测量包含元素的边框(border), 水平线上的内边距(padding), 竖直方向滚动条(scrollbar)(如果存在的话), 以及CSS设置的宽度(width)的值。
 ```
+
+> https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/offsetLeft

@@ -41,3 +41,5 @@ typeof Boolean()    //"boolean"
 typeof null    //"object"
 typeof undefined    //"undefined"
 ```
+
+> https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/RegExp
