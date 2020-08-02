@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>clickMouseGetPosition</title>
+    <style rel="stylesheet" type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        /* height: 500px; */
+        border: 1px solid #000000;
+      }
+
+      .area1 {
+        width: 800px;
+        height: 800px;
+        padding: 90px;
+        border: 1px solid #ccc;
+        font-size: 36px;
+      }
+
+      .area3 {
+        width: 1400px;
+        height: 300px;
+        padding-left: 1200px;
+        border: 1px solid red;
+      }
+
+      .area3Child {
+        width: 200px;
+        height: 200px;
+        padding: 10px;
+        cursor: pointer;
+        border: 1px solid green;
+      }
+    </style>
+    <script type="text/javascript">
+      var bodyMounseMove = function () {
+        // document.getElementById("area2").innerHTML = event.clientX + ", " + event.clientY;
+      }
+
+      var clickArea3 = function () {
+        var objTop = getOffsetTop(document.getElementById("area-3-child")); // 对象x位置
+        var objLeft = getOffsetLeft(document.getElementById("area-3-child")); // 对象y位置
+
+        var mouseX = event.clientX + document.body.scrollLeft; // 鼠标X位置
+        var mouseY = event.clientY + document.body.scrollTop; // 鼠标Y位置
+
+        // 计算点击的位置
+        var objX = mouseX - objLeft;
+        var objY = mouseY - objTop;
+
+        clickObjPosition = objX + ", " + objY;
+
+        console.log(clickObjPosition);
+      }
+
+      function getOffsetTop(obj) {
+        /**
+         * 
+         * HTMLElement.offsetLeft是一个只读属性, 返回当前元素左上角相当于HTMLElement.offsetParent节点的左边界偏移的像素值。
+         * 对块级元素来说, offsetTop、offsetLeft、offsetWidth以及offsetHeight描述了元素相对于offsetParent的边界框。
+         * 
+         * 然而，对于可被截断到下一行的行内元素(如span), offsetTop和offsetLeft描述的是第一个边界框的位置(使用Element.getClientRects()来获取其宽度和高度), 而offsetWidth和offsetHeight描述的是边界框的尺寸(使用Element.getBoundingClientReact来获取其位置)。
+         * 因此, 使用offsetLeft、offsetTop、offsetWidth、offsetHeight来对应left、top、width和height的一个盒子将不会是文本容器span的盒子边界
+         * 
+         * HTMLElement.offsetTop为只读属性, 它返回当前元素相对于其offsetParent元素的顶部内边距的距离。
+         * 
+         * HTMLElement.offsetParent是一个只读属性, 返回一个指向最近的(指包含层级上的最近)包含该元素的定位元素或者最近的`table`,`td`,`th`,`body`元素。当元素的`style.display`设置为`"none"`时, offsetParent返回null。
+         * offsetParent很有用, 因为offsetTop和offsetLeft都是相当于其内边距边界的。 
+         *
+         * HTMLElement.offsetWidth是一个只读属性, 返回一个元素的布局宽度。
+         * 一个典型的(各个浏览器的offsetWidth可能有所不同)offsetWidth是测量包含元素的边框(border), 水平线上的内边距(padding), 竖直方向滚动条(scrollbar)(如果存在的话), 以及CSS设置的宽度(width)的值。
+        */
+        var tmp = obj.offsetTop;
+        var val = obj.offsetParent;
+
+        while (val != null) {
+          tmp += val.offsetTop;
+          val = val.offsetParent;
+        }
+
+        return tmp;
+      }
+
+      function getOffsetLeft(obj) {
+        var tmp = obj.offsetLeft;
+        var val = obj.offsetParent;
+
+        while (val != null) {
+          tmp += val.offsetLeft;
+          val = val.offsetParent;
+        }
+
+        return tmp;
+      }
+    </script>
+  </head>
+  <body onmousemove="bodyMounseMove();">
+    <div class="area1"></div>
+    <div id="area2"></div>
+    <div class="area3">
+      <div id="area-3-child" class="area3Child" onclick="clickArea3();">
+        这里是图片，因为我用div边框1px，所以两个div会有2px的位置偏移，你可以自己调整
+      </div>
+    </div>
+  </body>
+</html>

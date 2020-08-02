@@ -94,7 +94,7 @@ class = "important warning"
 
 - 当然，第三条你也可以写成： .important.warning { background: blue;} 和词序没有关系。说明一下，.warning会匹配所有包含warning属性的元素，不管该元素还包含多少其他的属性。.important同理。而.important.warning会匹配所有同时包含以上2种属性的元素，不管该元素还包含多少其他的类，也不管他们在类列表中出现的顺序，只要其中含有这2个属性，则会被选择进来！
 
-- 同样地，多于多类选择器，在前面加上元素名，则会匹配包含指定类名的指定元素，例如：p.warning.important {}
+- 同样地，对于多类选择器，在前面加上元素名，则会匹配包含指定类名的指定元素，例如：p.warning.important {}
 
 - 将会匹配同时包含warning和important属性的p元素，其他同样包含以上2类的元素则不会被选中。
 
