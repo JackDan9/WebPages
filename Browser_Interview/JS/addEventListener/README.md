@@ -27,16 +27,16 @@ target.addEventListener(type, listener, useCapture, wantsUntrusted); // Gecko/Mo
 ### options --- 可选
 - 一个指定有关`listener`属性的可选参数对象。可用的选项如下:
   - `capture`: `Boolean`, 表示`listener`会在该类型的事件捕获阶段传播该`EventTarget`时触发。
-  - `once`: `Boolean`, 表示`listener`在添加之后最多只调用一次。如果时true, `listener`会在其被调用之后自动移除。
-  - `passive`: `Boolean`, 设置为`true`时, 表示`listener`永远不会调用`preventDefault()`。如果`listener`任然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。
-  - `mozSystemGroup`: 只能在XBL或者是Firefox Chrome 使用, 这是哥`Boolean`, 表示`listener`被添加到`system group`。
+  - `once`: `Boolean`, 表示`listener`在添加之后最多只调用一次。如果是true, `listener`会在其被调用之后自动移除。
+  - `passive`: `Boolean`, 设置为`true`时, 表示`listener`永远不会调用`preventDefault()`。如果`listener`仍然调用了这个函数，客户端将会忽略它并抛出一个控制台警告。
+  - `mozSystemGroup`: 只能在XMLHttpRequest或者是Firefox Chrome使用, 这是个`Boolean`, 表示`listener`被添加到`system group`。
 
 ### useCapture --- 可选
 - `Boolean`, 在DOM树中, 注册了listener的元素, 是否要先于它下面的EventTarget, 调用该listener。当useCapture(设为true)时, 沿着DOM树向上冒泡的事件，不会触发listerner。当一个元素嵌套了另一个元素, 并且两个元素都对同一事件注册了一个处理函数时, 所发生的事件冒泡和事件捕获是两种不同的事件传播方式。事件传播模式决定了元素以哪个顺序接收事件。如果没有指定, useCapture默认为false。
 
 > 注意: 对于事件目标上的事件监听器来说, 事件会处于"目标阶段", 而不是冒泡阶段或者捕获阶段。在目标阶段的事件会触发该元素(即事件目标)上的所有监听器, 而不在乎这个监听器到底在注册时`useCapture`参数值`true`还是`false`。
 
-> 注意: `useCapture`仅仅咋子现代浏览器最近的几个版本中是可选的。例如Firefox 6以前的版本都不是可选的。为了能够提供更广泛的支持, 你应该提供这个参数。
+> 注意: `useCapture`仅仅作用于现代浏览器最近的几个版本中是可选的。例如Firefox 6以前的版本都不是可选的。为了能够提供更广泛的支持, 你应该提供这个参数。
 
 ### wantsUntrusted
 - 如果为`true`, 则事件处理程序会接收网页自定义的事件。此参数只适用于Gecko(Chrome的默认值为true, 其他常规网页的默认值为false), 主要用于附加组件的代码和浏览器本身。
@@ -103,7 +103,7 @@ someElement.addEventListener("mouseup", handleMouseUp, passiveSupported ? { pass
 - 下面这个例子用来展示如何使用`addEventListener()`监听鼠标点击一个元素。
 
 ``` html
-<table>
+<table id="outside">
   <tr>
     <td id="t1">one</td>
   </tr>
@@ -145,7 +145,7 @@ two
 - 现在我们来看看如何使用匿名函数来为事件监听器进行传参。
 
 ``` html
-<table>
+<table id="outside">
   <tr>
     <td id="t1">one</td>
   </tr>
