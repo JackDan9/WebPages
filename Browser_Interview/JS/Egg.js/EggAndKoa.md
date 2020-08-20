@@ -38,7 +38,7 @@ fn().then(res => console.log(res)).catch(err => console.error(err.stack));
 
 - 中间件洋葱圈:
 
-[Koa Middleware](./images/koaMiddleware.png)
+![Koa Middleware](./images/koaMiddleware.png)
 
 - 中间件执行顺序图:
 
