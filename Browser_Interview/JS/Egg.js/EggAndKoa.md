@@ -120,4 +120,37 @@ exports.handler = ctx => {
 
 ## 插件
 
-- 众所周知, 在Express和Koa中, 经常
+- 众所周知, 在Express和Koa中, 经常会引入许许多多的中间件来提供各种各样的功能, 例如引入koa-session提供Session的支持, 引入koa-bodyparser来解析请求body。而Egg提供了一个更加强大的插件机制, 让这些独立领域的功能模块可以更加容易编写。
+
+- 一个插件可以包含
+    - `extend`: 扩展基础对象的上下文, 提供各种工具类、属性
+    - `middleware`: 增加一个或多个中间件, 提供请求的前置、后置处理逻辑
+    - `config`: 配置各个环境下插件自身的默认配置项
+
+- 一个独立领域下的产检实现, 可以在代码维护性非常高的情况下实现非常完善的功能, 而插件也支持配置各个环境下的默认(最佳)配置, 让我们使用插件的时候几乎可以不需要修改配置项。
+
+- [`egg-security`](https://github.com/eggjs/egg-security)插件就是一个典型的例子。
+
+- 更多关于插件的内容, 请查看[插件](https://eggjs.org/zh-cn/basics/plugin.html)章节.
+
+## Egg与Koa的版本关系
+
+### Egg 1.x
+
+- Egg1.x发布时, Node.js的LTS版本尚不支持async function, 所以Egg 1.x仍然基于Koa 1.x开发, 但是在此基础上, Egg全面增加了async function的支持, 再加上Egg对Koa 2.x的中间件也完全兼容, 应用层代码可以完全基于`async function`来开发。
+
+    - 底层基于Koa 1.x, 异步解决方案基于co封装的`generator function`。
+    - 官方插件以及Egg核心使用`generator function`编写, 保持对Node.js LTS版本的支持, 在必要处通过co包装以兼容在async function中的使用。
+    - 应用开发者可以选择async function(Node.js 8.x+)或者generator function (Node.js 6.x)进行编写。
+
+### Egg 2.x
+- Node.js 8 正式进入LTS后, async function可以在Node.js中使用并且没有任何性能问题了, Egg 2.x基于Koa 2.x,框架底层以及所有内置插件都使用`async function`编写, 并保持了对**Egg 1.x以及generator function的完全兼容**, **应用层只需要升级到Node.js 8**即可从Egg 1.x迁移到Egg2.x。
+
+    - 底层基于Koa 2.x, 异步解决方案基于async function。
+    - 官方插件以及Egg核心使用async function 编写。
+    - 建议业务层迁移到async function方案。
+    - 只支持Node.js 8 及以上的版本。 
+
+------
+
+> Thinking in JackDan
