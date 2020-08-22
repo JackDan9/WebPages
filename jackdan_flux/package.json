@@ -1,0 +1,16 @@
+{
+  "name": "jackdan_flux",
+  "version": "1.0.0",
+  "description": "A project for test flux",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "fluex",
+    "test",
+    "summary"
+  ],
+  "author": "jackdan",
+  "license": "MIT"
+}
