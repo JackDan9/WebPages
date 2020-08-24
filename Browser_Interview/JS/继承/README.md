@@ -17,5 +17,90 @@
 > 遵循ECMAScript标准, someObject.[[Prototype]]符号时用于指向someObject的原型。从ECMAScript 6开始, [[Prototype]]可以通过Object.getPrototypeOf()和Object.setPrototypeOf()访问器访问。这个等同于JavaScript的非标准但许多浏览器实现的属性__proto__。
 > 但它不应该与构造函数func的prototype
 
+``` javascript
+function Person() {
+    this.name = 'jack';
+}
 
-https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain
+Person.prototype.getName = function () {
+    console.log(this.name);
+}
+
+function Child() {
+
+}
+
+Child.prototype = new Person();
+
+var child1 = new Child();
+
+console.log(child1.getName());
+```
+
+``` javascript
+function Parent () {
+    this.names = ['jack', 'fengfeng'];
+}
+
+function Child() {
+
+}
+
+Child.prototype = new Parent();
+
+var child1 = new Child();
+
+child1.names.push('jackdan');
+
+console.log(child1.names);
+
+var child2 = new Child('dandan');
+
+console.log(child2.names)
+```
+
+- 1.引用类型的属性被所有实例共享
+- 2.在创建Child实例时, 不能向Parent传参
+
+### 构造函数
+
+``` javascript
+function Parent (name) {
+    this.name = name;
+    this.colors = ['blue', 'red'];
+}
+
+Parent.prototype.getName = function () {
+    console.log(this.name);
+}
+
+function Child (name, age) {
+    Parent.call(this, name);
+    this.age = age;
+}
+
+Child.prototype = new Parent();
+Child.prototype.constructor = Child;
+
+var child1 = new Child('jackdan', 20);
+
+child1.colors.push('black');
+
+console.log(child1.name); // jackdan
+console.log(child1.age); // 20
+console.log(child1.colors); // ["blue", "red", "black"]
+
+var child2 = new Child('fengfeng', '20');
+
+console.log(child2.name); // fengfeng
+console.log(child2.age); // 20
+console.log(child2.colors); // ["blue", "red"]
+```
+
+- 优点：融合原型链继承和构造函数的优点，是 JavaScript 中最常用的继承模式。
+
+-------
+
+> https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain
+
+> Thinking in JackDan
