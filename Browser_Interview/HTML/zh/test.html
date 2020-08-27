@@ -1,18 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta chartset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="referrer" content="origin" />
-        <meta property="og:description" content="渐进增强与优雅降级" />
-        <meta http-equiv="Cache-Control" content="no-transform" />
-        <meta http-equiv="Cache-Control" content="no-siteapp" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>渐进增强与优雅降级</title><meta charset="utf-8" />
-        <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=0,maximum-scale=1.0" />
-        <title>无标题文档</title>
-        <style type="text/css">
-            * {
+
+<head>
+    <meta chartset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="referrer" content="origin" />
+    <meta property="og:description" content="渐进增强与优雅降级" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>渐进增强与优雅降级</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,width=device-width,user-scalable=0,maximum-scale=1.0" />
+    <title>无标题文档</title>
+    <style type="text/css">
+        .testimonials {
+            margin-top: 5rem;
+            background: url('testbg.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+        }
+
+        .comment {
+            margin-top: 5rem;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .comment-box {
+            position: relative;
+            line-height: 22px;
+            flex: 1;
+            margin: 3rem;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 30px;
+        }
+
+        .testimonials h1,
+        .testimonials p {
+            text-align: center;
+        }
+
+        .testimonials h1 {
+            font-family: Raleway;
+            padding-bottom: 1rem;
+        }
+
+        .testimonials p {
+            font-family: Montserrat;
+        }
+
+        .testimonials h5 {
+            font-family: Montserrat;
+            font-style: italic;
+            padding-top: 1rem;
+            position: absolute;
+            bottom: 1rem;
+            right: 2rem;
+        }
+
+        @media(max-width: 915px) {
+            .comment {
+                flex-direction: column;
+            }
+
+            .testimonials {
+                background: none;
+            }
+        }
+
+
+        .locations {
+            margin-top: 3rem;
+            height: 100vh;
+        }
+        /* 
+        * {
                 margin: 0;
                 padding: 0;
             }
@@ -28,11 +96,53 @@
             } 
             p {
                 font-size: 0.5rem;
-            }
-        </style>
-    </head>
-    <body>
-        <p class="test">测试自适应</p>
-        
-    </body>
+            } 
+        */
+    </style>
+</head>
+
+<body>
+    <!-- <p class="test">测试自适应</p> -->
+    <div class="testimonials">
+        <h1>Testimonials</h1>
+        <p>What customers say</p>
+        <div class="comment">
+            <div class="comment-box">
+                <img src="assets/quote.png" alt="" width="50px">
+                <p>I really loved the ambience here. food is served fresh and that is
+                    what I liked the most. This place is always a go-to when I am hungry.
+                    Also, the cheese burger is very unique and it is a must have meal!</p>
+                <h5>Harry</h5>
+            </div>
+            <div class="comment-box">
+                <img src="assets/quote.png" alt="" width="50px">
+                <p>This is my favorite restaurant and the best burger café in the city.
+                    I was really impressed by the fast-serving facility and the food's
+                    greatness is just next level.</p>
+                <h5>Raj</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="locations">
+        <h1>Enjoy meals at home</h1>
+        <p>Place an order from your nearest outlet.</p>
+
+        <div class="maps">
+            <div class="area1">
+                <img src="assets/newroad.jpg" alt="">
+                <p>US</p>
+            </div>
+            <div class="area2">
+                <img src="assets/maharajgung.jpg" alt="">
+                <p>US</p>
+            </div>
+            <div class="area3">
+                <img src="assets/citycentre.jpg" alt="">
+                <p>US</p>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>

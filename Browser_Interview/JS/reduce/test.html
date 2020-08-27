@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>reduce</title>
+        <script type="text/javascript">
+            if (!Array.prototype.mapUsingReduce) {
+                Array.prototype.mapUsingReduce = function(callback, thisArg) {
+                    return this.reduce(function(mappedArray, currentValue, index, array) {
+                        mappedArray[index] = callback.call(thisArg, currentValue, index, array);
+                        return mappedArray;
+                    }, []);
+                };
+            }
+            var a = [1, 2, , 3].mapUsingReduce(
+                (currentValue, index, array) => currentValue + index + array.length
+            );
+            
+            console.log(a);
+        </script>
+    </head>
+    <body></body>
+</html>

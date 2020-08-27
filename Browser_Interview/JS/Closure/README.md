@@ -18,7 +18,7 @@ function foo(){
   return innerFoo; 
 } 
 var func = foo(); 
-func(); 
+func();
 // 2, 产生闭包innerFoo()，变量n保存在内存中 func(); 
 
 3 闭包的缺点 
@@ -30,7 +30,7 @@ func();
 
 ``` javascript
 ES5
-orEach(), filter(), reduce(), every() 和some()都会跳过空位。
+forEach(), filter(), reduce(), every() 和some()都会跳过空位。
 map()会跳过空位，但会保留这个值
 join()和toString()会将空位视为undefined，而undefined和null会被处理成空字符串。
 ES6 中都会将空位当做undefined
