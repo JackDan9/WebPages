@@ -1,6 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import Example from './components/Example/index';
+import HooksExample from './components/HooksExample/index';
+import HighOrderComponent from './components/HighOrderComponent/index';
+import HooksEffectExample from './components/HooksEffectExample';
+import NoEffectExample from './components/HooksEffectExample/NoEffectExample';
 
 function Square(props) {
     return (
@@ -120,7 +125,13 @@ class Game extends React.Component {
 }
 
 ReactDOM.render(
-    <Game/>,
+    <div>
+        {/* <Example />, */}
+        {/* <HooksExample />, */}
+        {/* <HighOrderComponent /> */}
+        {/* <HooksEffectExample /> */}
+        <NoEffectExample />
+    </div>,    
     document.getElementById('root')
 );
 
