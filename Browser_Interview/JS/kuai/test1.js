@@ -12,21 +12,24 @@ var handleObj = function(obj, path) {
     var pathArr = path.split('.');
 
     if(pathArr.length === 0) {
-        return [];
+        return;
     }
 
     if(pathArr.length === 1) {
-        return obj[pathArr.length - 1];
+        return obj[pathArr[0]];
     }
     
-    depth_first_search(obj, result, 0)
-}
+    var index = 0;
+    while(index < pathArr.length) {
+        obj = obj[pathArr[index]];
+        index++;
+    }
 
-
-var depth_first_search = function(obj, result, depth) {
-
+    return obj;
 }
 
 var obj = {a: {b: {c: 1}}};
-var path = 'a.b.c';
+var path = 'a';
 
+var result = handleObj(obj, path);
+console.log(result);
