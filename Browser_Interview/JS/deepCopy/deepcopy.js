@@ -16,3 +16,11 @@ function deepCopy(oldObj) {
 // b.a.b.c = 3;
 // console.log(b);
 // console.log(a);
+
+var a = [1, 2, 3];
+var b = deepCopy(a);
+
+b.push(4);
+
+console.log(b);
+console.log(a);

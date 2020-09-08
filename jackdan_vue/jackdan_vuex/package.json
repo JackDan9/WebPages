@@ -4,12 +4,26 @@
   "description": "A project for testing vuex",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "build": "webpack --config webpack.config.js",
+    "dev": "webpack-dev-server --config webpack.config.js"
   },
   "keywords": [
     "vuex",
     "test"
   ],
   "author": "jackdan",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "html-webpack-plugin": "^4.4.1",
+    "style-loader": "^1.2.1",
+    "vue": "^2.6.12",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^4.44.1",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.12"
+  }
 }
