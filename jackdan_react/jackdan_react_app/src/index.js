@@ -6,6 +6,7 @@ import HooksExample from './components/HooksExample/index';
 import HighOrderComponent from './components/HighOrderComponent/index';
 import HooksEffectExample from './components/HooksEffectExample';
 import NoEffectExample from './components/HooksEffectExample/NoEffectExample';
+import ExampleUseState from './components/ExampleUseState';
 
 function Square(props) {
     return (
@@ -130,7 +131,8 @@ ReactDOM.render(
         {/* <HooksExample />, */}
         {/* <HighOrderComponent /> */}
         {/* <HooksEffectExample /> */}
-        <NoEffectExample />
+        {/* <NoEffectExample /> */}
+        <ExampleUseState />
     </div>,    
     document.getElementById('root')
 );

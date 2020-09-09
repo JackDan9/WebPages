@@ -39,6 +39,15 @@
 import React, {useState, useEffect} from 'react';
 
 
+
+// 1. 常用的场景。
+
+    // 不用useEffect，为什么异步（请求数据，事件处理，订阅等相关操作）页面会死循环？（循环调用数据，循环刷新页面）
+
+// 2. useEffect的第二个参数控制死循环。（只调用一次，但是页面至少刷新二次！）不完美
+
+// 3. useEffect的执行的页面渲染之后执行的（组件渲染到屏幕之后执行）。
+
 function HooksEffectExample() {
     const [count, setCount] = useState(0);
 
