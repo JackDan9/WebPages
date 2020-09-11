@@ -7,82 +7,125 @@
     </head>
     <body>
         <script type="text/javascript">
-            var _Promise = function(resolver) {
-                var _this = this;
-                _this._status = 'pending';
-                _this._result = '';
-                resolver(_this.resolve.bind(_this), _this.reject.bind(_this));
-            }
+            // var _Promise = function(resolver) {
+            //     var _this = this;
+            //     _this._status = 'pending';
+            //     _this._result = '';
+            //     resolver(_this.resolve.bind(_this), _this.reject.bind(_this));
+            // }
 
-            _Promise.prototype.resolve = function(result) {
-                var _this = this;
-                if(_this._status === 'pending') {
-                    _this._status = 'fullfilled';
-                    _this._result = result;
-                }
-            }
+            // _Promise.prototype.resolve = function(result) {
+            //     var _this = this;
+            //     if(_this._status === 'pending') {
+            //         _this._status = 'fullfilled';
+            //         _this._result = result;
+            //     }
+            // }
 
-            _Promise.prototype.reject = function(result) {
-                var _this = this;
-                if(_this._status === 'pending') {
-                    _this._status ='rejected';
-                    _this._result = result;
-                }
-            }
+            // _Promise.prototype.reject = function(result) {
+            //     var _this = this;
+            //     if(_this._status === 'pending') {
+            //         _this._status ='rejected';
+            //         _this._result = result;
+            //     }
+            // }
 
-            _Promise.prototype.then = function(isResolve, isReject) {
-                var _this = this;
-                if(_this._status === 'fullfilled') {
-                    var _isPromise = isResolve(_this._result);
-                    if(_isPromise instanceof _Promise) {
-                        return _isPromise(_this._result); 
-                    }
-                    return _this;
-                } else if(_this._status === 'rejected' && arguments[1]) {
-                    var _err = new TypeError(_this._result);
-                    var _isPromise = isReject(_err);
-                    if(_isPromise instanceof _Promise) {
-                        return _isPromise;
-                    }
-                    return _this;
-                }
-            }
+            // _Promise.prototype.then = function(isResolve, isReject) {
+            //     var _this = this;
+            //     if(_this._status === 'fullfilled') {
+            //         var _isPromise = isResolve(_this._result);
+            //         if(_isPromise instanceof _Promise) {
+            //             return _isPromise(_this._result); 
+            //         }
+            //         return _this;
+            //     } else if(_this._status === 'rejected' && arguments[1]) {
+            //         var _err = new TypeError(_this._result);
+            //         var _isPromise = isReject(_err);
+            //         if(_isPromise instanceof _Promise) {
+            //             return _isPromise;
+            //         }
+            //         return _this;
+            //     }
+            // }
 
-            _Promise.prototype.catch = function(isReject) {
-                var _this = this;
-                if(_this._status === 'rejected') {
-                    var _err = new TypeError(_this._result);
-                    var _isPromise = isReject(_err);
-                    if(_isPromise instanceof _Promise) {
-                        return _isPromise;
-                    }
-                    return _this;
-                }
-            }
+            // _Promise.prototype.catch = function(isReject) {
+            //     var _this = this;
+            //     if(_this._status === 'rejected') {
+            //         var _err = new TypeError(_this._result);
+            //         var _isPromise = isReject(_err);
+            //         if(_isPromise instanceof _Promise) {
+            //             return _isPromise;
+            //         }
+            //         return _this;
+            //     }
+            // }
 
-            var promise1 = new _Promise(function(resolve, reject) {
-                var a = 55;
-                resolve(a);
-            })
-            promise1.then(function(a) {
-                console.log(a);
-            })
-            // const p1 = new Promise((resolve, reject) => {
-            //     resolve('hello');
+            // var promise1 = new _Promise(function(resolve, reject) {
+            //     var a = 55;
+            //     resolve(a);
             // })
+            // promise1.then(function(a) {
+            //     console.log(a);
+            // })
+            var p1 = new Promise((resolve, reject) => {
+                resolve('hello');
+            })
+            // .then(result => result)
+            // .catch(e => e);
+            var p2 = new Promise((resolve, reject) => {
+                // throw new Error('报错了');
+                reject('jackdan');
+            })
             // .then(result => result)
             // .catch(e => e);
 
-            // const p2 = new Promise((resolve, reject) => {
-            //     throw new Error('报错了');
-            // })
-            // .then(result => result)
-            // .catch(e => e);
-
-            // Promise.all([p1, p2])
+            const p3 = Promise.all([p1, p2])
             // .then(result => console.log(result))
-            // .catch(e => console.log(e));
+            .catch(e => console.log(e));
+            console.log(p3);
 
+            Promise._all = function(promiseArr) {
+                if(!Array.isArray(promiseArr)) {
+                    throw new Error("Please give me a array!");
+                } else {
+                    for(let i = 0; i < promiseArr.length; i++) {
+                        if(!(promiseArr[i] instanceof Promise)) {
+                            throw new Error("Please give me a promise array!");
+                        }
+                    }
+
+                    return new Promise((resolve, reject) => {
+                        let _index = 0;
+                        let _len = promiseArr.length;
+                        let _results = new Array(_len);
+
+                        for(let j = 0; j < _len; j++) {
+                            promiseArr[j].then((value) => {
+                                _index++;
+                                _results[j] = value;
+                                if(_index === _len) {
+                                    resolve(_results);
+                                }
+                            }, (error) => {
+                                let _err = new Error(error);
+                                reject(_err);
+                            })
+                        }
+                    })
+                }
+            }
+
+            const p4 = Promise._all([p1, p2])
+            // .then(result => console.log(result))
+            .catch(e => console.log(e));
+            console.log(p4);
+            // debugger;
+            // setTimeout(function(){
+            //     console.log('the stack is now empty');
+            //     debugger;
+            //     console.log(promiseAll);
+            // });
+            // console.log(promiseAll);
             // function f1() {
             //     console.log(4);
             // }

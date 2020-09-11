@@ -114,29 +114,100 @@ promise1.catch((c) => {
 /**
  * 手写Promise.all
  */
+
 // 原来的Promise.all
-const p1 = new Promise((resolve, reject) => {
+let p1 = new Promise((resolve, reject) => {
     resolve('hello');
 })
-.then(result => result)
-.catch(e => e);
 
-const p2 = new Promise((resolve, reject) => {
-    throw new Error('报错了');
+let p2 = new Promise((resolve, reject) => {
+    reject('jackdan');
 })
-.then(result => result)
-.catch(e => e);
 
-const p3 = new Promise((resolve, reject) => {
+let p3 = new Promise((resolve, reject) => {
     resolve('world');
-}).then(result => result)
-.catch(e => e);
+})
 
 Promise.all([p1, p2, p3])
     .then(result => console.log(result))
-    .catch(e => console.log(e));
+    .catch(err => console.log(err));
 
-// 自己写的Promise.all
-_Promise.all = function(arr) {
-    
+
+/**
+ * 基于Promise是实现自己的Promise._all
+ * @param {Promise Array} promisesArr 
+ */
+Promise._all = function (promiseArr) {
+    if (!Array.isArray(promiseArr)) {
+        throw new Error("Please give me a array!");
+    } else {
+        for (let i = 0; i < promiseArr.length; i++) {
+            if (!(promiseArr[i] instanceof Promise)) {
+                throw new Error("Please give me a promise!");
+            }
+        }
+
+        return new Promise((resolve, reject) => {
+            let _index = 0;
+            let _len = promiseArr.length;
+            let _results = new Array(_len);
+
+            for (let j = 0; j < _len; j++) {
+                promiseArr[j].then((value) => {
+                    _index++;
+                    _results[j] = value;
+                    if (_index === _len) {
+                        resolve(_results);
+                    }
+                }, (error) => {
+                    let _err = new Error(error);
+                    reject(_err);
+                })
+            }
+        })
+    }
 }
+
+/**
+ * 基于自己实现的_Promise做操作
+ * @param {Promise Array} promiseArr 
+ */
+_Promise._all = function (promiseArr) {
+    if (!Array.isArray(promiseArr)) {
+        throw new Error('You need give me a array');
+    } else {
+        let _len = promiseArr.length;
+        for (let i = 0; i < _len; i++) {
+            if (!(promiseArr[i] instanceof _Promise)) {
+                throw new Error('You need give me a _promise');
+            }
+        }
+
+        return new _Promise((resove, reject) => {
+            let _index = 0;
+            let _results = new Array(len);
+            for(let j = 0; j < _len; j++) {
+                promiseArr[j].then((value) => {
+                    _index++;
+                    _results[j] = value;
+                    if(_index === _len) {
+                        resolve(_results);
+                    }
+                }, (error) => {
+                    let err = new Error(error);
+                    reject(err);
+                });
+            }
+        });
+    }
+};
+
+let _p1 = new _Promise((resolve, reject) => {
+    resolve('hello');
+})
+
+let _p2 = new _Promise((resolve, reject) => {
+    reject("jackdan");
+})
+
+_Promise._all([_p1, _p2]);

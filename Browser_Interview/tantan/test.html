@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>test</title>
+        <style type="text/css">
+            .parent {
+                font-size: 16px;
+                line-height: 32px;
+            }
+            
+            .s1 {
+                font-size: 2em;
+                /* 32px */
+
+            }
+            
+            .s2 {
+                font-size: 2em;
+                /* 32px */
+                line-height: 2em;
+                /* 64px */
+            }
+
+            .parent {
+                display: flex;
+                width: 1080px;
+            }
+
+            .child1 {
+                flex: 1;
+                order: 1;
+            }
+
+            .child2 {
+                flex: 2;
+                order: 2;
+            }
+
+            .child3 {
+                flex: 3;
+                order: 0;
+                /* flex-basis: auto; */
+            }
+        </style>
+    </head>
+    <body>
+        <!-- <div class="parent">
+            <div class="s1">111</div>
+            <div class="s2">11111</div>
+        </div> -->
+        <div class="parent">
+            <div class="child1"></div>
+            <div class="child2"></div>
+            <div class="child3"></div>
+        </div>
+    </body>
+</html>
