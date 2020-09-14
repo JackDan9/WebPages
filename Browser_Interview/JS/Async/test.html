@@ -7,18 +7,18 @@
     </head>
     <body>
         <script type="text/javascript">
-            async function print(value) {
-                // debugger;
-                // await new Promise((resolve) =>   {
-                //     console.log(value);
-                //     // resolve();
-                // }),
-                debugger;
-                await value
-                // await 3
-            }
+            // async function print(value) {
+            //     // debugger;
+            //     // await new Promise((resolve) =>   {
+            //     //     console.log(value);
+            //     //     // resolve();
+            //     // }),
+            //     debugger;
+            //     await value
+            //     // await 3
+            // }
 
-            print(1);
+            // print(1);
             // async function timeout(timer) {
             //     await new Promise((resolve) => {
             //         setTimeout(resolve, timer);
@@ -32,20 +32,34 @@
             //     console.log(value);
             // }
 
-            // async function timeout(ms) {
-            //     await new Promise((resolve) => {
-            //         setTimeout(resolve, ms);
-            //     });
-            // }
+            async function timeout(ms) {
+                await new Promise((resolve) => {
+                    setTimeout(resolve, ms);
+                });
+            }
 
-            // async function asyncPrint(value, ms) {
-            //     await timeout(ms);
-            //     console.log(value);
-            // }
+            async function asyncPrint(value, ms) {
+                console.log(value + '之前');
+                await timeout(ms);
+                console.log(value);
+            }
 
-            // asyncPrint(3, 30000);
-            // asyncPrint(2, 20000);
-            // asyncPrint(1, 10000);
+            asyncPrint(6, 3000);
+            asyncPrint(5, 2000);
+            asyncPrint(4, 1000);
+            
+            var genPrint = function* (value, timer) {
+                yield setTimeout(() => {
+                    console.log(value);
+                }, timer);
+            }
+            
+            var gen = genPrint(3, 3000);
+            gen.next();
+            var gen1 = genPrint(2, 2000);
+            gen1.next();
+            var gen2 = genPrint(1, 1000);
+            gen2.next();
         </script>
     </body>
 </html>
