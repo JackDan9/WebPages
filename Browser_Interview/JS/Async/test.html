@@ -33,15 +33,32 @@
             // }
 
             async function timeout(ms) {
-                await new Promise((resolve) => {
-                    setTimeout(resolve, ms);
-                });
+                // await new Promise((resolve) => {
+                //     setTimeout(resolve, ms);
+                // });
+                console.log('await' + ms);
+            }
+
+            async function timeout1(ms) {
+                // await new Promise((resolve) => {
+                //     setTimeout(resolve, ms);
+                // });
+                // console.log('await1' + ms);
+            }
+
+            async function timeout2(ms) {
+                // await new Promise((resolve) => {
+                //     setTimeout(resolve, ms);
+                // });
+                console.log('await2' + ms);
             }
 
             async function asyncPrint(value, ms) {
-                console.log(value + '之前');
+                // console.log(value + '之前');
                 await timeout(ms);
-                console.log(value);
+                await timeout1(ms);
+                await timeout2(ms);
+                // console.log(value);
             }
 
             asyncPrint(6, 3000);

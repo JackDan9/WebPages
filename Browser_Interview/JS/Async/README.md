@@ -1,11 +1,12 @@
 # Async
 ``` javascript
 const fn1 = () => {
-    return new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(123);
-        }, 3000);
-    })
+    // return new Promise((resolve, reject) => {
+    //     setTimeout(() => {
+    //         resolve(123);
+    //     }, 3000);
+    // })
+    console.log(2);
 }
 
 const fn2 = () => {
@@ -26,7 +27,7 @@ const fn3 = () => {
 
 const testAsync = async () => {
     const testTime = await fn1();
-    console.log(testTime);
+    console.log(1);
     const testTime1 = await fn2();
     console.log(testTime1);
     const testTime2 = await fn3();
