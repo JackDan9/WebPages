@@ -6,15 +6,18 @@
 
         <!-- v-for会比v-if优先执行 -->
 
-        <ul v-for="(item, index) in dataList" v-bind:key="index" v-show="flag">
+        <!-- <ul v-for="(item, index) in dataList" v-bind:key="index" v-show="flag">
             <li>{{ item }}</li>
-        </ul>
-        
+        </ul> -->
+        <span>{{count}}</span>
     </div>
     
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 export default {
     data() {
         return {
@@ -23,8 +26,23 @@ export default {
             text: 'jackdan'
         }
     },
+    methods: {
+        setCount() {
+            this.setCount(1);
+        },
+        ...mapMutations(
+            {
+                setCount: 'SET_COUNT',
+            }
+        )
+    },
     mounted() {
         // debugger;
+    },
+    computed: {
+        ...mapGetters([
+            'count'
+        ])
     }
 }
 </script>

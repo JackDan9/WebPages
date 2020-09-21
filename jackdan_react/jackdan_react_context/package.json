@@ -1,0 +1,38 @@
+{
+  "name": "jackdan_react_context",
+  "version": "1.0.0",
+  "description": "A project for jackdan_react_context",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --config ./webpack.config.js --open",
+    "dev": "webpack-dev-server --mode development --config webpack.config.js --open",
+    "build": "webpack --mode production --config ./webpack.config.js",
+    "test": "test"
+  },
+  "keywords": [
+    "react",
+    "react",
+    "context"
+  ],
+  "author": "jackdan",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.10.3",
+    "@babel/core": "^7.10.3",
+    "@babel/plugin-proposal-class-properties": "^7.10.1",
+    "@babel/plugin-transform-runtime": "^7.10.3",
+    "@babel/preset-env": "^7.10.3",
+    "@babel/preset-react": "^7.10.1",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "html-webpack-plugin": "^4.4.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
