@@ -10,6 +10,10 @@
             <li>{{ item }}</li>
         </ul> -->
         <span>{{count}}</span>
+        <br />
+        <input type="number" v-model="count" @input="setCount(count)" />
+
+        <v-father></v-father>
     </div>
     
 </template>
@@ -18,23 +22,32 @@
 import { mapGetters } from 'vuex';
 import { mapMutations } from 'vuex';
 import { mapActions } from 'vuex';
+import Father from './components/Father/Father.vue';
 export default {
     data() {
         return {
             dataList: ['jackdan', 'jack', 'dan'],
             flag: false,
-            text: 'jackdan'
+            text: 'jackdan',
         }
     },
     methods: {
-        setCount() {
-            this.setCount(1);
+        // setCount() {
+        //     this.setCount(1);
+        // },
+        // ...mapMutations(
+        //     {
+        //         setCount: 'SET_COUNT',
+        //     }
+        // ),
+        setCount: function(count) {
+            this.setCount({
+                count: count
+            })
         },
-        ...mapMutations(
-            {
-                setCount: 'SET_COUNT',
-            }
-        )
+        ...mapActions([
+            'setCount'
+        ])
     },
     mounted() {
         // debugger;
@@ -43,6 +56,9 @@ export default {
         ...mapGetters([
             'count'
         ])
+    },
+    components: {
+        'v-father': Father,
     }
 }
 </script>

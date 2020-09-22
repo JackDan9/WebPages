@@ -59,5 +59,9 @@ new Vue({
 ## Vuex的特点
 - 每一个Vuex应用的核心就是store(仓库), 
 
+## Mutation同步
+
+## Actions异步
+
 
 > https://vuex.vuejs.org/zh/
