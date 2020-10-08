@@ -1,0 +1,13 @@
+事件捕获阶段
+目的处理阶段
+事件冒泡阶段
+
+event.preventDefault();
+
+event.stopProgation();
+
+var button = document.querySelector('button');
+
+button.onclick = function (e) {
+    
+}
