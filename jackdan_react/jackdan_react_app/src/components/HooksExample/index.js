@@ -20,7 +20,10 @@ import React, {useState, useEffect} from 'react';
  * 
  */
 
-function HooksExample() {
+function HooksExample(...props) {
+    const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
+        props.onClose?.(e);
+    };
     // const [count, setCount] = useState(0);
     let _useState = useState(0);
     let count = _useState[0];

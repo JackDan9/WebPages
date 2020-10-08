@@ -17,6 +17,10 @@ function Square(props) {
     );
 }
 
+const onClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log(e, 'I was closed');
+};
+
 class Board extends React.Component {
     renderSquare(i) {
         return (
@@ -129,12 +133,12 @@ class Game extends React.Component {
 ReactDOM.render(
     <div>
         {/* <Example />, */}
-        {/* <HooksExample />, */}
+        <HooksExample onClose={onClose} />,
         {/* <HighOrderComponent /> */}
         {/* <HooksEffectExample /> */}
         {/* <NoEffectExample /> */}
         {/* <ExampleUseState /> */}
-        <App />
+        {/* <App /> */}
     </div>,    
     document.getElementById('root')
 );
