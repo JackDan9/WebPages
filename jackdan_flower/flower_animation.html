@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>flower animation</title>
+		<style type="text/css">
+			.bg {
+				position: relative;
+			}
+
+			.position1 {
+				position: absolute;
+				top: 0;
+				left: 270px;
+				animation: fallDown 10s infinite;
+				animation-fill-mode: forwards;
+			}
+
+			.flower {
+				width: 30px;
+				height: 30px;
+				background: url("https://q1.qlogo.cn/g?b=qq&nk=271447346&s=40") no-repeat;
+				background-size: contain;
+			}
+
+			@keyframes fallDown {
+				0% {
+					transform: translateX(0) translateY(0) rotate(0deg);
+					opacity: 1;
+				}
+				100% {
+					transform: translateX(-134px) translateY(134px) rotate(180deg);
+					opacity: 1;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="bg">
+			<div class="flower position1" />
+		</div>
+	</body>
+</html>

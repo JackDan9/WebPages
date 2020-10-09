@@ -15,8 +15,8 @@
             // if (!Function.prototype.bind) (function () {
 
             // })();
-            // Function.prototype.mybind = function () {
-                // if(!Function.prototype.mybind) (function () {
+            Function.prototype.mybind = function () {
+                if(!Function.prototype.mybind) (function () {
                     var slice = Array.prototype.slice;
                     Function.prototype.mybind = function () {
                         var thatFunc = this;
@@ -25,14 +25,13 @@
                         if (typeof thatFunc !== 'function') {
                             throw new TypeError("Function.prototype.mybind - " + "what is trying to be bound is not callable");
                         }
-
                         return function () {
                             var funcArgs = args.concat(slice.call(arguments));
                             return thatFunc.apply(thatArg, funcArgs);
                         }
                     }
-                // })();
-            // }
+                })();
+            };
 
             const obj = {
                 value: 42,
