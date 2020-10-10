@@ -98,3 +98,5 @@ var promise1 = new _Promise(function(resolve, reject) {
     resolve(10);
 })
 ```
+
+> https://segmentfault.com/a/1190000009478377
