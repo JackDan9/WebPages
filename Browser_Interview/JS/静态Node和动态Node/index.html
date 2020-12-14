@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=" />
+  <title>静态Node和动态Node</title>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js" integrity="sha512-WNLxfP/8cVYL9sj8Jnp6et0BkubLP31jhTG9vhL/F5uEZmg5wEzKoXp1kJslzPQWwPT1eyMiSxlKCgzHLOTOTQ==" crossorigin="anonymous"></script> -->
+  <script type="text/javascript">
+    window.onload = function () {
+      let dom = document.querySelectorAll('.content');
+      
+      Object.prototype.html = function () {
+        if (arguments.length === 0) {
+          return this.innerHTML;
+        } else if (arguments.length === 1) {
+          this.innerHTML += arguments[0];
+          return this;
+        }
+      }
+
+      // Object.prototype.append = function(newElem){ 
+      //   this.innerHTML += newElem; 
+      //   return this; 
+      // } 
+      dom.forEach((domItem) => {
+        domItem.html("<span>单军军无敌帅</span>");
+      })
+
+      // let dom  = document.getElementsByClassName('content');
+      // let domArr = Array.prototype.slice.call(dom);
+      // let span = document.createElement('SPAN');
+      // span.innerHTML = "单军军无敌帅";
+
+
+      // function $(strExpr) {
+      //   var idExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/;
+      //   var classExpr = /^(?:\s*(<[\w\W]+>)[^>]*|.([\w-]*))$/;
+      //   if (idExpr.test(strExpr)) {
+      //     var idMatch = idExpr.exec(strExpr);
+      //     return document.getElementById(idMatch[2]);
+      //   } else if (classExpr.test(strExpr)) {
+      //     var classMatch = classExpr.exec(strExpr);
+      //     var allElement = document.getElementsByTagName("*");
+      //     var ClassMatch = [];
+      //     for (var i = 0, l = allElement.length; i < l; i++) {
+      //       if (allElement[i].className.match(new RegExp("(\\s|^)" + classMatch[2] + "(\\s|$)"))) {
+      //         ClassMatch.push(allElement[i]);
+      //       }
+      //     }
+      //     return ClassMatch;
+      //   }
+      // }
+
+      // $(".content").append("<span>单军军无敌帅</span>");
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content"></div>
+    <div class="content"></div>
+    <div class="content"></div>
+    <div class="content">
+      <span>单军军不仅帅无敌而且写代码很六!</span>
+      <a href="/">单军军</a>
+    </div>
+  </div>
+</body>
+
+</html>

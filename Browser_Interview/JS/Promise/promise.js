@@ -183,7 +183,7 @@ _Promise._all = function (promiseArr) {
             }
         }
 
-        return new _Promise((resove, reject) => {
+        return new _Promise((resolve, reject) => {
             let _index = 0;
             let _results = new Array(len);
             for(let j = 0; j < _len; j++) {

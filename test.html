@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0" />
+    <title>Test</title>
+    <script type="text/javascript">
+      function A() {
+          this.x = 1;
+          this.print = function() {
+              console.log(this.x);
+          }
+      }
+      
+      // 创建一个空对象，并且 this 变量引用该对象，同时还继承了该函数的原型
+      // 属性和方法被加入到 this 引用的对象中
+      // 新创建的对象由 this 所引用，并且最后隐式的返回 this
+
+      var a = new A();
+      function newObject() {
+        var obj = new Object();
+        Constructor = [].shift.call(arguments);
+        obj.__proto__ = Constructor.prototype;
+        var temp = Constructor.apply(obj, arguments);
+        return typeof temp === 'object' ? temp : obj;
+      }
+
+      
+      var b = newObject(A)
+      // var b = {};
+      // b.construtor = A;
+      // this.b = b;
+
+      // a.__proto__ === A.prototype
+      // 
+      var print = a.print;
+      print();
+
+      var temp = {x: 2, print: print};
+      temp.print();
+    </script>
+  </head>
+  <body>
+
+  </body>
+</html>
