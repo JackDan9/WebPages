@@ -28,13 +28,13 @@ console.log(child_nodes.length); // 但此时的输出是"3"
 ### NodeList方法
 - `NodeList.item()`: 返回`NodeList`对象中指定索引的节点, 如果索引越界, 则返回`null`。等价的写法是`nodeList[i]`, 不过, 在这种情况下, 越界访问将返回`undefined`。
 
-- `NodeList.entries()`: Returns an `iterator`(迭代器), allowing code to go through all `key/value` pairs contained in the collection. (In this case, the keys are numbers starting from 0 and the values are nodes.)。
+- `NodeList.entries()`: 返回一个迭代器(`iterator`), 允许代码遍历集合中包含的所有"键/值"对。(在这种情况下, 键是从0开始的数字, 而值是节点。) Returns an `iterator`(迭代器), allowing code to go through all `key/value` pairs contained in the collection. (In this case, the keys are numbers starting from 0 and the values are nodes.)。
 
-- `NodeList.forEach()`: Executes a `provided function once` per `NodeList` element, passing the element as an argument to the function。
+- `NodeList.forEach()`: 每个NodeList元素执行一次"提供的功能", 并将该元素作为参数传递给函数。Executes a `provided function once` per `NodeList` element, passing the element as an argument to the function。
 
-- `NodeList.keys()`: Returns an `iterator`(迭代器), allowing code to go through all the keys of the `key/value` pairs contained in the collection. (In this case, the keys are numbers starting from 0)。
+- `NodeList.keys()`: 返回一个迭代器(`iterator`), 允许代码遍历集合中包含的所有"键/值"对。(在这种情况下, 键是从0开始的数字) Returns an `iterator`(迭代器), allowing code to go through all the keys of the `key/value` pairs contained in the collection. (In this case, the keys are numbers starting from 0)。
 
-- `NodeList.values()`: Returns an `iterator`(迭代器) allowing code to go through all values (nodes) of the `key/value` pairs contained in the collection。
+- `NodeList.values()`: 返回一个迭代器(`iterator`), 允许代码遍历集合中包含的"键/值"对的所有值(节点)。Returns an `iterator`(迭代器), allowing code to go through all values (nodes) of the `key/value` pairs contained in the collection。
 
 ### 例子:
 - 可以使用`for`循环遍历一个`NodeList`对象中的所有的节点:
@@ -44,5 +44,40 @@ for (var i = 0; i < myNodeList.length; ++i) {
 }
 ```
 
-- **不要尝试使用`for...in`或者`for each...in`来遍历一个NodeList对象中的元素**, 因为, 
+#### 不要使用`for...in`或者`for each...in`
+
+- **不要尝试使用`for...in`或者`for each...in`来遍历一个NodeList对象中的元素**, 因为, 如果你把上述两个属性也看成`element`对象的话, `NodeList`对象中的`length`和`item`属性也会被遍历出来, 这可能会导致你的脚本`<script></script>`运行出错。此外, `for...in`不能保证访问这些属性的顺序。
+
+#### ES6 `for...of`
+
+- `for..of`循环将会正确的遍历`NodeList`对象:
+
+> 更多信息欢迎查看 [ES6 for..of]
+
+```javascript
+var list = document.querySelectorAll('');
+for(var checkbox of list) {
+  checkbox.checked = true;
+}
+```
+- 最近, 浏览器也支持一些遍历方法, 比如`forEach()`与`entries()`、`values()`、和`keys()`。
+- 也有一种使用数组Array的`Array.prototype.forEach`来遍历NodeList的方法, 这种方法兼容Internet Explorer:
+
+```javascript
+var list = document.querySelectorAll('input[type=checkbox]');
+Array.prototype.forEach.call(list, function(checkbox) {
+  checkbox.checked = true;
+});
+```
+
+
+
+> Thanking in JackDan
+
+> https://developer.mozilla.org/zh-CN/docs/Web/API/NodeList
+> https://developer.mozilla.org/zh-CN/docs/Web/API/Node/childNodes
+> https://developer.mozilla.org/zh-CN/docs/Web/API/Node/appendChild
+> https://developer.mozilla.org/zh-CN/docs/Web/API/Node/insertBefore
+> https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createElement
+
 
