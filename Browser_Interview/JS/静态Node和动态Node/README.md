@@ -159,7 +159,7 @@ while (box.firstChild)
 ```
 
 ## 备注
-- 集合的元素是**一个节点**而不是字符串。要从集合的元素获取数据, 你必须使用它们的属性(例如: 用`elementNodeReference.childNodes[1].nodeName`获取它们的名称, 等等)。
+- 集合的元素是**一个节点**而不是字符串。要从**集合的元素获取数据**, 你必须使用它们的属性(例如: 用`elementNodeReference.childNodes[1].nodeName`获取它们的名称, 等等)。
 
 - `document`节点(文档节点)包含两个子节点: Doctype声明和根节点。根节点通常为`documentElement`引用, 且在(X)HTML文档中为HTML元素。
 
@@ -208,6 +208,32 @@ document.body.appendChild(p);
 ```
 
 ------
+
+## insertBefore
+- `Node.insertBefore()`方法在参考节点之前插入一个拥有指定父节点的子节点。如果给定的子节点是对文档中现有节点的引用, `insertBefore()`会将其从当前位置移动到新位置(在将节点附加到其他节点之前, 不需要从其父节点删除该节点)。
+
+- 这意味着一**个节点不能同时位于文档的两个点**中。因此, 如果节点已经有父节点, 则首先删除该节点, 然后将其插入到新位置。在将节点追加到新父节点之前, 可以使用`Node.cloneNode()`复制节点。注意, 使用`cloneNode()`创建的节点副本**不会自动与原始节点保持同步**。
+
+- 如果引用节点为`null`, 则将指定的节点添加到指定父节点的子节点列表的末尾。
+
+- 如果给定的子节点是`DocumentFragment`, 那么`DocumentFragment`的全部内容将被移动到指定父节点的子节点列表中。
+
+## 语法
+```javascript
+var insertedNode = parentNode.insertNode(newNode, referenceNode);
+```
+
+- `insertedNode`被插入节点(newNode)
+- `parentNode`新插入节点的父节点
+- `newNode`用于插入的节点
+- `referenceNode` `newNode`将要插在这个节点之前
+
+- 如果`referenceNode`为`null`则`newNode`将被插入到子节点的末尾。
+
+> `referenceNode`引用节点不是可选参数——你必须显式传入一个`Node`或者`null`。如果**不提供节点或者传入无效值，在不同的浏览器中会有不同的表现**。
+
+## 返回值 
+
 
 > Thanking in JackDan
 
