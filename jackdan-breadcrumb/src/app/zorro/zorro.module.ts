@@ -3,7 +3,8 @@ import { NgModule, Type } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ZORRO_COMMON_MODULE } from './zorro-common.module';
+// import { ZORRO_COMMON_MODULE } from './zorro-common.module';
+import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 
 // #region your componets & directives
@@ -18,20 +19,15 @@ const DIRECTIVES: Type<any>[] = [];
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    ZORRO_COMMON_MODULE
+    NgZorroAntdModule
   ],
-  declarations: [
-    ...COMPONENTS,
-    ...DIRECTIVES
-  ],
+  declarations: [],
   exports: [
     CommonModule,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    ...ZORRO_COMMON_MODULE,
-    ...COMPONENTS,
-    ...DIRECTIVES
+    NgZorroAntdModule,
   ]
 })
 

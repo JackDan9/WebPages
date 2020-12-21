@@ -2,27 +2,30 @@ import { NgModule } from '@angular/core';
 
 import { Routes, RouterModule } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { BreadcrumbBasicComponent } from '../components/breadcrumb/basic/breadcrumb-basic.component';
+// import { BreadcrumbBasicComponent } from '../components/breadcrumb/basic/breadcrumb-basic.component';
+import { BreadcrumbComponent } from '../components/breadcrumb/breadcrumb.component';
 import { CardBasicComponent } from '../components/card/basic/card-basic.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'breadcrumb-basic',
+    redirectTo: 'breadcrumb',
     pathMatch: 'full'
   },
   {
-    path: 'breadcrumb-basic',
-    component: BreadcrumbBasicComponent,
+    path: 'breadcrumb',
+    component: BreadcrumbComponent,
+    loadChildren:
+      () => import('../components/breadcrumb/breadcrumb.module').then(m => m.BreadcrumbModule),
     data: {
-      title: ''
+      title: 'breadcrumb basic'
     }
   },
   {
     path: 'card-basic',
     component: CardBasicComponent,
     data: {
-      title: ''
+      title: 'card basic'
     }
   }
 ]

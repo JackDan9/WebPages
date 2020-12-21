@@ -12,8 +12,6 @@ import { Component, OnInit } from '@angular/core';
 
 export class BreadcrumbBasicComponent implements OnInit {
   constructor() {}
-
-  ngOnInit() : void {
-
+  ngOnInit() {
   }
 }

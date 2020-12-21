@@ -11,15 +11,20 @@ import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import zh from '@angular/common/locales/zh';
 
-import { ZorroModule } from './zorro/zorro.module';
+// import { ZorroModule } from './zorro/zorro.module';
+import { SharedModule } from './shared/shared.module';
 import { RoutesModule } from './routes/routes.module';
+import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
+import { CardBasicComponent } from './components/card/basic/card-basic.component';
 
 // registerLocaleData(en);
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BreadcrumbComponent,
+    CardBasicComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,7 @@ registerLocaleData(zh);
     HttpClientModule,
     BrowserAnimationsModule,
     RoutesModule,
-    ZorroModule,
+    SharedModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US }],
   bootstrap: [AppComponent],
