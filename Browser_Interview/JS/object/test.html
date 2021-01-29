@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>test</title>
+    <script type="text/javascript">
+      var objData = {
+        name: "单军军是帅哥"
+      } // 模拟data
+
+      var objArr = {
+        "1811": [
+          {name: "单军军"},
+          {name: "单军军1"}
+        ],
+        "1879": [
+          {name: "单军军是帅哥"},
+          {name: "单军军是帅哥1"}
+        ]
+      }
+
+      for(let objItem in objArr) {
+        if(JSON.stringify(objArr[objItem]).indexOf(JSON.stringify(objData)) != -1) {
+          console.log(objArr[objItem]);
+        }
+      }
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
