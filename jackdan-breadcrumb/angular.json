@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "jackdan-breadcrumb"
+  "defaultProject": "jackdan-breadcrumb",
+  "cli": {
+    "analytics": "20a68df7-951e-462a-928c-31c33042951a"
+  }
 }

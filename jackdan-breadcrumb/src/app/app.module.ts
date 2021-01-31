@@ -13,13 +13,17 @@ import zh from '@angular/common/locales/zh';
 
 import { ZorroModule } from './zorro/zorro.module';
 import { RoutesModule } from './routes/routes.module';
+import { BreadcrumbBasicComponent } from './components/breadcrumb/basic/breadcrumb-basic.component'
+import { CardBasicComponent } from './components/card/basic/card-basic.component';
 
 // registerLocaleData(en);
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BreadcrumbBasicComponent,
+    CardBasicComponent
   ],
   imports: [
     BrowserModule,
