@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+
+    .wrapper {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .content {
+      border: solid blue 1px;
+    }
+
+    .pull-down,
+    .pull-up {
+      position: absolute;
+      width: 100%;
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      color: #fff;
+      background: #999;
+    }
+
+    .pull-down {
+      top: -50px;
+    }
+
+    .pull-up {
+      bottom: -50px;
+    }
+
+    li {
+      width: 100%;
+      height: 50px;
+      border: solid red 1px;
+    }
+  </style>
+  <script src="./JS/better-scroll.js"></script>
+  <script>
+    window.onload = function () {
+
+      var p = document.querySelector(".pull-down");
+      var up = document.querySelector(".pull-up");
+      //获取展示内容高度
+      var h = p.offsetHeight;
+      //标识，当前是否加载完成数据
+      var endDate = 0;
+      //创建上拉加载的数据
+      var data = [];
+      //循环添加数据
+      for (let i = 16; i <= 30; i++) {
+        data.push("列表" + i)
+      }
+      //实例化better-scroll
+      var bs = BetterScroll.createBScroll(".wrapper", {
+        probeType: 2, //实时获取滚动坐标位置
+        freeScroll: true,
+        eventPassthrough: "horizontal",
+        useTransition: true,
+        scrollY: true
+      });
+
+      //给实例化对象绑定事件方法
+      bs.on("scroll", onScroll);
+      bs.on("scrollEnd", scrollEnd);
+
+      //滚动结束后执行scrollEnd
+      function scrollEnd() {
+        var select = p.getAttribute("select");
+        var selectUp = up.getAttribute("select");
+        if (select) {
+          // console.log("刷新");
+          //刷新页面
+          location.reload();
+        }
+        if (selectUp) {
+          // console.log("加载");
+          loadData();
+        }
+      }
+      //加载数据的构造函数
+      function loadData() {
+        //splice 返回截取数据，修改原数组长度
+        //map 
+        //判断数组数据是否为空，不为空继续添加节点数据，否则提示数据为空
+        if (data.length > 0) {
+          //endDate:数据表示还有
+          endDate = 0;
+          var newData = data.splice(0, 5);
+          document.querySelector(".list").innerHTML += newData.map(function (item) {
+            return "<li>" + item + "</li>"
+          }).join("");
+          bs.refresh();
+        } else {
+          up.innerHTML = "没有数据了";
+          //endDate:数据表示没有了，为空
+          endDate = 1;
+        }
+      }
+      //获取滚动的实时坐标位置
+      function onScroll() {
+        //坐标大于提示文字高度后展示相应内容，否则内容
+        if (bs.y > h) {
+          p.innerHTML = "释放刷新..."
+          p.setAttribute("select", true);
+        } else {
+          p.innerHTML = "下拉刷新"
+          p.removeAttribute("select");
+        }
+        //endDate 来判断是否是已经加载完毕
+        if (!endDate) {
+          if (bs.y < (bs.maxScrollY + -h)) {
+            up.innerHTML = "释放加载...";
+            up.setAttribute("select", true);
+          } else {
+            up.innerHTML = "上拉加载"
+            up.removeAttribute("select");
+          }
+        }
+      }
+
+      var overscroll = function (el) {
+        el.addEventListener('touchstart', function () {
+          var top = el.scrollTop,
+            totalScroll = el.scrollHeight,
+            currentScroll = top + el.offsetHeight;
+          if (top === 0) {
+            el.scrollTop = 1;
+          } else if (currentScroll === totalScroll) {
+            el.scrollTop = top - 1;
+          }
+        });
+
+        el.addEventListener('touchmove', function (evt) {
+          if (el.offsetHeight < el.scrollHeight)
+            evt._isScroller = true;
+        });
+      }
+
+      overscroll(document.querySelector('.wrapper'));
+      document.body.addEventListener('touchmove', function (evt) {
+        if (!evt._isScroller) {
+          evt.preventDefault();
+        }
+      });
+    }
+  </script>
+</head>
+
+<body>
+
+  <div class="wrapper">
+    <!-- 滚动DOM -->
+    <div class="content">
+      <p class="pull-down">下拉刷新</p>
+      <ul class="list">
+        <li>列表1</li>
+        <li>列表2</li>
+        <li>列表3</li>
+        <li>列表4</li>
+        <li>列表5</li>
+        <li>列表6</li>
+        <li>列表7</li>
+        <li>列表8</li>
+        <li>列表9</li>
+        <li>列表10</li>
+        <li>列表11</li>
+        <li>列表12</li>
+        <li>列表13</li>
+        <li>列表14</li>
+        <li>列表15</li>
+      </ul>
+      <p class="pull-up">上拉加载</p>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+  <title>scroll</title>
+  <script src="./JS/better-scroll.js"></script>
+  <script type="text/javascript">
+    window.onload = function () {
+      let wrapper = document.getElementById("wrapper")
+      // debugger
+      let bs = BetterScroll.createBScroll(wrapper, {
+        scrollbar: {
+          fade: true
+        },
+        freeScroll: true,
+        eventPassthrough: "horizontal",
+        useTransition: true,
+        scrollY: true,
+        click: true
+      })
+
+      bs.on("scroll", onScroll);
+
+      //获取滚动的实时坐标位置
+      function onScroll() {
+        //坐标大于提示文字高度后展示相应内容，否则内容
+        if (bs.y > h) {
+          p.innerHTML = "释放刷新..."
+          p.setAttribute("select", true);
+        } else {
+          p.innerHTML = "下拉刷新"
+          p.removeAttribute("select");
+        }
+        //endDate 来判断是否是已经加载完毕
+        if (!endDate) {
+          if (bs.y < (bs.maxScrollY + -h)) {
+            up.innerHTML = "释放加载...";
+            up.setAttribute("select", true);
+          } else {
+            up.innerHTML = "上拉加载"
+            up.removeAttribute("select");
+          }
+        }
+      }
+    }
+    // let overscroll = function(el) {
+    //   el.addEventListener('touchstart', function() {
+    //       var top = el.scrollTop
+    //       ,totalScroll = el.scrollHeight
+    //       ,currentScroll = top + el.offsetHeight;
+    //       if(top === 0) {
+    //           el.scrollTop = 1;
+    //       }else if(currentScroll === totalScroll) {
+    //           el.scrollTop = top - 1;
+    //       }
+    //   });
+
+    //   el.addEventListener('touchmove', function(evt) {
+    //   if(el.offsetHeight < el.scrollHeight)
+    //       evt._isScroller = true;
+    //   });
+    // }
+
+    // overscroll(document.querySelector('.scroll'));
+    // document.body.addEventListener('touchmove', function(evt) {
+    //     if(!evt._isScroller) {
+    //         evt.preventDefault();
+    //     }
+    // });
+  </script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .header {
+      width: 100%;
+      height: 40px;
+      background-color: blue;
+      position: fixed;
+      top: 0;
+    }
+
+    .wrapper {
+      width: 100%;
+      height: 100%;
+    }
+
+    .content {
+      margin-bottom: 10px;
+      width: 100%;
+      height: 100%;
+      margin-top: 40px;
+      background-color: pink;
+    }
+
+    .content1 {
+      width: 100%;
+      height: 100%;
+      background-color: pink;
+    }
+
+    .content2 {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div id="header" class="header"></div>
+    <div id="wrapper" class="wrapper">
+      <ul class="content2">
+        <li id="content" class="content">AAA</li>
+        <li id="content1" class="content1">BBBB</li>
+      </ul>
+    </div>
+  </div>
+</body>
+
+</html> -->
