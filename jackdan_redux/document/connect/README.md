@@ -1,9 +1,9 @@
 # react-redux的connect和Provider的原理
 
-- react-redux提供connect和Provider将react和redux连接起来。
+- react-redux提供`connect`和`Provider`将react和redux连接起来。
 
-  - connect: 用于创建容器组件, 可以使容器组件访问到Provider组件通过context提供的store, 并将mapStateToProps和mapDispatchToProps返回的state和dispatch传递给UI组件。
-  - Provider: 通过context向子组件提供store。
+  - `connect`: 用于创建容器组件, 可以使容器组件访问到Provider组件通过context提供的store, 并将mapStateToProps和mapDispatchToProps返回的state和dispatch传递给UI组件。
+  - `Provider`: 通过`context`向子组件提供`store`。
 
 ## 1、connect和Provider的使用
 
