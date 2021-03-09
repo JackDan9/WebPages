@@ -1,0 +1,58 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\ES-PC\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add vue-waterfall --save-dev
+
+PATH: 
+  C:\Users\ES-PC\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\ES-PC\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\WINDOWS\System32\OpenSSH;C:\Program Files\Git\usr\bin;C:\Users\ES-PC\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\ES-PC\AppData\Roaming\nvm;C:\Users\ES-PC\AppData\Local\Programs\Python\Python36_bak\Scripts;C:\Users\ES-PC\AppData\Local\Programs\Python\Python36_bak;C:\Users\ES-PC\AppData\Local\Microsoft\WindowsApps;C:\Users\ES-PC\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ES-PC\AppData\Roaming\npm;C:\Program Files (x86)\wkhtmltopdf;C:\Python27;C:\Python27\Scripts;C:\Users\ES-PC\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  12.13.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile 'C:\Users\ES-PC\AppData\Local\Yarn\Cache\v6\npm-inherits-2.0.1-b17d08d326b4423e568eff719f91b0b1cbdf69f1-integrity\node_modules\inherits\inherits_browser.js' -> 'C:\Users\ES-PC\WebPages\jackdan_vue\jackdan_vuex\node_modules\assert\node_modules\inherits\inherits_browser.js'
+
+npm manifest: 
+  {
+    "name": "jackdan_vuex",
+    "version": "1.0.0",
+    "description": "A project for testing vuex",
+    "main": "index.js",
+    "scripts": {
+      "test": "test",
+      "build": "webpack --config webpack.config.js",
+      "dev": "webpack-dev-server --config webpack.config.js"
+    },
+    "keywords": [
+      "vuex",
+      "test"
+    ],
+    "author": "jackdan",
+    "license": "MIT",
+    "dependencies": {
+      "axios": "^0.20.0",
+      "html-webpack-plugin": "^4.4.1",
+      "style-loader": "^1.2.1",
+      "vue": "^2.6.12",
+      "vue-loader": "^15.9.3",
+      "vue-resource": "^1.5.1",
+      "vue-router": "^3.4.3",
+      "vue-template-compiler": "^2.6.12",
+      "vuex": "^3.5.1",
+      "webpack": "^4.44.1",
+      "webpack-dev-server": "^3.11.0"
+    },
+    "devDependencies": {
+      "webpack-cli": "^3.3.12"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
