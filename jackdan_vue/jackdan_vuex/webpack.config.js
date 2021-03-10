@@ -1,7 +1,9 @@
 const path = require("path");
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { HotModuleReplacementPlugin } = require("webpack");
+const {
+    HotModuleReplacementPlugin
+} = require("webpack");
 
 module.exports = {
     entry: path.join(__dirname, 'src/index.js'),
@@ -16,21 +18,38 @@ module.exports = {
         port: 8000,
     },
     module: {
-        rules: [
-            {
-                test: /.vue$/,
+        rules: [{
+                test: /\.vue$/,
                 loader: 'vue-loader'
             },
             {
-                test: /.css$/,
+                test: /\.css$/,
                 use: [
                     'style-loader',
                     'css-loader'
                 ]
+            },
+            {
+                test: /\.js$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/
+            },
+            {
+                test: /\.less$/,
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'less-loader'
+                ]
             }
         ]
     },
-    mode: 'none',
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js'
+        }
+    },
+    // mode: 'none',
     plugins: [
         new HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
@@ -41,4 +60,3 @@ module.exports = {
     ]
 
 }
-
