@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>纯CSS实现左右滑动</title>
+    <style type="text/css">
+      #container {
+        height: 200px;
+        width: 800px;
+        border: 1px solid #333;
+        overflow: hidden;
+        margin: 25px auto;
+      }
+      
+      #box {
+        background: orange;
+        height: 180px;
+        width: 400px;
+        margin: 10px -400px;
+        animation-name: move;
+        animation-direction: right;
+        animation-duration: 4s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+        /* -webkit-animation-name: move; */
+        /* -webkit-animation-direction: right; */
+        /* -webkit-animation-duration: 4s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-direction: right;
+        -webkit-animation-timing-function: linear;  */
+      }
+      
+      #box:hover {
+        animation-play-state: paused;
+        -webkit-animation-play-state: paused;
+      }
+      @keyframes move {
+        0% {
+          margin-left: -400px;
+        }
+
+        100% {
+          margin-left: 800px;
+        }
+      }
+      /* @-webkit-keyframes move {
+        0% {
+          margin-left: -400px;
+        }
+        100% {
+          margin-left: 800px;
+        }
+      } */
+      /* ul,li {
+        list-style: none;
+      }
+
+      .slide-box {
+        display: -webkit-box;
+        white-space: nowrap;
+        margin: 0 auto;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .slide-item {
+        display: inline-block;
+        width: 300px;
+        height: 300px;
+        border: 1px solid #ccc;
+        margin-right: 30px;
+        background: pink;
+        animation: myfirst 5s infinite alternate;
+      }
+      @keyframes myfirst {
+        0% {
+          background: red;
+          left: 0px;
+          top: 0px;
+        }
+
+        100% {
+          background: blue;
+          left: 200px;
+          top: 0px;
+        }
+      }
+
+      .slide-box::-webkit-scrollbar {
+        display: none;
+      } */
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="box">as</div>
+    </div>
+    <!-- <ul class="slide-box">
+      <li class="slide-item"></li>
+      <li class="slide-item"></li>
+      <li class="slide-item"></li>
+      <li class="slide-item"></li>
+      <li class="slide-item"></li>
+      <li class="slide-item"></li>
+      <li class="slide-item"></li>
+      <li class="slide-item"></li>
+    </ul> -->
+  </body>
+</html>
