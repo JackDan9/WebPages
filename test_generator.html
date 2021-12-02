@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>gengerate</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+        /**
+        *
+        * for ... of
+        * Iterator - 遍历器
+        * Map 和 Set(ES6), ES5(Array, Object)
+        * Iterator 是什么?
+        *    Iterator 是一种机制，是什么样的机制，它是一种接口， 为了不同的数据结构提供统一的访问方案。
+        *    任何的数据结构, 只要部署Iterator接口, 就可以完成遍历操作。
+        * 
+        * Iterator -> for ... of
+        * Generator -> return Iterator 遍历器
+        * Generator -> 没有内置执行器的，function * generator() {yield 1}; generator.next()
+        * 
+        * 
+        */
+            
+            // let it = makeIterator([1, 3, 4]);
+            // [1, 3, 4]
+            // it {next f() }
+            // console.log(it.next());
+            // // it.next = 5;
+            // // [1, 3, 4]
+            // console.log(it.next());
+            // console.log(it.next());
+
+
+            // function * test_generator() {
+            //     yield 1;
+            //     yield 2;
+            //     yield 3;
+            // }
+            // // co模块的话
+            // test_generator.next();
+            // test_generator.next();
+            // test_generator.next();
+
+            // ts
+            // interface Iterable {
+            //     [Symbol.iterator]() : Iterator,
+            // }
+
+            // interface Iterator {
+            //     next(value?: any) : IteratorResult,
+            // }
+
+            // interface IteratorResult {
+            //     value: any,
+            //     done: boolean,
+            // }
+
+            // Iterator接口的目的是为了所有数据结构提供一种统一的访问机制, 即for...of循环。
+            // 当使用for...of循环遍历某种数据结构时, 该循环会自动去寻找Iterator接口。
+
+            // 数据结构只要部署了Iterator接口, 我们就称这种数据结构为"可遍历"(iterable)的。
+
+            // ES6规定, 默认的Iterator接口部署在数据结构的Symbol.iterator属性, 或者说, 一个数据结构只要具有Symbol.iterator属性, 就可以认为是"可遍历的"(iterable)。
+            // 调用Symbol.iterator方法, 我们就会得到当前数据结构默认的遍历器生成函数。
+            // Symbol.iterator本事是一个表达式, 返回Symbol对象的iterator属性, 这是一个预定好的、类型为Symbol的特殊值,所以要放在方括号中。
+
+            // const obj = {
+            //     [Symbol.iterator]: function () {
+            //         return {
+            //             next: function () {
+            //                 return {
+            //                     value: 1,
+            //                     done: true
+            //                 };
+            //             }
+            //         }
+            //     }
+            // }
+
+            // Symbol 是ES6中的一种新的数据类型, let, const, var, 变量名冲突的问题, let const 
+            // export delcare interface a {
+
+            // }
+
+            // implements 
+            // var a = new Sting();
+            // var b = new Array();
+            
+
+
+
+
+            // function makeIterator(array) {
+            //     let index = 0;
+            //     return {
+            //         next: function() {
+            //             return index < array.length ? {value: array[index++], done: false} : {value: undefined, done: true};
+                        // if (index < array.length) {
+                        //     return {value: array[index++], done: false};
+                        // } else {
+                        //     return {value: undefined, done: true};
+                        // }
+            //         }
+            //     }
+            // }
+            // let obj = new Object();
+            // obj = {'a': 1, 'b': 2};
+
+            // // obj ? Array
+
+            // let objKeyArr = Object.keys(obj);
+            // // objKey ?
+            // for(let key of objKeyArr) {
+
+            // }
+            // window.onload = function () {
+
+            // }
+            // var nextPermutation = function(nums) {
+            //     let numsLen = nums.length;
+            //     let index = numsLen - 1;
+            //     while(index > 0) {
+            //         if(nums[index] > nums[index - 1]) {
+            //             for(var j = index; j < numsLen; j++) {
+            //                 if(nums[j] <= nums[index - 1]) {
+            //                     var temp1;
+            //                     temp1 = nums[j - 1];
+            //                     nums[j- 1] = nums[index - 1];
+            //                     nums[index - 1] = temp1;
+            //                     nums = resort(nums, index);
+            //                     return;
+            //                 }
+            //             }
+            //             var temp2;
+            //             temp2 = nums[numsLen - 1];
+            //             nums[numsLen - 1] = nums[index - 1];
+            //             nums[index - 1] = temp2;
+            //             nums = resort(nums, index); 
+            //             return;
+            //         }
+            //         index = index - 1;
+            //     }
+            //     nums.sort();
+            // };
+
+            // var resort = function (resortList, resortIndex) {
+            //     resortListLen = resortList.length;
+            //     resortListIndex = resortListLen - 1;
+            //     if(resortIndex < resortListIndex) {
+            //         var temp3;
+            //         temp3 = resortList[resortIndex];
+            //         resortList[resortIndex] = resortList[resortListIndex];
+            //         resortList[resortListIndex] = temp3;
+            //         resortListIndex = resortListIndex - 1;
+            //         resortIndex = resortIndex - 1;
+            //     }
+            //     return resortList;
+            // };
+
+            // window.onload = function () {
+            //     var arr = [5, 4, 7, 5, 3, 2];
+            //     debugger;
+            //     var resultArr = nextPermutation(arr);
+            //     console.log(resultArr);
+            // }
+
+
+            // Array for ... of
+            // let arr = new Array(10);
+            // debugger;
+            // 单线程的
+
+            // 同步任务优先级最高,
+
+            // function test() {
+            //     var file = new File();
+            //     file.open('');
+            //     file.
+            // }
+
+            // function test1() {
+            //     console.log(1);
+            // }
+
+
+            // function* generatorTest() {
+            //     yield 1;
+            //     yield 2;
+            //     yield 3;
+            //     return 4;
+            // }
+            
+            /**
+            * generator声明的方法不能直接调用, 为什么generator本身是一份function, (typeof(generatorTest) function 并切generatorTest instanceof Function 返回true).
+            * 
+            * 直接调用它是不回报错的。
+            * generatorTest.next()
+            * generatorTest function名称
+            * ƒ* generatorTest() {
+                yield 1;
+                yield 2;
+                yield 3;
+                return 4;
+              }
+            * 
+            * generatorTest().next()
+            * 
+            * 泛型---> vector ---> example: <T: t> --- TypeScript
+            * 继承---> extends ---> example: class A extends B {} --- ES6
+            * 泛型 VS 继承
+            * 
+            * 
+            * 类组件---React 类组件
+            * 
+            * 函数组件--- 
+            * useEffect, useState, redux --- connect --- hoc
+            * 
+            * ref
+            * 
+            *
+            */
+
+            // class Parent {
+            //     constructor(x, y) {
+            //         this.x = x;
+            //         this.y = y;
+            //     }
+
+            //     toPrint1() {
+            //         console.log(this.x + this.y);
+            //     }
+            // }
+
+
+            // class Child extends Parent {
+            //     constructor(x, y) {
+            //         debugger;
+            //         /**
+            //         * super(x, y) 调用Parent的constructor(x, y)
+            //         * Parent的constructor(x, y)什么都没有, 其实x, y值都是undefined
+            //         * 
+            //         * 这说明我们super(x,y), 但其实什么都没干。
+            //         * 
+            //         * 
+            //         */
+            //         super(x, y); // 调用A的constructor(x, y);
+            //     }
+
+            //     toPrint() {
+            //         super.toPrint1();
+            //     }
+            // }
+
+
+            // function add(args1: number, args2: number):number {
+            //     return 
+            // }
+
+
+            // class Child1 extends Parent {
+            //     constructor(x, y) {
+            //         super(x, y);
+            //         /**
+            //         * var super = 1;
+            //         * super(x, y);
+            //         * super是一个关键字，关键字不要用来作为变量名。
+            //         * super 本事既可以是函数，也可以是对象。
+            //         * 
+            //         * ES6语法规定, 子类constructor--构造函数必须执行一次super(), 不然会报错:
+            //         * Uncaught ReferenceError: Must call super constructor in derived class before accessing 'this' or returning from derived constructor
+            //         *
+            //         */
+            //     }
+            // }
+
+            // var c = new Child1(3, 4);
+            // c.toPrint1();
+
+            // var b = new Child(1, 2);
+            // b.toPrint1();
+            // b.toPrint();
+
+            // class A extends React.Component {
+            //     constructor(props) {
+            //         super(props);
+            //         this.state = {a: 1};
+            //     }
+            // }
+
+
+            // var test = generatorTest();
+
+
+            // debugger;
+
+            // generatorTest.next(); {value: 1, done: false}
+            // generatorTest.next(); {value: 2, done: true}
+            // generatorTest.next(); {value: undefined, done: true}
+
+
+            // iterator对象， next()
+
+        </script>
+    </body>
+</html>

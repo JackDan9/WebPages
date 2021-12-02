@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Promise</title>
+
+
+
+    </head>
+    <body>
+
+
+        <script type="text/javascript">
+            function loadImage(url) {
+                /**
+                * resolve:成功的状态
+                * reject: 失败的状态
+                */
+                return new Promise((resolve, reject) => {
+                    let image = new Image();
+
+                    image.onload = function () {
+                        resolve(image);
+                    }
+
+                    image.onerror = function () {
+                        reject(new Errror('This url is not a image url!'));
+                    }
+
+                    image.src = url;
+                });
+            };
+
+            window.onload = function () {
+                // let url = 'https://img-blog.csdnimg.cn/20190710100901457.png';
+                let url = 'aaaaa';
+                loadImage(url);
+            };
+        </script>
+    </body>
+</html>
