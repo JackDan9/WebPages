@@ -26,3 +26,11 @@ const dataSource = [
   },
 ]
 ```
+
+## Table - pagination默认是存在的
+
+- 如果你不想要`pagination`分页的话就需要增加pagination为`false`.
+
+```javascript
+<Table dataSource={dataSource} bordered={true} columns={columns} pagination={false} />
+```
