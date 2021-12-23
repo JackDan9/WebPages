@@ -1,6 +1,10 @@
 @import "~antd/dist/antd.css";
+
 .App {
+  height: 100vh;
+  width: 100vw;
   text-align: center;
+  background-color: red;
 }
 
 .App-logo {

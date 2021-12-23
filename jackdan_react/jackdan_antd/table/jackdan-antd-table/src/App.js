@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
-import './App.css';
-import { Table } from 'antd';
+import styles from './App.css';
+import { Table, Divider } from 'antd';
 import { useEffect } from 'react';
 
 function App() {
@@ -22,48 +22,61 @@ function App() {
   //   },
   // ]);
 
-  const columns = [
-    {
-      title: '姓名',
-      dataIndex: 'name',
-      key: 'name',
-    },
-    {
-      title: '年龄',
-      dataIndex: 'age',
-      key: 'age',
-    },
-    {
-      title: '住址',
-      dataIndex: 'address',
-      key: 'address',
-    },
-  ];
-  // const [dataSource, setDataSource] = useState([
-  const dataSource = [
-    {
-      key: '1',
-      // name: ['单军军', '王凤凤'], // 支持的数据类型
-      name: '单军军',
-      // name: [{name: 'jackdan', age: 16}],不支持的数据类型
-      age: 32,
-      address: '西湖区湖底公园1号',
-    },
-    {
-      key: '2',
-      name: '胡彦祖',
-      age: 42,
-      address: '西湖区湖底公园1号',
-    },
-  ];
+  const columns = [{
+    title: 'Name',
+    dataIndex: 'name',
+    key: 'name',
+    render: text => <a href="/">{text}</a>,
+  }, {
+    title: '张三',
+    dataIndex: 'age',
+    key: 'age',
+  }, {
+    title: '李四',
+    dataIndex: 'address',
+    key: 'address',
+  }, {
+    title: 'Action',
+    key: 'action',
+    render: (text, record) => (
+      <span>
+        <a href="/">Action 一 {record.name}</a>
+        <Divider type="vertical" />
+        <a href="/">Delete</a>
+        <Divider type="vertical" />
+        <a href="/" className="ant-dropdown-link">
+          More actions
+        </a>
+      </span>
+    ),
+  }];
+  
+  const data = [{
+    key: '1',
+    name: 'age',
+    age: 32,
+    address: '32',
+  }, {
+    key: '2',
+    name: 'address',
+    age: 'London No. 1 Lake Park',
+    address: 'London No. 1 Lake Park',
+  }, {
+    key: '3',
+    name: 'action',
+    age: 'Sidney No. 1 Lake Park',
+    address: 'Sidney No. 1 Lake Park',
+  }];
+
   useEffect(() => {
+    // debugger;
     return () => {
       console.log("app unmounted");
     }
   }, []);
 
   return (
-    <div className="App">
+    <div className={styles.App}>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -78,7 +91,9 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <Table dataSource={dataSource} bordered={true} columns={columns} pagination={false} />
+      {/* {1111} */}
+      {/* [{"name": 1}] */}
+      <Table dataSource={data} columns={columns} bordered={true} pagination={false} />
     </div>
   );
 }
