@@ -1,7 +1,9 @@
 // import logo from './logo.svg';
 import styles from './App.css';
-import { Table, Divider } from 'antd';
+import { Table, Divider, DatePicker } from 'antd';
 import { useEffect } from 'react';
+import * as moment from 'moment';
+import SearchSelectDemo from './components/SearchSelect';
 
 function App() {
   // const [columns, setColumns] = useState([
@@ -75,6 +77,8 @@ function App() {
     }
   }, []);
 
+  // const _testObjectArray = ReactHTML()
+
   return (
     <div className={styles.App}>
       {/* <header className="App-header">
@@ -93,7 +97,14 @@ function App() {
       </header> */}
       {/* {1111} */}
       {/* [{"name": 1}] */}
-      <Table dataSource={data} columns={columns} bordered={true} pagination={false} />
+      
+      {/* <Table dataSource={data} columns={columns} bordered={true} pagination={false} />
+      <DatePicker.RangePicker 
+        open 
+        showTime
+        defaultPickerValue={[moment("2019-12-09"), moment("2020-12-29")]}
+      /> */}
+      <SearchSelectDemo />
     </div>
   );
 }

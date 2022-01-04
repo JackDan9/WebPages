@@ -4,3 +4,7 @@ node_modules
 ./node_modules
 ././node_modules
 jspm_packages
+yarn.lock
+package-lock.json
+./yarn.lock
+./package-lock.json
