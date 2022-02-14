@@ -1,9 +1,10 @@
 // import logo from './logo.svg';
 import styles from './App.css';
-import { Table, Divider, DatePicker } from 'antd';
 import { useEffect } from 'react';
 import * as moment from 'moment';
 import SearchSelectDemo from './components/SearchSelect';
+import TableDataSource from './components/TableDataSource';
+import ModalSuccess from './components/ModalSuccess';
 
 function App() {
   // const [columns, setColumns] = useState([
@@ -23,52 +24,6 @@ function App() {
   //     key: 'address',
   //   },
   // ]);
-
-  const columns = [{
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    render: text => <a href="/">{text}</a>,
-  }, {
-    title: '张三',
-    dataIndex: 'age',
-    key: 'age',
-  }, {
-    title: '李四',
-    dataIndex: 'address',
-    key: 'address',
-  }, {
-    title: 'Action',
-    key: 'action',
-    render: (text, record) => (
-      <span>
-        <a href="/">Action 一 {record.name}</a>
-        <Divider type="vertical" />
-        <a href="/">Delete</a>
-        <Divider type="vertical" />
-        <a href="/" className="ant-dropdown-link">
-          More actions
-        </a>
-      </span>
-    ),
-  }];
-  
-  const data = [{
-    key: '1',
-    name: 'age',
-    age: 32,
-    address: '32',
-  }, {
-    key: '2',
-    name: 'address',
-    age: 'London No. 1 Lake Park',
-    address: 'London No. 1 Lake Park',
-  }, {
-    key: '3',
-    name: 'action',
-    age: 'Sidney No. 1 Lake Park',
-    address: 'Sidney No. 1 Lake Park',
-  }];
 
   useEffect(() => {
     // debugger;
@@ -104,7 +59,9 @@ function App() {
         showTime
         defaultPickerValue={[moment("2019-12-09"), moment("2020-12-29")]}
       /> */}
-      <SearchSelectDemo />
+      {/* <SearchSelectDemo /> */}
+      {/* <TableDataSource /> */}
+      <ModalSuccess />
     </div>
   );
 }
