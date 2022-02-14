@@ -1,0 +1,16 @@
+{
+  "name": "acorn",
+  "version": "1.0.0",
+  "description": "A project for ast test with acorn!",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "acorn": "^8.7.0",
+    "http-server": "^14.1.0",
+    "requirejs": "^2.3.6"
+  }
+}
