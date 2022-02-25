@@ -13,7 +13,8 @@
           responseType: 'blob',
         }).then(function (response) {
           var _blob = new Blob([response.data], {
-            type: response.data.type
+            // type: response.data.type
+            type: "application/pdf" // 也可以显式写为"application/pdf"
           });
           var _url = URL.createObjectURL(_blob);
           // debugger;
