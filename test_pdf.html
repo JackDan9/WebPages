@@ -3,8 +3,28 @@
   <head>
     <meta charset="utf-8" />
     <title>pdf加载</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+      // 转成blob
+      var _pdf = function() {
+        axios({
+          method: 'get',
+          url: "https://vkceyugu.cdn.bspapp.com/VKCEYUGU-8e76dff9-ce38-4577-9e5c-398943705060/a5b050b8-3fa1-4436-b231-7b40725de731.pdf",
+          responseType: 'blob',
+        }).then(function (response) {
+          var _blob = new Blob([response.data], {
+            type: response.data.type
+          });
+          var _url = URL.createObjectURL(_blob);
+          // debugger;
+          document.getElementById('pdf').src = _url;
+        })
+      }
+      _pdf();
+    </script>
   </head>
   <body>
-    <iframe src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-8e76dff9-ce38-4577-9e5c-398943705060/a5b050b8-3fa1-4436-b231-7b40725de731.pdf"></iframe>
+    <iframe src="" id="pdf"></iframe>
+    <!-- <iframe src="https://vkceyugu.cdn.bspapp.com/VKCEYUGU-8e76dff9-ce38-4577-9e5c-398943705060/a5b050b8-3fa1-4436-b231-7b40725de731.pdf"></iframe> -->
   </body>
 </html>
