@@ -1,0 +1,10 @@
+{
+  "code": 200,
+  "data": [
+    {
+      "name": "jackdan",
+      "age": 28,
+      "hobby": "beauty"
+    }
+  ]
+}
