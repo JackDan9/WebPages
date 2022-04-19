@@ -1,10 +1,12 @@
 {
-  "code": 200,
-  "data": [
-    {
-      "name": "jackdan",
-      "age": 28,
-      "hobby": "beauty"
-    }
-  ]
+  "label": "候选规则",
+  "type": "itemSelect",
+  "stage": "recall_stage",
+  "config": {
+    "recallType": "custom",
+    "userGroup": [],
+    "itemGroup": [],
+    "size": 200,
+    "weight": 1.0
+  }
 }

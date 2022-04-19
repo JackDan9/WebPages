@@ -45,7 +45,10 @@ class DvaDemo extends Component {
           bordered
           rowKey={"name"}
           columns={this.state.tableColumns}
-          dataSource={this.props.user.tableDataSource}>
+          dataSource={this.props.user.tableDataSource}
+          pagination={{
+            showQuickJumper
+          }}>
         </Table>
       </div>
     )
