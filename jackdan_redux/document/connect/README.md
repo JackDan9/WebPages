@@ -1,8 +1,32 @@
 # react-redux的connect和Provider的原理
 
+| 标题 | 内容 |
+| --- | --- |
+| redux | redux特点 |
+| react-redux | connect和Provider |
+| Provider原理 | 源码分析Provider原理 |
+| connect原理 | 源码分析connect原理 |
+| Example | 实例 |
+
+
+------
+
+## redux特点
+
+- Redux 期望所有状态更新都是使用不可变(immutable)的方式
+- "todos/todoAdded": “域<=> action 所属的特征或类别/事件名称<=>发生的具体事情”
+
+```javascript
+const addNum = 
+```
+
+------
+
+## `connect`和`Provider`概览
+
 - react-redux提供`connect`和`Provider`将react和redux连接起来。
 
-  - `connect`: 用于创建容器组件, 可以使容器组件访问到Provider组件通过context提供的store, 并将mapStateToProps和mapDispatchToProps返回的state和dispatch传递给UI组件。
+  - `connect`: 用于创建容器组件, 可以使容器组件访问到`Provider`组件**通过context提供的store**, 并将`mapStateToProps`和`mapDispatchToProps`返回的**state和dispatch传递给UI组件**。
   - `Provider`: 通过`context`向子组件提供`store`。
 
 ## 1、connect和Provider的使用
@@ -17,6 +41,7 @@ import reducer from './reducers';
 import Container from './Container';
 
 const store = createStore(reducer);
+
 const App = () => {
   return (
     <Provider store={store}>
@@ -51,7 +76,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Demo)
 
 ## 2.1、Provider源码解析
 
-- Provider组件在Provider.js里面定义, 仅有短短几十行代码, 核心代码如下:
+- Provider组件在`Provider.js`里面定义, 仅有短短几十行代码, 核心代码如下:
 
 ```javascript
 import React, { useMemo, useEffect } from 'react';
