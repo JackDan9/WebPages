@@ -25,3 +25,12 @@ console.log(test.sayOwnName);
 // 访问到 Otaku 构造函数里的属性
 // 访问到 Otaku.prototype 中的属性
 ```
+
+## new的过程
+
+```md
+1. 创建一个空的简单 JavaScript 对象（即{}）；
+2. 为步骤 1 新创建的对象添加属性__proto__，将该属性链接至构造函数的原型对象 ；
+3. 将步骤 1 新创建的对象作为this的上下文 ；
+4. 如果该函数没有返回对象，则返回this。
+```
