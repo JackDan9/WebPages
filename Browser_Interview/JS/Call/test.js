@@ -1,4 +1,4 @@
-Function.prototype.myCall = function(context) {
+Function.prototype._call = function(context) {
   var context = Object(context) || window;
   context.fn = this;
 
@@ -8,8 +8,22 @@ Function.prototype.myCall = function(context) {
     args.push('arguments[' + i + ']');
   }
 
-  result = eval('context.fn(' + args + ')');
+  let result = eval('context.fn(' + args + ')');
 
   delete context.fn();
   return result;
 }
+
+// test
+// 'use strict';
+var helloWords = "hello world";
+// let obj = {
+//   helloWords: "hello world"
+// };
+
+function hello() {
+  console.log(this);
+  console.log('Please say something: ', this.helloWords);
+}
+
+hello._call();

@@ -1,0 +1,99 @@
+html {
+  font-size: 100px;
+}
+
+body {
+  background: #E3E3E3;
+}
+
+.card {
+  width: 7rem;
+  height: 2rem;
+  background-image: url(https://gw.alipayobjects.com/mdn/rms_7527d7/afts/img/A*HD9_S4RyppUAAAAAAAAAAAAAARQnAQ);
+  background-size: 100% auto;
+  background-position: center;
+  margin-bottom: 0.4rem;
+  display: flex;
+  .card-left {
+    width: 5.1rem;
+    margin-top: 0.1rem;
+    margin-left: 0.1rem;
+    .card-left-title {
+      line-height: 0.36rem;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.1rem;
+      img {
+        height: 0.36rem;
+        width: 0.36rem;
+      }
+      span {
+        font-size: 0.24rem;
+        color: black;
+        font-weight: bold;
+      }
+    }
+  
+    .card-left-desc {
+      display: flex;
+      flex-direction: row;
+      img {
+        height: 1.33rem;
+        margin-right: 0.2rem;
+      }
+  
+      .desc-info {
+        .info-logo {
+          display: flex;
+          margin-bottom: 0.1rem;
+          img {
+            height: 0.3rem;
+          }
+        }
+        .info-title {
+          margin-bottom: 0.1rem;
+          font-size: 0.24rem;
+          color: #000000;
+          font-weight: bold;
+        }
+  
+        .info-price {
+          font-size: 0.32rem;
+          color: #ff0000;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .card-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.9rem;
+    position: relative;
+    .card-right-tip {
+      position: absolute;
+      top: 0;
+      font-size: 0.18rem;
+      width: 1rem;
+      height: 0.3rem;
+      background: #ff0000;
+      text-align: center;
+      line-height: 0.3rem;
+      color: #ffffff;
+      border-bottom-left-radius: 0.1rem;
+      border-bottom-right-radius: 0.1rem;
+    }
+    .card-right-btn {
+      width: 1.24rem;
+      height: 0.6rem;
+      font-size: 0.36rem;
+      color: #ffffff;
+      font-weight: bold;
+      background: #ff0000;
+      border-radius: 0.62rem;
+      text-align: center;
+      line-height: 0.6rem;
+    } 
+  }
+}
