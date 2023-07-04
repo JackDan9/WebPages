@@ -11,10 +11,6 @@ html {
   line-height: 1;
 }
 
-ol, ul {
-  list-style: none;
-}
-
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -650,7 +646,7 @@ a {
 .content-bd .section-hd {
   position: relative;
   height: 32px;
-  margin: 10px auto 5px;
+  margin: 5px auto 5px;
   overflow: hidden;
 }
 
@@ -659,7 +655,7 @@ a {
 }
 
 .content-bd .section-bd .item {
-  padding-bottom: 10px;
+  padding-bottom: 4px;
   border-bottom: 1px solid #e6e6e6;
 }
 
