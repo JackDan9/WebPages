@@ -1,146 +1,134 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.css'
-import Example from './components/Example/index'
-import HooksExample from './components/HooksExample/index'
-import HighOrderComponent from './components/HighOrderComponent/index'
-import HooksEffectExample from './components/HooksEffectExample'
-import NoEffectExample from './components/HooksEffectExample/NoEffectExample'
-import ExampleUseState from './components/ExampleUseState'
-import App from './components/App'
-import People from './components/Contract/People/index'
 
-// function Square (props) {
-//   return (
-//     <button className='square' onClick={props.onClick}>
-//       {props.value}
-//     </button>
-//   )
+// 实现 n 秒倒计时，初始显示 n (来自props)，每秒递减1，到0时停止倒计时，并显示 “活动开始”
+// 使用函数组件 + 自定义 hooks 实现
+
+import React, { useState, useEffect, useRef } from 'react'
+import Draggable from 'react-draggable'
+import ReactDom from 'react-dom'
+import 'antd/dist/antd.css';
+import { Modal, Button } from 'antd';
+import App from './components/App';
+
+function DragModal() {
+  const [scale, setScale] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
+  const handleDragStart = () => {
+    setScale(1);
+  };
+
+  const handleDragStop = () => {
+    const modal = document.getElementById('modal');
+    const { width, height } = modal.getBoundingClientRect();
+    const scale = Math.min(window.innerWidth / width, window.innerHeight / height);
+    console.log(scale);
+    setScale(0.5);
+  };
+
+  const showModal = () => {
+    console.log("1111");
+    setIsModalOpen(true);
+  }
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  }
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  }
+
+  return (
+    <div>
+      <Button type="primary" onClick={showModal}>打开弹窗</Button>
+      {/* <Draggable
+        onStart={handleDragStart}
+        onStop={handleDragStop}
+        scale={scale}> */}
+        <Modal 
+          title="测试Modal" 
+          width={600}
+          height={500}
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}>
+            <div id="modal" style={{
+              transform: `scale(${scale})`,
+              border: '1px solid red'
+            }}>
+              测试Modal
+            </div>
+          </Modal>
+      {/* </Draggable> */}
+    </div>
+  )
+}
+
+// useRef是一种方法
+// function useCountDown(n) {
+//   const [time, setTime] = useState(n);
+//   const timeRef = useRef(n);
+//   // let timeCurrent = n; // 也是可以实现的
+//   const intervalId = useRef(0);
+  
+//   useEffect(() => {
+//     intervalId.current = setInterval(() => {
+//       timeRef.current = timeRef.current - 1;
+//       setTime(timeRef.current);
+//     }, 1000);
+//   }, []);
+  
+//   if (time === 0) {
+//     clearInterval(intervalId.current);
+//   }
+
+//   return time;
 // }
 
-// const onClose = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-//   console.log(e, 'I was closed')
+// function Timer(props) {
+//   const time = useCountDown(props.n)
+
+//   return <span>{time === 0 ? '活动开始' : `剩余${time}秒`}</span>
 // }
 
-// class Board extends React.Component {
-//   renderSquare (i) {
-//     return (
-//       <Square
-//         value={this.props.squares[i]}
-//         onClick={() => this.props.onClick(i)}
-//       />
-//     )
-//   }
-
-//   render () {
-//     return (
-//       <div>
-//         <div className='board-row'>
-//           {this.renderSquare(0)}
-//           {this.renderSquare(1)}
-//           {this.renderSquare(2)}
-//         </div>
-//         <div className='board-row'>
-//           {this.renderSquare(3)}
-//           {this.renderSquare(4)}
-//           {this.renderSquare(5)}
-//         </div>
-//         <div className='board-row'>
-//           {this.renderSquare(6)}
-//           {this.renderSquare(7)}
-//           {this.renderSquare(8)}
-//         </div>
-//       </div>
-//     )
-//   }
-// }
-
-// class Game extends React.Component {
-//   constructor (props) {
-//     super(props)
-//     this.state = {
-//       history: [
-//         {
-//           squares: Array(9).fill(null)
-//         }
-//       ],
-//       stepNumber: 0,
-//       xIsNext: true
-//     }
-//   }
-
-//   handleClick (i) {
-//     const history = this.state.history.slice(0, this.state.stepNumber + 1)
-//     const current = history[history.length - 1]
-//     const squares = current.squares.slice()
-//     if (calculateWinner(squares) || squares[i]) {
-//       return
-//     }
-//     squares[i] = this.state.xIsNext ? 'X' : 'O'
-//     this.setState({
-//       history: history.concat([
-//         {
-//           squares: squares
-//         }
-//       ]),
-//       stepNumber: history.length,
-//       xIsNext: !this.state.xIsNext
-//     })
-//   }
-
-//   jumpTo (step) {
-//     this.setState({
-//       stepNumber: step,
-//       xIsNext: step % 2 === 0
-//     })
-//   }
-
-//   render () {
-//     const history = this.state.history
-//     const current = history[this.state.stepNumber]
-//     const winner = calculateWinner(current.squares)
-//     const moves = history.map((step, move) => {
-//       const desc = move ? 'Go to move #' + move : 'Go to game start'
-//       return (
-//         <li key={move}>
-//           <button onClick={() => this.jumpTo(move)}>{desc}</button>
-//         </li>
-//       )
-//     })
-//     let status
-//     if (winner) {
-//       status = 'Winner: ' + winner
-//     } else {
-//       status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O')
-//     }
-
-//     return (
-//       <div className='game'>
-//         <div className='game-board'>
-//           <Board squares={current.squares} onClick={i => this.handleClick(i)} />
-//         </div>
-//         <div className='game-info'>
-//           <div>{status}</div>
-//           <div>{moves}</div>
-//         </div>
-//       </div>
-//     )
+// async function useTimeoutPrint(n) {
+//   for (let i = 1; i < n; i++) {
+//     console.log(await _promise(i, i * 1000));
 //   }
 // }
 
-ReactDOM.render(
-  <div>
-    <People></People>
-    {/* <Example />, */}
-    {/* <HooksExample onClose={onClose} />, */}
-    {/* <HighOrderComponent /> */}
-    {/* <HooksEffectExample /> */}
-    {/* <NoEffectExample /> */}
-    {/* <ExampleUseState /> */}
-    {/* <App /> */}
-  </div>,
-  document.getElementById('root')
-)
+// function* useTimeoutPrint(n) {
+//   for (let i = 1; i < n; i++) {
+//     yield _promise(i, i * 1000);
+//   }
+// }
+
+// async function useTimeoutPrint(n) {
+//   for (let i = 1; i < n; i++) {
+//     console.log("i: ", await _promise(i, i * 1000));
+//   }
+// }
+
+// function _promise(num, interval) {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve(num)
+//     }, interval);
+//   });
+// }
+
+// function Print(props) {
+//   const _p = useTimeoutPrint(props.n);
+//   // _p.then((res) => {
+//   //   console.log("res: ", res);
+//   // })
+//   // Promise.all(_p).then((res) => {
+//   //   console.log(res);
+//   // });
+//   return <span>1111</span>
+// }
+
+ReactDom.render(<App />, document.querySelector('#root'))
 
 // function calculateWinner (squares) {
 //   const lines = [
