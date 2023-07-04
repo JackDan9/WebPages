@@ -1,0 +1,20 @@
+async function asyhc1() {
+  console.log('async1 start'); // 2
+  await asyhc2();
+  console.log('async1 end'); // 7
+}
+async function asyhc2() {
+  console.log('async2'); // 3
+}
+console.log('script start'); // 1
+setTimeOut(() => {
+  console.log('setTimeout'); // 8
+}, 0);
+asyhc1();
+new Promise((resolve) => {
+  console.log('promise1'); // 3
+  resolve();
+}).then(() => {
+  console.log('promise2'); // 4
+});
+console.log('script end'); // 5
